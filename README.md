@@ -13,8 +13,10 @@ $ npm install
 ## Running
 
 To run the app simply do
-
+```
 $ npm start
+```
 
-Then navigate to localhost:3000/cv
+Then navigate to localhost:3000/cv in your browser of choice
+
 
