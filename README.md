@@ -17,6 +17,6 @@ To run the app simply do
 $ npm start
 ```
 
-This will open up localhost:3000 in your browser, here add /cv (so localhost:3000/cv, this a short term measure whilst I work on the app)
+This will open up localhost:3000 in your browser, here add /cv (so "localhost:3000/cv", this a short term measure whilst I work on the app)
 
 
