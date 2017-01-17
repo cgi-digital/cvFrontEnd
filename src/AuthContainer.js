@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Login } from './Ducks/login';
 
 import AuthComponent from './AuthComponent';
 
@@ -8,12 +9,18 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    submitLogin:()=> {
+
+     Login();
+
+  }
+  };
 }
 
 class AuthContainer extends Component {
   render() {
-    return <AuthComponent {...this.props} />;
+    return <AuthComponent {...this.props} handleSubmit={this.props.submitLogin} />;
   }
 }
 

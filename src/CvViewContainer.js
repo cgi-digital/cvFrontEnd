@@ -6,7 +6,7 @@ import { getUser } from './Ducks/user';
 import CvViewComponent from './CvViewComponent';
 
 function mapStateToProps(state) {
-  return { user: state.user };
+  return { user: state.user, skills: state.skills.skills };
 }
 
 function mapDispatchToProps(dispatch) {

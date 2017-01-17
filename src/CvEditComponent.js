@@ -9,7 +9,7 @@ const renderField = field => <div>
   <input className='form-control' {...field.input} type='text' />
   {
     field.meta.touched && field.meta.error &&
-      <span className='error'>{field.meta.error}</span>
+    <span className='error'>{field.meta.error}</span>
   }
 </div>;
 
@@ -38,27 +38,7 @@ class CvEditComponent extends Component {
             <label className='control-label' htmlFor='bio'>Profile Summary</label>
             <Field name='summary' component='textarea' type='text' />
           </div>
-          <div className=''>
-            <label className='control-label' htmlFor='bio'>Profile Summary</label>
-            <Field name='brexit' component='textarea' type='text' />
-          </div>
-          <div>
-            <label>Specialism</label>
-            <div>
-              <Field name='specialism' component='select'>
-                <option value=''>Select a specialism...</option>
-                {
-                  specialism.map(
-                    specialismOption =>
-                      <option value={specialismOption} key={specialismOption}>{
-                        specialismOption
-                      }</option>
-                  )
-                }
-              </Field>
-            </div>
-          </div>
-          <button type='submit'>Submit</button>
+          <button type='submit'>Update User Info</button>
         </form>
       </div>
     );

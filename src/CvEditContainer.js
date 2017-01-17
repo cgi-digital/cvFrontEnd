@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { getUser, postUser } from './Ducks/user';
+import { deleteSkill } from './Ducks/skills';
 
 import CvEditComponent from './CvEditComponent';
 
 function mapStateToProps(state) {
-  return { user: state.user };
+  return { skills: state.skills, user: state.user };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -17,6 +18,9 @@ function mapDispatchToProps(dispatch) {
     postUserData: e => {
       e.preventDefault();
       dispatch(postUser());
+    },
+    deleteSkill: id => {
+      dispatch(deleteSkill(id));
     }
   };
 }

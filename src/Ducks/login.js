@@ -6,10 +6,10 @@ import axios from 'axios';
 import { API_URL } from '../API';
 // Actions
 // Define actions for each part of API request etc
-export const USER_LOAD = 'USER_LOAD';
-export const USER_SUCCESS = 'USER_SUCCESS';
-export const USER_FAILURE = 'USER_FAILURE';
-export const USER_UPDATE = 'USER_UPDATE';
+export const LOGIN_LOAD = 'LOGIN_LOAD';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+export const LOGIN_UPDATE = 'LOGIN_UPDATE';
 
 // Reducer
 // Initial State is the default object that is assigned to state.
@@ -22,13 +22,13 @@ export const USER_UPDATE = 'USER_UPDATE';
 //   summary: 'Ea inermis consequuntur vis, no nam nostro ornatus explicari. An sit scripta recusabo adversarium, vis lorem consulatu at. Tale mutat volutpat at sea. Mei altera equidem salutatus id, eos dicunt latine id. Graeci everti no mel, sint dicant laoreet duo at.',
 // };
 const initialState = {
-  id: null,
-  email: null,
-  firstname: null,
-  lastname: null,
-  title: null,
-  summary: null
-};
+//   id: null,
+//   email: null,
+//   firstname: null,
+//   lastname: null,
+//   title: null,
+//   summary: null
+ };
 
 // Reducer is exported as default
 export default function reducer(state = initialState, action) {
@@ -37,14 +37,11 @@ export default function reducer(state = initialState, action) {
 
   // Switch with cases for each action type
   switch (action.type) {
-    case 'USER_SUCCESS':
+    case 'LOGIN_SUCCESS':
       // On API success, grab action data and make newState from it
-      newState = Object.assign({}, action.data);
+     //newState = Object.assign({}, action.data);
       return newState;
-    case 'USER_UPDATE':
-      newState = Object.assign({}, action.data);
-      return newState;
-      break;
+
 
     // Default just returns copy of previous state, no changes made.
     default:
@@ -52,36 +49,20 @@ export default function reducer(state = initialState, action) {
   }
 }
 
-// To be imported into container component, and assigned via mapDispatchToProps
-export function getUser(params = {}) {
-  return function(dispatch) {
-    dispatch({ type: USER_LOAD });
 
-    // Axios - first argument is endpoint, second is params object
-    axios
-      .get(API_URL + 'user')
-      .then(function(response) {
-        dispatch({ type: USER_SUCCESS, data: response.data });
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  };
-}
 
-export function postUser(params = {}) {
+export function Login() {
   return function(dispatch, getState) {
     const currentState = getState();
-    const formState = currentState.form.cv_form.values;
+    const formState = currentState.form.login_form.values;
 
-    // dispatch({ type: USER_UPDATE, data: currentState.form.cv_form.values });
     axios
-      .post(API_URL + 'user', currentState.form.cv_form.values)
+      .post(API_URL + 'security/login', currentState.form.login_form.values)
       .then(function(response) {
-        dispatch({ type: USER_UPDATE, data: currentState.form.cv_form.values });
+        dispatch({ type: LOGIN_UPDATE, data: currentState.form.login_form.values });
       })
       .catch(function(error) {
-        dispatch({ type: USER_FAILURE });
+        dispatch({ type: LOGIN_FAILURE });
         console.log(error);
       });
   };
