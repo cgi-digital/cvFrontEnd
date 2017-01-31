@@ -40,7 +40,13 @@ export default function reducer(state = initialState, action) {
     case 'LOGIN_SUCCESS':
       // On API success, grab action data and make newState from it
      //newState = Object.assign({}, action.data);
-      return newState;
+      return {
+        ...state,
+      user: {
+          ...state.user,
+          ...action.data,
+        },
+  }
 
 
     // Default just returns copy of previous state, no changes made.

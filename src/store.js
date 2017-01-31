@@ -16,7 +16,9 @@ import { apiConfig } from './API';
 // axios.defaults.headers.common['Authorization'] = 'Token ' + Store2.get('vestedyeti:key');
 const client = axios.create(apiConfig);
 
-const enhancer = compose(
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const enhancer = composeEnhancers(
   applyMiddleware(
     ReduxThunk,
     routerMiddleware(browserHistory),

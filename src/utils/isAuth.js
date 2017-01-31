@@ -5,7 +5,7 @@ export default function isAuth(nextState, replace) {
   // Looks in localstorage for token
   if (Store2.get('user:token')) {
     replace({
-      pathname: 'cv/view',
+      pathname: 'cv/edit',
       state: { nextPathname: nextState.location.pathname }
     });
   } else {

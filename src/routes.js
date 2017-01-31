@@ -1,4 +1,4 @@
-//import isAuth from './utils/isAuth';
+import isAuth from './utils/isAuth';
 
 import AppContainer from './AppContainer';
 import AuthContainer from './AuthContainer';
@@ -7,14 +7,18 @@ import CvEditContainer from './CvEditContainer';
 import CvViewContainer from './CvViewContainer';
 import HeaderComponent from './HeaderComponent';
 
+
+
+
 export const Routes = {
   path: '/',
   component: AppContainer,
-  // onEnter: isAuth,
+  onEnter: isAuth,
   indexRoute: { components: { content: CvContainer } },
   childRoutes: [
     {
       path: '/login',
+      onEnter: isAuth,
       components: { header: HeaderComponent, content: AuthContainer },
     },
     {
