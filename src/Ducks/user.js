@@ -1,6 +1,7 @@
 // comments.js
 
 import axios from 'axios';
+import qs from 'qs';
 
 // Constants
 import { API_URL } from '../API';
@@ -56,7 +57,7 @@ export default function reducer(state = initialState, action) {
 export function getUser(params = {}) {
   return function(dispatch) {
     dispatch({ type: USER_LOAD });
-
+      
     // Axios - first argument is endpoint, second is params object
     axios
       .get(API_URL + 'user')
@@ -73,10 +74,15 @@ export function postUser(params = {}) {
   return function(dispatch, getState) {
     const currentState = getState();
     const formState = currentState.form.cv_form.values;
+    const stringifiedContents = qs.stringify(formState);
 
     // dispatch({ type: USER_UPDATE, data: currentState.form.cv_form.values });
     axios
-      .post(API_URL + 'user', currentState.form.cv_form.values)
+      .post(API_URL + 'user', stringifiedContents, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
       .then(function(response) {
         dispatch({ type: USER_UPDATE, data: currentState.form.cv_form.values });
       })

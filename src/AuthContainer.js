@@ -13,8 +13,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     submitLogin:()=> {
-      Login();
-      push('cv/edit');
+      dispatch(Login());
+      // push('cv/edit');
     },
     handleSubmitSuccess: () => {
     }
@@ -22,7 +22,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 class AuthContainer extends Component {
-  
+
 
   render() {
     const { submitLogin, handleSubmitSuccess } = this.props;

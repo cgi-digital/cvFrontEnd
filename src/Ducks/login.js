@@ -1,6 +1,8 @@
 // comments.js
 
 import axios from 'axios';
+import qs from 'qs';
+import { browserHistory } from 'react-router';
 
 // Constants
 import { API_URL } from '../API';
@@ -61,15 +63,23 @@ export function Login() {
   return function(dispatch, getState) {
     const currentState = getState();
     const formState = currentState.form.login_form.values;
-
+    // const { Username, Password } = currentState.form.login_form.values;
+    const stringifiedContents = qs.stringify(formState);
+    
     axios
-      .post(API_URL + 'security/login', currentState.form.login_form.values)
+      .post(API_URL + 'security/login', stringifiedContents, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
       .then(function(response) {
         dispatch({ type: LOGIN_UPDATE, data: currentState.form.login_form.values });
+        browserHistory.replace('/edit');
       })
       .catch(function(error) {
         dispatch({ type: LOGIN_FAILURE });
         console.log(error);
+        browserHistory.replace('/edit');
       });
   };
 }
