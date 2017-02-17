@@ -70,15 +70,49 @@ export function getUser(params = {}) {
   };
 }
 
+const addUserEntity = (entityName, payload) => {
+  return axios
+    .post(API_URL + `user/${entityName}`, qs.stringify(payload), {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    });
+};
+
 export function postUser(params = {}) {
   return function(dispatch, getState) {
     const currentState = getState();
     const formState = currentState.form.cv_form.values;
-    const stringifiedContents = qs.stringify(formState);
+
+    // Add new skills independently
+    formState.skills.filter(k => !k.id).forEach(skill => {
+      addUserEntity('skills', skill);
+    });
+    formState.projects.filter(k => !k.id).forEach(project => {
+      addUserEntity('projects', Object.keys(project).reduce((prev, next) => {
+        if (next === 'projectName') {
+          prev.project = project.projectName;
+        } else {
+          prev[next] = project[next];
+        }
+        return prev;
+      }, {}));
+    });
+    formState.qualifications.filter(k => !k.id).forEach(qualification => {
+      addUserEntity('qualifications', qualification);
+    });
+
+    // TODO: Find a way to save these
+    const rootFields = Object.keys(formState).reduce((prev, next) => {
+      if (['firstname', 'lastname', 'title'].includes(next)) {
+        prev[next] = formState[next];
+      }
+      return prev;
+    }, {});
 
     // dispatch({ type: USER_UPDATE, data: currentState.form.cv_form.values });
-    axios
-      .post(API_URL + 'user', stringifiedContents, {
+    /*axios
+      .post(API_URL + 'user', qs.stringify(rootFields), {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
@@ -89,6 +123,6 @@ export function postUser(params = {}) {
       .catch(function(error) {
         dispatch({ type: USER_FAILURE });
         console.log(error);
-      });
+      });*/
   };
 }

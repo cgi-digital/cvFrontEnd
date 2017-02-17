@@ -13,11 +13,11 @@ const renderField = field => <div>
   }
 </div>;
 
-const renderSkills = ({ fields, userid }) => (
+const renderSkills = ({ fields }) => (
   <ul>
     <li>
       <button type="button" onClick={() => {
-        fields.push({ userid })
+        fields.push({})
       }}>Add skill</button>
     </li>
     {fields.map((skill, index) =>
@@ -40,11 +40,11 @@ const renderSkills = ({ fields, userid }) => (
   </ul>
 )
 
-const renderQualifications = ({ fields, userid }) => (
+const renderQualifications = ({ fields }) => (
   <ul>
     <li>
       <button type="button" onClick={() => {
-        fields.push({ userid })
+        fields.push({})
       }}>Add qualification</button>
     </li>
     {fields.map((qualification, index) =>
@@ -59,11 +59,11 @@ const renderQualifications = ({ fields, userid }) => (
   </ul>
 )
 
-const renderProjects = ({ fields, userid }) => (
+const renderProjects = ({ fields }) => (
   <ul>
     <li>
       <button type="button" onClick={() => {
-        fields.push({ userid })
+        fields.push({})
       }}>Add project</button>
     </li>
     {fields.map((project, index) =>
@@ -121,9 +121,9 @@ class CvEditComponent extends Component {
             <label className='control-label' htmlFor='bio'>Profile Summary</label>
             <Field name='summary' component='textarea' type='text' />
           </div>
-          <FieldArray name="skills" component={renderSkills} userid={this.props.user.id} />
-          <FieldArray name="qualifications" component={renderQualifications} userid={this.props.user.id} />
-          <FieldArray name="projects" component={renderProjects} userid={this.props.user.id} />
+          <FieldArray name="skills" component={renderSkills} />
+          <FieldArray name="qualifications" component={renderQualifications} />
+          <FieldArray name="projects" component={renderProjects} />
           <button type='submit'>Update User Info</button>
         </form>
       </div>

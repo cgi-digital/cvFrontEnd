@@ -2,7 +2,8 @@
 
 import axios from 'axios';
 import qs from 'qs';
-import { browserHistory } from 'react-router';
+//import { browserHistory } from 'react-router';
+import { push } from 'react-router-redux';
 
 // Constants
 import { API_URL } from '../API';
@@ -74,12 +75,16 @@ export function Login() {
       })
       .then(function(response) {
         dispatch({ type: LOGIN_UPDATE, data: currentState.form.login_form.values });
-        browserHistory.replace('/edit');
+        dispatch(push('/edit'));
       })
       .catch(function(error) {
-        dispatch({ type: LOGIN_FAILURE });
-        console.log(error);
-        browserHistory.replace('/edit');
+        debugger;
+        if (error.message === 'Network Error') {
+          dispatch({ type: LOGIN_UPDATE, data: currentState.form.login_form.values });
+          dispatch(push('/edit'));
+        } else {
+          dispatch({ type: LOGIN_FAILURE });
+        }
       });
   };
 }
