@@ -60,7 +60,7 @@ export default function reducer(state = initialState, action) {
 
 
 
-export function Login() {
+export function SignUp() {
   return function(dispatch, getState) {
     const currentState = getState();
     const formState = currentState.form.login_form.values;
@@ -68,7 +68,7 @@ export function Login() {
     const stringifiedContents = qs.stringify(formState);
     
     axios
-      .post(API_URL + 'security/login', stringifiedContents, {
+      .post(API_URL + 'security/register', stringifiedContents, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         }

@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import TextField from 'material-ui/TextField'
+import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton'
+import Checkbox from 'material-ui/Checkbox'
+import SelectField from 'material-ui/SelectField'
+import MenuItem from 'material-ui/MenuItem'
 
 class CvViewComponent extends Component {
   componentDidMount() {
@@ -45,12 +50,12 @@ class CvViewComponent extends Component {
         <div>
           {projects.map((p, index) => {
             return (
-              <span key={index}>
+              <div className='' key={index}>
                 <p>Employer: {p.employer}</p>
                 <p>Project name: {p.projectName}</p>
                 <p>Role: {p.role}</p>
                 <p>Summary: {p.summary}</p>
-              </span>
+              </div>
             );
           })}
         </div>

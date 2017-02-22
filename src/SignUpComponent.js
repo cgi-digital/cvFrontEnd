@@ -9,7 +9,6 @@ import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton'
 import Checkbox from 'material-ui/Checkbox'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
-import { Link } from 'react-router';
 
 const renderField = ({ input, label, meta: { touched, error }, ...custom }) => (
   <TextField hintText={label}
@@ -32,7 +31,7 @@ const validate = values => {
 }
 
 
-class AuthComponent extends Component {
+class SignUpComponent extends Component {
   componentWillMount() {}
   
 
@@ -49,8 +48,7 @@ class AuthComponent extends Component {
             <label className='control-label' htmlFor='Password'>Password</label>
             <Field name='Password' component={renderField} type='password' />
           </div>
-          <button type='submit'>Login</button>
-          <Link to={'/signUp'}>Sign Up</Link>
+          <button type='submit'>Sign Up</button>
         </form>
       </div>
     );
@@ -58,6 +56,6 @@ class AuthComponent extends Component {
 }
 
 export default reduxForm({ form: 'login_form'})(
-  AuthComponent
+  SignUpComponent
 )
 //i am going to be given an endpoint

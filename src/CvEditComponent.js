@@ -4,14 +4,39 @@
 
 import React, { Component } from 'react';
 import { Field, FieldArray, reduxForm } from 'redux-form';
+import TextField from 'material-ui/TextField'
+import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton'
+import Checkbox from 'material-ui/Checkbox'
+//import SelectField from 'material-ui/SelectField'
+import MenuItem from 'material-ui/MenuItem'
+import {
+  SelectField,
+} from 'redux-form-material-ui'
 
-const renderField = field => <div>
-  <input className='form-control' {...field.input} type='text' />
-  {
-    field.meta.touched && field.meta.error &&
-    <span className='error'>{field.meta.error}</span>
-  }
-</div>;
+const renderField = ({ input, label, meta: { touched, error }, ...custom }) => (
+  <TextField hintText={label}
+    floatingLabelText={label}
+    errorText={touched && error}
+    {...input}
+    {...custom}
+  />
+)
+
+const renderCheckbox = ({ input, label }) => (
+  <Checkbox label={label}
+    checked={input.value ? true : false}
+    onCheck={input.onChange}/>
+)
+
+const renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }) => (
+  <SelectField
+    floatingLabelText={label}
+    errorText={touched && error}
+    {...input}
+    onChange={(event, index, value) => input.onChange(value)}
+    children={children}
+    {...custom}/>
+)
 
 const renderSkills = ({ fields }) => (
   <ul>
@@ -27,14 +52,24 @@ const renderSkills = ({ fields }) => (
           type="text"
           component={renderField}
           label="Skill"/>
+        
         <Field
           name={`${skill}.level`}
-          type="text"
           normalize={(value) => {
             return Number(value);
           }}
-          component={renderField}
-          label="Level"/>
+          component={SelectField}
+          label="Level">
+          <MenuItem value={1} primaryText="1"/>
+          <MenuItem value={5} primaryText="5"/>
+          <MenuItem value={10} primaryText="10"/>
+        </Field>
+        <Field name="favoriteColor" component="select">
+            <option></option>
+            <option value="ff0000">Red</option>
+            <option value="00ff00">Green</option>
+            <option value="0000ff">Blue</option>
+          </Field>
       </li>
     )}
   </ul>
