@@ -3,6 +3,7 @@ import { reducer as formReducer } from 'redux-form';
 import { routerReducer } from 'react-router-redux';
 
 import userReducer from './user';
+import usersReducer from './users';
 import skillsReducer from './skills';
 import loginReducer from './login';
 
@@ -13,6 +14,7 @@ const RootReducer = combineReducers({
   // API
   skills: skillsReducer,
   user: userReducer,
+  users: usersReducer,
   login: loginReducer,
 });
 

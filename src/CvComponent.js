@@ -10,6 +10,7 @@ class CvComponent extends Component {
         <header>
           <Link to={'/edit'}>Edit CV</Link>
           <Link to={'/view'}>View CV</Link>
+          <Link to={'/search'}>CV Search</Link>
         </header>
         {content}
       </div>

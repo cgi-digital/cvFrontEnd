@@ -8,6 +8,9 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Routes } from './routes';
 import configureStore from './store';
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
 import './index.css';
 
 const store = configureStore();

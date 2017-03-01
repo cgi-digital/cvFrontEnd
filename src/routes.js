@@ -6,6 +6,7 @@ import SignUpContainer from './SignUpContainer';
 import CvContainer from './CvContainer';
 import CvEditContainer from './CvEditContainer';
 import CvViewContainer from './CvViewContainer';
+import CvSearchContainer from './CvSearchContainer';
 import HeaderComponent from './HeaderComponent';
 
 
@@ -33,7 +34,8 @@ export const Routes = {
       indexRoute: { components: { content: CvViewContainer } },
       childRoutes: [
         { path: '/edit', components: { content: CvEditContainer } },
-        { path: '/view', components: { content: CvViewContainer } }
+        { path: '/view', components: { content: CvViewContainer } },
+        { path: '/search', components: { content: CvSearchContainer } }
       ]
     }
   ]
