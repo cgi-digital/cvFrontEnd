@@ -45,7 +45,7 @@ export default function reducer(state = initialState, action) {
      //newState = Object.assign({}, action.data);
       return {
         ...state,
-      user: {
+        user: {
           ...state.user,
           ...action.data,
         },
@@ -66,7 +66,7 @@ export function Login() {
     const formState = currentState.form.login_form.values;
     // const { Username, Password } = currentState.form.login_form.values;
     const stringifiedContents = qs.stringify(formState);
-    
+
     axios
       .post(API_URL + 'security/login', stringifiedContents, {
         headers: {
