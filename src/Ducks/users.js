@@ -49,7 +49,7 @@ export function getUsers(params = {}) {
 
     // Axios - first argument is endpoint, second is params object
     axios
-      .get(API_URL + 'user/all')
+      .get(API_URL + 'users')
       .then(function(response) {
         dispatch({ type: USERS_SUCCESS, data: response.data });
       })
