@@ -4,8 +4,71 @@ body {
   font-family: sans-serif;
 }
 
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
 .loginForm {
    width:500px;
    margin: 0 auto;
 }
 
+.header{
+  width:500px;
+  margin: 0 auto;
+}
+
+.CvNav{
+  width:500px;
+  margin: 0 auto;
+}
+
+/* CV Edit page Begins */
+
+.EditCVPage{
+
+  width:500px;
+  margin: 0 auto;
+
+
+}
+
+/* CV Edit page Ends */
+
+/* CV View page */
+
+.CvPretty{
+  width:500px;
+  margin: 0 auto;
+}
+
+.CvSummary{
+
+  text-indent:50px;
+  letter-spacing: 2px;
+  text-align:justify;
+
+}
+
+
+.CvViewSkills{
+  text-indent:50px;
+  letter-spacing: 2px;
+  text-align:justify;
+  padding: 6px;
+
+}
+
+.CvViewQualifications{
+  text-indent:50px;
+  letter-spacing: 2px;
+  text-align:justify;
+  padding: 6px;
+}
+
+
+.CvViewProjects{
+
+}

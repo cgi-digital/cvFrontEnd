@@ -9,13 +9,16 @@ import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton'
 import Checkbox from 'material-ui/Checkbox'
 //import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
+import RaisedButton from 'material-ui/RaisedButton';
 import {
   SelectField,
 } from 'redux-form-material-ui'
 
-const renderField = ({ input, label, meta: { touched, error }, ...custom }) => (
+const renderField = ({ input, multiLine, rows, label, meta: { touched, error }, ...custom }) => (
   <TextField hintText={label}
     floatingLabelText={label}
+    multiLine={multiLine}
+    rows={rows}
     errorText={touched && error}
     {...input}
     {...custom}
@@ -27,6 +30,10 @@ const renderCheckbox = ({ input, label }) => (
     checked={input.value ? true : false}
     onCheck={input.onChange}/>
 )
+
+const style = {
+  margin: 10,
+};
 
 const renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }) => (
   <SelectField
@@ -41,9 +48,9 @@ const renderSelectField = ({ input, label, meta: { touched, error }, children, .
 const renderSkills = ({ fields }) => (
   <ul>
     <li>
-      <button type="button" onClick={() => {
-        fields.push({})
-      }}>Add skill</button>
+    <RaisedButton type='button' label="Add skill" primary={true} onClick={() => {
+      fields.push({})
+    }} />
     </li>
     {fields.map((skill, index) =>
       <li key={index}>
@@ -52,7 +59,7 @@ const renderSkills = ({ fields }) => (
           type="text"
           component={renderField}
           label="Skill"/>
-        
+
         <Field
           name={`${skill}.level`}
           normalize={(value) => {
@@ -64,12 +71,6 @@ const renderSkills = ({ fields }) => (
           <MenuItem value={5} primaryText="5"/>
           <MenuItem value={10} primaryText="10"/>
         </Field>
-        <Field name="favoriteColor" component="select">
-            <option></option>
-            <option value="ff0000">Red</option>
-            <option value="00ff00">Green</option>
-            <option value="0000ff">Blue</option>
-          </Field>
       </li>
     )}
   </ul>
@@ -78,9 +79,9 @@ const renderSkills = ({ fields }) => (
 const renderQualifications = ({ fields }) => (
   <ul>
     <li>
-      <button type="button" onClick={() => {
+      <RaisedButton type='button' label="Add qualification" primary={true} onClick={() => {
         fields.push({})
-      }}>Add qualification</button>
+      }} />
     </li>
     {fields.map((qualification, index) =>
       <li key={index}>
@@ -93,13 +94,13 @@ const renderQualifications = ({ fields }) => (
     )}
   </ul>
 )
-
+//to do ADD DATE_RANGE
 const renderProjects = ({ fields }) => (
   <ul>
     <li>
-      <button type="button" onClick={() => {
-        fields.push({})
-      }}>Add project</button>
+    <RaisedButton type='button' label="Add project" primary={true} onClick={() => {
+      fields.push({})
+    }} />
     </li>
     {fields.map((project, index) =>
       <li key={index}>
@@ -121,6 +122,7 @@ const renderProjects = ({ fields }) => (
         <Field
           name={`${project}.summary`}
           type="text"
+          multiLine
           component={renderField}
           label="Project Summary"/>
       </li>
@@ -138,28 +140,27 @@ class CvEditComponent extends Component {
     const { handleSubmit } = this.props;
 
     return (
-      <div className={'form-group'}>
+      <div className={'EditCVPage'}>
         <form onSubmit={handleSubmit}>
           <div className=''>
-            <label className='control-label' htmlFor='firstName'>First Name</label>
-            <Field name='firstname' component={renderField} type='text' />
+            <label className='control-label' htmlFor='firstName'></label>
+            <Field name='firstname' component={renderField} type='text' label="First Name" />
           </div>
           <div className=''>
-            <label className='control-label' htmlFor='lastName'>Last Name</label>
-            <Field name='lastname' component={renderField} type='text' />
+            <label className='control-label' htmlFor='lastName'></label>
+            <Field name='lastname' component={renderField} type='text' label="Last Name" />
           </div>
           <div className=''>
-            <label className='control-label' htmlFor='title'>Title</label>
-            <Field name='title' component={renderField} type='title' />
+            <label className='control-label' htmlFor='title'></label>
+            <Field name='title' component={renderField} type='text' label="Title"/>
           </div>
           <div className=''>
-            <label className='control-label' htmlFor='bio'>Profile Summary</label>
-            <Field name='summary' component='textarea' type='text' />
+            <Field name='summary' component={renderField} type='text' multiLine rows={3} label="Profile Summary" />
           </div>
           <FieldArray name="skills" component={renderSkills} />
           <FieldArray name="qualifications" component={renderQualifications} />
           <FieldArray name="projects" component={renderProjects} />
-          <button type='submit'>Update User Info</button>
+          <RaisedButton type='submit' label="Update User Info" primary={true} style={style} />
         </form>
       </div>
     );
