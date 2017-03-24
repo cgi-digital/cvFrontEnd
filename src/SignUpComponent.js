@@ -9,6 +9,7 @@ import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton'
 import Checkbox from 'material-ui/Checkbox'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
+import RaisedButton from 'material-ui/RaisedButton';
 
 const renderField = ({ input, label, meta: { touched, error }, ...custom }) => (
   <TextField hintText={label}
@@ -33,7 +34,7 @@ const validate = values => {
 
 class SignUpComponent extends Component {
   componentWillMount() {}
-  
+
 
   render() {
     const { handleSubmit } = this.props;
@@ -41,14 +42,14 @@ class SignUpComponent extends Component {
       <div className={'form-group loginForm'}>
         <form onSubmit={handleSubmit}>
           <div className=''>
-            <label className='control-label' htmlFor='Username'>Username</label>
-            <Field name='Username' component={renderField} type='text' />
+            <label className='control-label' htmlFor='Username'></label>
+            <Field name='Username' component={renderField} type='text' label="Username"/>
           </div>
           <div className=''>
-            <label className='control-label' htmlFor='Password'>Password</label>
-            <Field name='Password' component={renderField} type='password' />
+            <label className='control-label' htmlFor='Password'></label>
+            <Field name='Password' component={renderField} type='password' label="Password" />
           </div>
-          <button type='submit'>Sign Up</button>
+          <RaisedButton type='submit' label="Sign Up" primary={true}  />
         </form>
       </div>
     );
