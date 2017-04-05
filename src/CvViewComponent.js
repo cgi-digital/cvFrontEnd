@@ -19,8 +19,8 @@ class CvViewComponent extends Component {
     } = user;
 
     return (
-      <div>
-        <h1>{user.firstname}{user.lastname}</h1>
+      <div className={'CvPretty'}>
+        <h1>{user.firstname} {user.lastname}</h1>
         <h2>{user.title}</h2>
         <div>
           {user.summary}
@@ -30,7 +30,7 @@ class CvViewComponent extends Component {
           {skills.map((skill, index) => {
             return (
               <span>
-                <span className={'label label-primary'} key={
+                <span className={'CvViewSkills'} key={
                     index
                   }>{skill.skill}</span>
                 <span>{skill.level}</span>
@@ -41,13 +41,13 @@ class CvViewComponent extends Component {
         <h3>Qualifications</h3>
         <div>
           {qualifications.map((q, index) => {
-            return <span className={'label label-primary'} key={
+            return <span className={'CvViewQualifications'} key={
                 index
               }>{q.qualification}</span>;
           })}
         </div>
         <h3>Projects</h3>
-        <div>
+        <div className={'CvViewProjects'}>
           {projects.map((p, index) => {
             return (
               <div className='' key={index}>
