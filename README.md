@@ -64,6 +64,18 @@ The app uses Marerial UI in order to style not only the 'Redux forms' but the fo
 Read more here: http://www.material-ui.com/#/get-started/required-knowledge
 
 
-### App Flow Overview
+## Current App Flow Overview
+
+The app has a specific flow (at the current time of writing 10/04/2017).
+
+Navigating to /login takes you to the login page. 
+
+Clicking 'Sign up' will navigate you to the sign up page, where users can be signed up.
+
+Using 'guest' and 'password' will take you to you the CV edit screen.
+Here you can edit your existing cv. Clicking on 'view cv' will allow you to view what you CV will look like on the system. 
+
+# To Do
+
 
 
