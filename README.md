@@ -1,4 +1,4 @@
-### CV-App Front End
+# CV-App Front End
 
 This project was built using create react app, for more information on this see here: https://medium.com/@diamondgfx/learning-react-with-create-react-app-part-1-a12e1833fdc
 
