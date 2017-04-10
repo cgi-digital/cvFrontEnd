@@ -35,6 +35,14 @@ This will open up localhost:3000 in your browser, here add /login to get to the 
 
 The App created using three main technologies, React.JS, Redux and Redux form as well two design patterns. One for React called the container/component pattern. The other using the 'Ducks' pattern for redux. 
 
+Overviews of React and Redux can be found here:
+
+React:
+https://facebook.github.io/react/docs/hello-world.html
+
+Redux:
+http://redux.js.org/docs/introduction/
+
 ### Container/Component pattern
 
 The container/component pattern is whereby a container does data fetching and then renders its corresponding sub-component. For example in this app, the CvViewContainer handles all the data and the CvViewComponent handles all the UI.
@@ -77,5 +85,5 @@ Here you can edit your existing cv. Clicking on 'view cv' will allow you to view
 
 # To Do
 
-
+To do's will be added here.
 
