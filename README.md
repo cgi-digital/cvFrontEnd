@@ -85,5 +85,7 @@ Here you can edit your existing cv. Clicking on 'view cv' will allow you to view
 
 # To Do
 
-To do's will be added here.
+See Jira Board for tasks needing to be done.
+
+https://www.cgi-digital.uk/jira/projects/ADSC/issues/ADSC-114?filter=allopenissues
 
