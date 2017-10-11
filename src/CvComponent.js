@@ -6,8 +6,6 @@ import FlatButton from 'material-ui/FlatButton';
 class CvComponent extends Component {
   render() {
     const { content } = this.props;
-
-
     return (
       <div>
         <AppBar

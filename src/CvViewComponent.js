@@ -25,7 +25,7 @@ class CvViewComponent extends Component {
         <div>
           {user.summary}
         </div>
-        <h3>Skills</h3>
+        <h3>Skills12121</h3>
         <div>
           {skills.map((skill, index) => {
             return (
