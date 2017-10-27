@@ -42,12 +42,24 @@ class SignUpComponent extends Component {
       <div className={'form-group loginForm'}>
         <form onSubmit={handleSubmit}>
           <div className=''>
+            <label className='control-label' htmlFor='firstName'></label>
+            <Field name='firstname' component={renderField} type='text' label="First Name" />
+          </div>
+          <div className=''>
+            <label className='control-label' htmlFor='lastName'></label>
+            <Field name='lastname' component={renderField} type='text' label="Last Name" />
+          </div>
+          <div className=''>
             <label className='control-label' htmlFor='Username'></label>
             <Field name='Username' component={renderField} type='text' label="Username"/>
           </div>
           <div className=''>
             <label className='control-label' htmlFor='Password'></label>
             <Field name='Password' component={renderField} type='password' label="Password" />
+          </div>
+          <div className=''>
+            <label className='control-label' htmlFor='Password'></label>
+            <Field name='ReTypePassword' component={renderField} type='password' label="Confirm Password" />
           </div>
           <RaisedButton type='submit' label="Sign Up" primary={true}  />
         </form>
