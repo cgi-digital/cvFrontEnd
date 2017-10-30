@@ -20,6 +20,8 @@ const renderField = ({ input, label, meta: { touched, error }, ...custom }) => (
   />
 )
 
+const strongRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
+
 const validate = values => {
   const errors = {}
   const requiredFields = ['FirstName', 'LastName', 'Username', 'Password', 'ReTypePassword', 'Email' ]
@@ -28,6 +30,10 @@ const validate = values => {
       errors[ field ] = 'Required'
     }
   })
+
+  if(values.Password && !strongRegex.test(values.Password)){
+    errors.Password = "Not Strong enough"
+  }
 
   if(values.Password !== values.ReTypePassword){
     errors.ReTypePassword = "Password doesn't match"
@@ -45,7 +51,7 @@ class SignUpComponent extends Component {
   componentWillMount() {}
  
   render() {
-    const { handleSubmit } = this.props;
+    const { error,handleSubmit } = this.props;
     return (
       <div className={'form-group loginForm'}>
         <form onSubmit={handleSubmit}>
@@ -60,6 +66,7 @@ class SignUpComponent extends Component {
           <div className=''>
             <label className='control-label' htmlFor='Username'></label>
             <Field name='Username' component={renderField} type='text' label="Username"/>
+            {error && <strong>{error}</strong>}
           </div><div className=''>
             <label className='control-label' htmlFor='email'></label>
             <Field name='Email' component={renderField} type='text' label="Email"/>
