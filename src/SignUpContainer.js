@@ -19,7 +19,7 @@ function mapDispatchToProps(dispatch) {
 
 class SignUpContainer extends Component {
   render() {
-    const { submitSignUp, handleSubmitSuccess, handleSubmit } = this.props; 
+    const { submitSignUp, handleSubmitSuccess} = this.props; 
     return (
       <SignUpComponent
         {...this.props}
