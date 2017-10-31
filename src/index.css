@@ -1,10 +1,17 @@
 * {
     box-sizing: border-box;
 }
+
+.row{
+
+  margin-right: 0px !important;
+}
+
 .row::after {
     content: "";
     clear: both;
     display: table;
+    margin-right: 0px !important;
 }
 [class*="col-"] {
     float: left;
@@ -41,9 +48,11 @@ ul {
    margin: 0 auto;
 }
 
-.header{
-    width: auto;
-    margin-left: 5%;
+.AppBarHeader{
+    width: 100% !important;
+    /* margin-left: 5% !important; */
+    padding-left: 4.5% !important;
+    /* background-color: #ffffff !important; */
 }
 
 .CvNav{
@@ -53,12 +62,10 @@ ul {
 
 /* CV Edit page Begins */
 
-.EditCVPage{
-  //float: left;
-  //width: auto;
+ .EditCVPage{
+  float: left;
+  width: auto;
   margin-left: 5%;
-
-
 }
 
 /* CV Edit page Ends */

@@ -4,12 +4,15 @@
 
 import React, { Component } from 'react';
 import { Field, FieldArray, reduxForm } from 'redux-form';
-import TextField from 'material-ui/TextField'
-import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton'
-import Checkbox from 'material-ui/Checkbox'
+import TextField from 'material-ui/TextField';
+import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
+import Checkbox from 'material-ui/Checkbox';
 //import SelectField from 'material-ui/SelectField'
-import MenuItem from 'material-ui/MenuItem'
+import IconButton from 'material-ui/IconButton';
+import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
+
 import {
   SelectField,
 } from 'redux-form-material-ui'
@@ -67,10 +70,12 @@ const renderSkills = ({ fields }) => (
           }}
           component={SelectField}
           label="Level">
+          
           <MenuItem value={1} primaryText="1"/>
           <MenuItem value={5} primaryText="5"/>
           <MenuItem value={10} primaryText="10"/>
         </Field>
+        {<IconButton onClick={() => {fields.remove(index);}} ><NavigationClose  /></IconButton>}
       </li>
     )}
   </ul>
@@ -95,11 +100,14 @@ const renderIndustryXP = ({ fields }) => (
           type="text"
           multiLine
           component={renderField}
-          label="Experience Summary"/>
+          label="Experience Summary">
+          </Field>
+          {<IconButton onClick={() => {fields.remove(index);}} ><NavigationClose  /></IconButton>}
       </li>
     )}
   </ul>
 )
+
 const renderCareerHistory = ({ fields }) => (
   <ul>
     <li>
@@ -136,6 +144,8 @@ const renderCareerHistory = ({ fields }) => (
           multiLine
           component={renderField}
           label="Experience"/>
+          {<IconButton onClick={() => {fields.remove(index);}} ><NavigationClose  /></IconButton>}
+
       </li>
     )}
   </ul>
@@ -170,6 +180,8 @@ const renderLanguages = ({ fields }) => (
           multiLine
           component={renderField}
           label="Project Summary"/>
+          {<IconButton onClick={() => {fields.remove(index);}} ><NavigationClose  /></IconButton>}
+
       </li>
     )}
   </ul>
@@ -189,6 +201,8 @@ const renderQualifications = ({ fields }) => (
           type="text"
           component={renderField}
           label="Qualification"/>
+          {<IconButton onClick={() => {fields.remove(index);}} ><NavigationClose  /></IconButton>}
+
       </li>
     )}
   </ul>
@@ -224,6 +238,8 @@ const renderProjects = ({ fields }) => (
           multiLine
           component={renderField}
           label="Project Summary"/>
+          {<IconButton onClick={() => {fields.remove(index);}} ><NavigationClose  /></IconButton>}
+
       </li>
     )}
   </ul>
@@ -298,8 +314,6 @@ Qualifications/Affiliations
           <FieldArray name="languages" component={renderLanguages} />
           <FieldArray name="qualifications" component={renderQualifications} />
           <FieldArray name="projects" component={renderProjects} />
-
-
 
 
           <RaisedButton type='submit' label="Update User Info" primary={true} style={style} />

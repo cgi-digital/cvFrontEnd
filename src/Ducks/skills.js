@@ -18,6 +18,7 @@ const USER_SKILL_DELETE_FAILURE = 'USER_SKILL_DELETE_FAILURE';
 // Reducer
 // Initial State is the default object that is assigned to state.
 const initialState = { skills: [] };
+
 // Reducer is exported as default
 export default function reducer(state = initialState, action) {
   // Make a copy of state as newState
