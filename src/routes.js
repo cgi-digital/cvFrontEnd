@@ -36,7 +36,7 @@ export const Routes = {
         { path: '/edit', components: { content: CvEditContainer } },
         { path: '/view', components: { content: CvViewContainer } },
         { path: '/search', components: { content: CvSearchContainer } },
-        { path: '/admin', components: { content: CvAdminContainer } }
+       // { path: '/admin', components: { content: CvAdminContainer } }
         
       ]
     }
