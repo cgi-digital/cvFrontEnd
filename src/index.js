@@ -13,9 +13,9 @@ injectTapEventPlugin();
 
 import './index.css';
 
-import 'material-ui/styles/colors';
+import './colors';
 
-var _colors = require('material-ui/styles/colors');
+var _colors = require('./colors');
 var _colorManipulator = require('material-ui/utils/colorManipulator');
 
 var _spacing = require('material-ui/styles/spacing');
