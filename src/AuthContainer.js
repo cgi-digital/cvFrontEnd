@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-import Store2 from 'store2';
 import { Login } from './Ducks/login';
-
 import AuthComponent from './AuthComponent';
 
 function mapStateToProps(state) {
@@ -13,8 +10,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     submitLogin:()=> {
-      dispatch(Login());
-      // push('cv/edit');
+      return dispatch(Login());
     },
     handleSubmitSuccess: () => {
     }
@@ -22,8 +18,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 class AuthContainer extends Component {
-
-
   render() {
     const { submitLogin, handleSubmitSuccess } = this.props;
     return (

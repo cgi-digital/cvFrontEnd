@@ -1,12 +1,10 @@
-// comments.js
-
 import axios from 'axios';
 import qs from 'qs';
-//import { browserHistory } from 'react-router';
 import { push } from 'react-router-redux';
-
+import { SubmissionError } from 'redux-form'
 // Constants
 import { API_URL } from '../API';
+
 // Actions
 // Define actions for each part of API request etc
 export const LOGIN_LOAD = 'LOGIN_LOAD';
@@ -24,14 +22,7 @@ export const LOGIN_UPDATE = 'LOGIN_UPDATE';
 //   title: 'Batman',
 //   summary: 'Ea inermis consequuntur vis, no nam nostro ornatus explicari. An sit scripta recusabo adversarium, vis lorem consulatu at. Tale mutat volutpat at sea. Mei altera equidem salutatus id, eos dicunt latine id. Graeci everti no mel, sint dicant laoreet duo at.',
 // };
-const initialState = {
-//   id: null,
-//   email: null,
-//   firstname: null,
-//   lastname: null,
-//   title: null,
-//   summary: null
- };
+const initialState = {};
 
 // Reducer is exported as default
 export default function reducer(state = initialState, action) {
@@ -67,8 +58,7 @@ export function Login() {
     // const { Username, Password } = currentState.form.login_form.values;
     const stringifiedContents = qs.stringify(formState);
 
-    axios
-      .post(API_URL + 'security/login', stringifiedContents, {
+    return axios.post(API_URL + 'security/login', stringifiedContents, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
@@ -83,6 +73,7 @@ export function Login() {
           dispatch(push('/edit'));
         } else {
           dispatch({ type: LOGIN_FAILURE });
+          throw new SubmissionError({ Password: 'wrong username and password combination', _error: 'LOGIN_FAILURE' });
         }
       });
   };
