@@ -71,8 +71,7 @@ export function SignUp() {
     
     const stringifiedContents = qs.stringify(formState);
 
-    axios
-      .post(API_URL + 'security/register', stringifiedContents, {
+    return axios.post(API_URL + 'security/register', stringifiedContents, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
@@ -89,8 +88,7 @@ export function SignUp() {
           dispatch(push('/edit'));
         } else {
           dispatch({ type: SINGUP_FAILURE, Username: 'Username already Taken' });
-          window.alert('Username already Taken');
-          //throw new SubmissionError({ Username: 'Username already Taken', _error: SINGUP_FAILURE })
+          throw new SubmissionError({ Username: 'Username already Taken', _error: 'SINGUP_FAILURE' });
         }
       });
   };

@@ -7,6 +7,7 @@ import { push } from 'react-router-redux';
 
 // Constants
 import { API_URL } from '../API';
+import { SubmissionError } from 'redux-form'
 // Actions
 // Define actions for each part of API request etc
 export const LOGIN_LOAD = 'LOGIN_LOAD';
@@ -67,8 +68,7 @@ export function Login() {
     // const { Username, Password } = currentState.form.login_form.values;
     const stringifiedContents = qs.stringify(formState);
 
-    axios
-      .post(API_URL + 'security/login', stringifiedContents, {
+    return axios.post(API_URL + 'security/login', stringifiedContents, {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
@@ -83,6 +83,7 @@ export function Login() {
           dispatch(push('/edit'));
         } else {
           dispatch({ type: LOGIN_FAILURE });
+          throw new SubmissionError({ Password: 'wrong username and password combination', _error: 'LOGIN_FAILURE' });
         }
       });
   };

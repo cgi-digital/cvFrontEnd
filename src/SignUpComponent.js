@@ -31,9 +31,9 @@ const validate = values => {
     }
   })
 
-  if(values.Password && !strongRegex.test(values.Password)){
-    errors.Password = "Not Strong enough"
-  }
+  // if(values.Password && !strongRegex.test(values.Password)){
+  //   errors.Password = "Not Strong enough"
+  // }
 
   if(values.Password !== values.ReTypePassword){
     errors.ReTypePassword = "Password doesn't match"
@@ -66,7 +66,7 @@ class SignUpComponent extends Component {
           <div className=''>
             <label className='control-label' htmlFor='Username'></label>
             <Field name='Username' component={renderField} type='text' label="Username"/>
-            {error && <strong>{error}</strong>}
+            {error && <strong>{error.Username}</strong>}
           </div><div className=''>
             <label className='control-label' htmlFor='email'></label>
             <Field name='Email' component={renderField} type='text' label="Email"/>

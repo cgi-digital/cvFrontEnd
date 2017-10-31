@@ -13,8 +13,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     submitLogin:()=> {
-      dispatch(Login());
-      // push('cv/edit');
+      return dispatch(Login());
     },
     handleSubmitSuccess: () => {
     }

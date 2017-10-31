@@ -13,7 +13,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     submitSignUp:()=> {
-      dispatch(SignUp());
+       return dispatch(SignUp());
     }, 
     handleSubmitSuccess: () => {
     }
