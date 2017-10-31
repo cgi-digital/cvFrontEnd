@@ -11,7 +11,6 @@ import HeaderComponent from './HeaderComponent';
 //import CvAdminContainer from './CvAdminContainer';
 
 
-
 export const Routes = {
   path: '/',
   component: AppContainer,
