@@ -7,10 +7,10 @@ import { API_URL } from '../API';
 
 // Actions
 // Define actions for each part of API request etc
-export const SINGUP_LOAD = 'SINGUP_LOAD';
-export const SINGUP_SUCCESS = 'SINGUP_SUCCESS';
-export const SINGUP_FAILURE = 'SINGUP_FAILURE';
-export const SINGUP_UPDATE = 'SINGUP_UPDATE'; 
+export const SIGNUP_LOAD = 'SIGNUP_LOAD';
+export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
+export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
+export const SIGNUP_UPDATE = 'SIGNUP_UPDATE'; 
 
 // Reducer
 // Initial State is the default object that is assigned to state.
@@ -58,16 +58,16 @@ export function SignUp() {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
       })
       .then(function (response) {
-        dispatch({ type: SINGUP_UPDATE, data: currentState.form.login_form.values });
+        dispatch({ type: SIGNUP_UPDATE, data: currentState.form.login_form.values });
         dispatch(push('/edit'));
       })
       .catch(function (error) {
         if (error.message === 'Network Error') {
-          dispatch({ type: SINGUP_UPDATE, data: currentState.form.login_form.values });
+          dispatch({ type: SIGNUP_UPDATE, data: currentState.form.login_form.values });
           dispatch(push('/edit'));
         } else {
-          dispatch({ type: SINGUP_FAILURE});
-          throw new SubmissionError({ Username: 'Username already Taken', _error: 'SINGUP_FAILURE' });
+          dispatch({ type: SIGNUP_FAILURE});
+          throw new SubmissionError({ Username: 'Username already Taken', _error: 'SIGNUP_FAILURE' });
         }
       });
   };
