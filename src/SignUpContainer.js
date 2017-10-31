@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import { push } from 'react-router-redux';
-//import Store2 from 'store2';
 import { SignUp } from './Ducks/signUp';
-
 import SignUpComponent from './SignUpComponent';
 
 function mapStateToProps(state) {
@@ -21,8 +18,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 class SignUpContainer extends Component {
-
-
   render() {
     const { submitSignUp, handleSubmitSuccess, handleSubmit } = this.props; 
     return (

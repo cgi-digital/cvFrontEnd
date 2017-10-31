@@ -1,14 +1,9 @@
 /**
  * Created by jm on 05/01/2017.
  */
-
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import TextField from 'material-ui/TextField'
-import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton'
-import Checkbox from 'material-ui/Checkbox'
-import SelectField from 'material-ui/SelectField'
-import MenuItem from 'material-ui/MenuItem'
 import RaisedButton from 'material-ui/RaisedButton';
 
 const renderField = ({ input, label, meta: { touched, error }, ...custom }) => (
@@ -31,9 +26,9 @@ const validate = values => {
     }
   })
 
-  // if(values.Password && !strongRegex.test(values.Password)){
-  //   errors.Password = "Not Strong enough"
-  // }
+  if(values.Password && !strongRegex.test(values.Password)){
+    errors.Password = "Not Strong enough"
+  }
 
   if(values.Password !== values.ReTypePassword){
     errors.ReTypePassword = "Password doesn't match"

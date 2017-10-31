@@ -1,15 +1,9 @@
 /**
  * Created by jm on 05/01/2017.
  */
-
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import TextField from 'material-ui/TextField'
-import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton'
-import Checkbox from 'material-ui/Checkbox'
-import SelectField from 'material-ui/SelectField'
-import MenuItem from 'material-ui/MenuItem'
-import { Link } from 'react-router';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const renderField = ({ input, label, meta: { touched, error }, ...custom }) => (
@@ -62,7 +56,8 @@ class AuthComponent extends Component {
   }
 }
 
-export default reduxForm({ form: 'login_form'})(
-  AuthComponent
-)
+export default reduxForm({ 
+  form: 'login_form',
+  validate
+})(AuthComponent)
 //i am going to be given an endpoint
