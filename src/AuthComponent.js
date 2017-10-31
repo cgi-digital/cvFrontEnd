@@ -40,7 +40,6 @@ const validate = values => {
 class AuthComponent extends Component {
   componentWillMount() {}
 
-
   render() {
     const { handleSubmit } = this.props;
     return (
