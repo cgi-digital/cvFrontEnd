@@ -33,6 +33,5 @@ export function grabMuiTheme(){
       shadowColor: _colors.fullBlack,
     },
   });
-  console.log("plz2");
   return muiTheme;
 }
