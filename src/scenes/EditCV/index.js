@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getUser, postUser } from './Ducks/user';
-import { deleteSkill } from './Ducks/skills';
+import { getUser, postUser } from '../../Ducks/user';
+import { deleteSkill } from '../../Ducks/skills';
 
-import CvEditComponent from './CvEditComponent';
+import CvEditComponent from './component';
 
 function mapStateToProps(state) {
   return { skills: state.skills, user: state.user };
