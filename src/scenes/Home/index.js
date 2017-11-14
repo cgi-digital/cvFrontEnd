@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getUser } from './Ducks/user';
+import { getUser } from '../../Reducers/user' ;
 
-import CvViewComponent from './CvViewComponent';
+import HomeComponent from './component';
 
 function mapStateToProps(state) {
   return { user: state.user, skills: state.skills.skills };
@@ -19,7 +19,7 @@ function mapDispatchToProps(dispatch) {
 
 class CvViewContainer extends Component {
   render() {
-    return <CvViewComponent {...this.props} />;
+    return <HomeComponent {...this.props} />;
   }
 }
 
