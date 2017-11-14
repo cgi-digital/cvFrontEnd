@@ -8,8 +8,7 @@ import CvEditContainer from './CvEditContainer';
 import CvViewContainer from './CvViewContainer';
 import CvSearchContainer from './CvSearchContainer';
 import HeaderComponent from './HeaderComponent';
-
-
+//import CvAdminContainer from './CvAdminContainer';
 
 
 export const Routes = {
@@ -35,7 +34,9 @@ export const Routes = {
       childRoutes: [
         { path: '/edit', components: { content: CvEditContainer } },
         { path: '/view', components: { content: CvViewContainer } },
-        { path: '/search', components: { content: CvSearchContainer } }
+        { path: '/search', components: { content: CvSearchContainer } },
+       // { path: '/admin', components: { content: CvAdminContainer } }
+        
       ]
     }
   ]

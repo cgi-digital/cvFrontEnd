@@ -6,11 +6,9 @@ import FlatButton from 'material-ui/FlatButton';
 class CvComponent extends Component {
   render() {
     const { content } = this.props;
-
-
     return (
       <div>
-        <AppBar
+        <AppBar  className="AppBarHeader"
           title={
             <header>
               <Link to={'/edit'}><FlatButton label="Edit CV" /></Link>

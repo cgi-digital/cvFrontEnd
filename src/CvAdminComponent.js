@@ -5,32 +5,32 @@ import Checkbox from 'material-ui/Checkbox'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 
-class CvViewComponent extends Component {
+class CvAdminComponent extends Component {
   componentDidMount() {
-    this.props.getUser()
+    this.props.getSkill()
   }
 
   render() {
-    const { user } = this.props;
+    const { skill } = this.props;
     const {
       skills = [],
       qualifications = [],
       projects = [],
-    } = user;
+    } = skill;
 
     return (
       <div className={'CvPretty'}>
-        <h1>{user.firstname} {user.lastname}</h1>
-        <h2>{user.title}</h2>
+        <h1>{skill.firstname} {skill.lastname}</h1>
+        <h2>{skill.title}</h2>
         <div>
-          {user.summary}
+          {skill.summary}
         </div>
-        <h3>Skills and Competencies</h3>
+        <h3>Skills</h3>
         <div>
           {skills.map((skill, index) => {
             return (
               <span>
-                <span className={'CvViewSkills'} key={
+                <span className={'CvAdminSkills'} key={
                     index
                   }>{skill.skill}</span>
                 <span>{skill.level}</span>
@@ -41,13 +41,13 @@ class CvViewComponent extends Component {
         <h3>Qualifications</h3>
         <div>
           {qualifications.map((q, index) => {
-            return <span className={'CvViewQualifications'} key={
+            return <span className={'CvAdminQualifications'} key={
                 index
               }>{q.qualification}</span>;
           })}
         </div>
         <h3>Projects</h3>
-        <div className={'CvViewProjects'}>
+        <div className={'CvAdminProjects'}>
           {projects.map((p, index) => {
             return (
               <div className='' key={index}>
@@ -64,6 +64,4 @@ class CvViewComponent extends Component {
   }
 }
 
-
-
-export default CvViewComponent;
+export default CvAdminComponent;
