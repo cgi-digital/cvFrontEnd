@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import { getUser } from './Ducks/user';
-
-import CvComponent from './CvComponent';
+import { getUser } from '../../Reducers/user';
+import CvComponent from '../../Components/Header/CvComponent';
 
 function mapStateToProps(state) {
   return {};

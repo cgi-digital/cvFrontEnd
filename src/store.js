@@ -10,7 +10,7 @@ import ReduxThunk from 'redux-thunk';
 
 import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
-import Ducks from './Ducks';
+import Reducers from './Reducers';
 import { apiConfig } from './API';
 
 // axios.defaults.headers.common['Authorization'] = 'Token ' + Store2.get('vestedyeti:key');
@@ -28,5 +28,5 @@ const enhancer = composeEnhancers(
 );
 
 module.exports = function() {
-  return createStore(Ducks, enhancer);
+  return createStore(Reducers, enhancer);
 };

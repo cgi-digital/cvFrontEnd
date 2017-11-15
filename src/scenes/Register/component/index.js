@@ -31,7 +31,7 @@ const validate = values => {
   }
 
   if(values.Password !== values.ReTypePassword){
-    errors.ReTypePassword = "Password doesn't match"
+    errors.ReTypePassword = "Password does not match"
   }
 
   if(values.Email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.Email)){
@@ -60,7 +60,7 @@ class SignUpComponent extends Component {
           </div>
           <div className=''>
             <label className='control-label' htmlFor='Username'></label>
-            <Field name='Username' component={renderField} type='text' label="Username"/>
+            <Field name='Username' id='username' component={renderField} type='text' label="Username"/>
             {error && <strong>{error.Username}</strong>}
           </div><div className=''>
             <label className='control-label' htmlFor='email'></label>
@@ -74,7 +74,7 @@ class SignUpComponent extends Component {
             <label className='control-label' htmlFor='Password'></label>
             <Field name='ReTypePassword' component={renderField} type='password' label="Confirm Password" />
           </div>
-          <RaisedButton type='submit' label="Sign Up" primary={true}  />
+          <RaisedButton type='submit' id='signUp' label="Sign Up" primary={true}  />
         </form>
       </div>
     );
