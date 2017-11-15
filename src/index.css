@@ -102,6 +102,10 @@ ul {
   padding: 6px;
 }
 
+input {
+    border: none;
+    background-color: transparent;
+}
 
 .CvViewProjects{
 
