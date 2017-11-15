@@ -26,7 +26,7 @@ Scenario: try to login with wrong user details
 Scenario: try to login with correct user details 
      Given I go to "localhost:3000/login"
      When I am not logged in
-     When I enter "biniam" for correct username
-     When I enter password correct "Pa55word"
+     When I enter "<dumyUsername>" for correct username
+     When I enter password correct "<dumyPassword>"
      When I click on button correctly Login
      Then I should be logged in
