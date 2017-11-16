@@ -67,14 +67,14 @@ const renderSkills = ({ fields }) => (
   <div>
     {fields.map((skill, index) =>
       <div key={index} className="row">
-        <div className="col-sm-5 col-xs-12">
+        <div className="col-sm-7 col-xs-12">
           <Field
             name={`${skill}.skill`}
             type="text"
             component={renderField}
             label="Skill" />
         </div>
-        <div className="col-sm-5 col-xs-12">
+        <div className="col-sm-4 col-xs-12">
           <Field
             name={`${skill}.level`}
             component={renderSelectField}
@@ -85,7 +85,7 @@ const renderSkills = ({ fields }) => (
             <MenuItem value={10} primaryText="10" />
           </Field>
         </div>
-        <div className="col-sm-2 col-xs-12">
+        <div className="col-sm-1 text-right col-xs-12">
           {<FloatingActionButton mini={true} primary={true} onClick={() => { fields.remove(index); }}><NavigationClose /></FloatingActionButton>}
         </div>
       </div>
@@ -307,14 +307,28 @@ class CvEditComponent extends Component {
   render() {
     const specialism = ['FrontEnd', 'BackEnd', 'Database', 'DevOps', 'Agile', 'FullStack'];
     const { handleSubmit } = this.props;
+    const { user } = this.props;
 
     return (
-      <div className={'EditCVPage'}>
+      <div className={'editCvPage'}>
         <div className="container-fluid">
+          <div className="cvHeader paper pd15 mb30">
+            <div className="row">
+              <div className="col-sm-6 col-xs-12">
+                <i className="fa fa-pencil headerIcon"></i>
+                <h1>{user.lastname}, {user.firstname}</h1>
+                <h2><small>{user.title}</small></h2>
+              </div>
+              <div className="col-sm-6 col-xs-12">
+                <h3>Summary</h3>
+                <p>{user.summary}</p>
+              </div>
+            </div>
+          </div>
           <form className="paperForm" onSubmit={handleSubmit} >
             <div className="row">
               <div className="nav-vertical">
-                <div className="col-md-2 col-sm-3">
+                <div className="col-sm-3 col-xs-12">
                   <ul className="nav nav-tabs">
                     <li className="active"><a data-toggle="tab" href="#personalDetail">Personal Details</a></li>
                     <li><a data-toggle="tab" href="#skills">Skills</a></li>
@@ -325,32 +339,44 @@ class CvEditComponent extends Component {
                     <li><a data-toggle="tab" href="#projects">Projects</a></li>
                   </ul>
                 </div>
-                <div class="col-md-10 col-sm-9">
+                <div className="col-sm-9 col-xs-12">
                   <div className="tab-content">
-                    <div id="personalDetail" className="tab-pane fade in active paper pd15">
-
-                      <div className="row">
-                        <div className='col-sm-6 col-xs-12'>
-                          <label className='control-label' htmlFor='firstName'></label>
-                          <Field name='firstname' component={renderField} type='text' label="First Name" fullWidth />
-                        </div>
-                        <div className='col-sm-6 col-xs-12'>
-                          <label className='control-label' htmlFor='lastName'></label>
-                          <Field name='lastname' component={renderField} type='text' label="Last Name" />
-                        </div>
+                    <div id="personalDetail" className="tab-pane fade in active">
+                      <div className="paper pd15 mb20">
+                        <h2>Personal Detail</h2>
                       </div>
-                      <div className=''>
-                        <label className='control-label' htmlFor='title'></label>
-                        <Field name='title' component={renderField} type='text' label="Title" />
-                      </div>
-                      <div className=''>
-                        <Field name='summary' component={renderField} type='text' label="Profile Summary" />
+                      <div className="paper pd15">
+                        <div className="row">
+                          <div className='col-sm-6 col-xs-12'>
+                            <label className='control-label' htmlFor='firstName'></label>
+                            <Field name='firstname' component={renderField} type='text' label="First Name" fullWidth />
+                          </div>
+                          <div className='col-sm-6 col-xs-12'>
+                            <label className='control-label' htmlFor='lastName'></label>
+                            <Field name='lastname' component={renderField} type='text' label="Last Name" />
+                          </div>
+                        </div>
+                        <div className=''>
+                          <label className='control-label' htmlFor='title'></label>
+                          <Field name='title' component={renderField} type='text' label="Title" />
+                        </div>
+                        <div className=''>
+                          <Field name='summary' component={renderField} type='text' label="Profile Summary" />
+                        </div>
                       </div>
                     </div>
-                    <div id="skills" className="tab-pane fade paper pd15">
-                      <FieldArray name="skills" component={renderSkills} />
+                    <div id="skills" className="tab-pane fade">
+                      <div className="paper pd15 mb20">
+                        <h2>Skills</h2>
+                      </div>
+                      <div className="paper pd15">
+                        <FieldArray name="skills" component={renderSkills} />
+                      </div>
                     </div>
-                    <div id="industryExp" className="tab-pane fade paper pd15">
+                    <div id="industryExp" className="tab-pane fade">
+                      <div className="paper pd15 mb20">
+                        <h2>Personal Detail</h2>
+                      </div>
                       <FieldArray name="industryxp" component={renderIndustryXP} />
                     </div>
                     <div id="careerExp" className="tab-pane fade paper pd15">

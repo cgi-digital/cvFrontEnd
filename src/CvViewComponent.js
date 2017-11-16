@@ -5,6 +5,10 @@ import Checkbox from 'material-ui/Checkbox'
 import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import Divider from 'material-ui/Divider'
+import { Tabs, Tab } from 'material-ui/Tabs';
+import { Link } from 'react-router';
+import FontIcon from 'material-ui/FontIcon';
+
 
 import {
   Table,
@@ -31,18 +35,23 @@ class CvViewComponent extends Component {
     return (
       <div className={'viewCvPage'}>
         <div className="container-fluid">
+          <div className="cvHeader paper pd15 mb30">
+            <div className="row">
+              <div className="col-sm-6 col-xs-12">
+                <i className="fa fa-user headerIcon"></i>
+                <h1>{user.lastname}, {user.firstname}</h1>
+                <h2><small>{user.title}</small></h2>
+              </div>
+              <div className="col-sm-6 col-xs-12">
+                <h3>Summary</h3>
+                <p>{user.summary}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="container-fluid">
           <div className="row">
             <div className="col-sm-3 col-xs-12">
-              <div className="paper leftDetail mb20">
-                <div className="pd15">
-                  <h1>{user.firstname} {user.lastname}</h1>
-                  <h2>{user.title}</h2>
-                </div>
-                <Divider></Divider>
-                <div className="pd15">
-                  <p>{user.summary}</p>
-                </div>
-              </div>
               <div className="nav-vertical">
                 <ul className="nav nav-tabs">
                   <li className="active"><a data-toggle="tab" href="#skills">Skills</a></li>
@@ -52,13 +61,15 @@ class CvViewComponent extends Component {
               </div>
             </div>
             <div className="col-sm-9 col-xs-12">
-
               <div className="tab-content">
-                <div id="skills" className="tab-pane fade in active paper pd15">
-                  <table className="table ">
+                <div id="skills" className="tab-pane fade in active">
+                  <div className="paper pd15 mb20">
+                    <h2 className="mb20">Skills</h2>
+                  </div>
+
+                  <table className="table paper">
                     <thead>
                       <tr>
-                        <th>#</th>
                         <th>Skill</th>
                         <th>Level</th>
                       </tr>
@@ -67,17 +78,19 @@ class CvViewComponent extends Component {
                       {skills.map((skill, index) => {
                         return (
                           <tr>
-                            <td >{skill.id}</td>
                             <td key={index}>{skill.skill}</td>
-                            <td>{skill.level}</td>
+                            <td >{skill.level}</td>
                           </tr>
                         );
                       })}
                     </tbody>
                   </table>
                 </div>
-                <div id="qualifications" className="tab-pane fade paper pd15">
-                  <table className="table">
+                <div id="qualifications" className="tab-pane fade">
+                  <div className="paper pd15 mb20">
+                    <h2 className="mb20">Qualifications</h2>
+                  </div>
+                  <table className="table paper">
                     <thead>
                       <tr>
                         <th>#</th>
@@ -96,8 +109,11 @@ class CvViewComponent extends Component {
                     </tbody>
                   </table>
                 </div>
-                <div id="projects" className="tab-pane fade paper pd15">
-                  <table className="table ">
+                <div id="projects" className="tab-pane fade">
+                  <div className="paper pd15 mb20">
+                    <h2 className="mb20">Projects</h2>
+                  </div>
+                  <table className="table paper">
                     <thead>
                       <tr>
                         <th>#</th>

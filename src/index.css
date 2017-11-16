@@ -91,7 +91,12 @@ h1,h2,h3,h4,h5,h6{
 /* appBar */
 
 #appBar .tabs{
-  margin-bottom: 50px;
+}
+
+/* Tabs */
+
+.tabsWhite{
+  background-color:#fff !important;
 }
 
 /* Accordion */
@@ -145,47 +150,66 @@ h1,h2,h3,h4,h5,h6{
   border:none;
   border-radius:0;
 }
-.nav-vertical .nav-tabs>li.active>a {
-  background-color:#F2A200;
-}
 .nav-vertical .nav-tabs>li>a:hover{
   background:rgba(255,255,255,0.1)
 }
+.nav-vertical .nav-tabs>li.active>a {
+  background-color:#F2A200;
+}
 
-/* Table Basic */
+/* Table */
 
+.table.table-basic {
+  background-color:#fff;  
+}
 .table.table-basic thead{
-  background: #E31937;
-  color:#fff;
+  color:#333;
 }
 .table.table-basic th{
-  border-color:#F2A200;
+  border-color:#991F3D;
 
 }
 .table.table-basic td{
   border-bottom:1px solid #ccc;
 }
 
+.table.table-cherry {
+  background-color:#fff;  
+}
+.table.table-cherry thead{
+  background: #E31937;
+  color:#fff;
+}
+.table.table-cherry th{
+  border-color:#F2A200;
+
+}
+.table.table-cherry td{
+  border-bottom:1px solid #ccc;
+}
+
 /* PAGES */
-
-/* CV Edit page Begins */
-
-.EditCVPage{
-
-  /* width:500px; */
-  margin: 0 auto;
-
-
+.cvHeader{
 }
-
-/* CV Edit page Ends */
-
+.cvHeader .headerIcon{
+  line-height:100px;
+  font-size:50px;
+  width:100px;
+  text-align: center;
+  background-color:#F2A200;
+  color:#fff;
+  border-radius: 2em;
+  float:left;
+  margin-right:15px;
+}
+/* CV Edit Page */
+.editCvPage{
+  margin-top:50px; 
+}
 /* CV View page */
-
-.viewCvPage .leftDetail{
-
+.viewCvPage{
+  margin-top:50px; 
 }
-
 
 /* CV Search Page */
 
