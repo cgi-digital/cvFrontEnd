@@ -6,14 +6,14 @@ class AppComponent extends Component {
     const { header, content, sidebar, footer } = this.props;
     return (
       <div>
-        <div className={'row'}>
+        <div className={''}>
           {header}
         </div>
-        <div className={'row'}>
+        <div className={''}>
           <div>{content}</div>
           <div>{sidebar}</div>
         </div>
-        <div className={'row'}>
+        <div className={''}>
           {footer}
         </div>
       </div>

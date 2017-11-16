@@ -7,7 +7,7 @@ import MenuItem from 'material-ui/MenuItem'
 
 class CvSearchComponent extends Component {
   componentDidMount() {
-    this.props.getUsers()
+    this.props.getUsers();
   }
 
   render() {
@@ -16,12 +16,14 @@ class CvSearchComponent extends Component {
     } = this.props;
 
     return (
-      <div>
-        {users.map((user) => (
-          <pre>
-            {JSON.stringify(user, false, 2)}
-          </pre>
-        ))}
+      <div class="container-fluid">
+        <div class="cvSearchResults">
+          {users.map((user) => (
+            <div class="cv-box">
+              {user.username}
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
