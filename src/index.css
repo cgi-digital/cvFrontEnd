@@ -64,6 +64,11 @@ ul {
 .mb20{margin-bottom: 20px;}
 .mb30{margin-bottom: 30px;}
 
+.mt10{margin-top: 10px;}
+.mt15{margin-top: 15px;}
+.mt20{margin-top: 20px;}
+.mt30{margin-top: 30px;}
+
 .pd10{padding:10px;}
 .pd15{padding:15px !important;}
 .pd30{padding:30px;}
@@ -87,6 +92,32 @@ ul {
 h1,h2,h3,h4,h5,h6{
   margin:0;
 }
+h1{
+  font-size:27px;
+}
+h2{
+  font-size:25px;
+}
+h3{
+  font-size:22px;
+}
+p{
+  font-size:14px
+}
+.subHeader{
+  opacity: 0.9;
+  text-transform: uppercase;
+  font-size:16px;
+  font-weight: 800;
+}
+
+@media (max-width:768px){
+  h1{font-size:22px;}
+  h2{font-size:20px;}
+  h3{font-size:18px}
+  h4{font-size:16px}  
+  p{font-size:12px;}
+}
 
 /* appBar */
 
@@ -97,6 +128,13 @@ h1,h2,h3,h4,h5,h6{
 
 .tabsWhite{
   background-color:#fff !important;
+}
+
+/* Col */
+
+.col{
+  padding:0 15px;
+  float:left;
 }
 
 /* Accordion */
@@ -129,10 +167,37 @@ h1,h2,h3,h4,h5,h6{
 
 /* Nav */
 
+.nav-tabs{
+  margin-bottom:15px;
+  background:#991F3D;
+  border-radius: 2px;
+}
+.nav-tabs>li{
+  margin-bottom:0;
+}
+
+.nav-tabs>li>a,
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:hover,
+.nav-tabs>li.active>a:focus,
+.nav-tabs>li>a:hover,
+.nav-tabs>li>a:focus{
+  color:#fff;
+  border-radius: 0;
+  border:none;
+}
+.nav-tabs>li>a:hover{
+  background:rgba(255,255,255,0.1)
+}
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:hover,
+.nav-tabs>li.active>a:focus{
+  background:#F2A200;
+}
+
 .nav-vertical .nav-tabs{
 }
 .nav-vertical .nav-tabs{
-  background:#E31937;
   padding:15px 0;
   border-radius: 2px;
 }
@@ -190,29 +255,76 @@ h1,h2,h3,h4,h5,h6{
 
 /* PAGES */
 .cvHeader{
+  position: relative;
+  border-left:100px solid #991F3D;
+  min-height:100px;
 }
 .cvHeader .headerIcon{
+  position: absolute;
+  z-index: 100;
+  top:0;
+  left:-100px;
   line-height:100px;
-  font-size:50px;
   width:100px;
+  font-size:50px;
   text-align: center;
-  background-color:#F2A200;
   color:#fff;
-  border-radius: 2em;
-  float:left;
   margin-right:15px;
 }
+
+@media (max-width:768px){
+  .cvHeader{
+    border-left:50px solid #991F3D;
+  }
+  .cvHeader .headerIcon{
+    left:-50px;
+    width:50px;
+    line-height:50px;
+    font-size:25px;
+  }
+}
+
 /* CV Edit Page */
 .editCvPage{
   margin-top:50px; 
 }
+.editCvPage .editRow{
+  padding: 5px 15px;
+}
+.editCvPage .editRow + .editRow{
+  border-top: 1px solid #ccc;
+}
+.editCvPage .editRow .deleteActionButton{
+  margin-top:20px;
+  display: inline-block;
+  color:#fff;
+  background-color: #E31937;
+  cursor: pointer;
+  font-size:25px;
+  line-height:40px;
+  width:40px;
+  text-align:center;
+  border-radius: 2em;
+}
+.editCvPage .editCol{
+  padding:0 15px;
+}
 /* CV View page */
 .viewCvPage{
   margin-top:50px; 
+} 
+
+@media (max-width:768px){
+  .viewCvPage .nav-tabs{
+    margin-top:20px;
+  }
 }
 
 /* CV Search Page */
 
-.CvSearchResults{
-  
+.searchCvPage .searchFilter{
+  background-color:#991F3D;
+  color:#fff;
+  padding:15px;
+  margin-bottom: 30px;
 }

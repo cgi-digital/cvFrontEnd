@@ -35,32 +35,44 @@ class CvViewComponent extends Component {
     return (
       <div className={'viewCvPage'}>
         <div className="container-fluid">
-          <div className="cvHeader paper pd15 mb30">
-            <div className="row">
-              <div className="col-sm-6 col-xs-12">
-                <i className="fa fa-user headerIcon"></i>
-                <h1>{user.lastname}, {user.firstname}</h1>
-                <h2><small>{user.title}</small></h2>
-              </div>
-              <div className="col-sm-6 col-xs-12">
-                <h3>Summary</h3>
-                <p>{user.summary}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="container-fluid">
           <div className="row">
-            <div className="col-sm-3 col-xs-12">
-              <div className="nav-vertical">
-                <ul className="nav nav-tabs">
-                  <li className="active"><a data-toggle="tab" href="#skills">Skills</a></li>
-                  <li><a data-toggle="tab" href="#qualifications">Qualifications</a></li>
-                  <li><a data-toggle="tab" href="#projects">Projects</a></li>
-                </ul>
+            <div className="col-md-4 col-sm-6">
+              <div className="cvHeader paper pd15 mb10">
+                <i className="fa fa-user headerIcon"></i>
+                <div className="row mb10">
+                  <div className="col">
+                    <h1 className="mb10">{user.lastname}, {user.firstname}</h1>
+                    <h4><small>Title</small>&nbsp;{user.title}</h4>
+                    <h4><small>Username</small>&nbsp;{user.username}</h4>
+                  </div>
+                </div>
+              </div>
+              <div className="cvHeader paper pd15 mb10">
+                <i className="fa fa-envelope-o headerIcon"></i>
+                <div className="row">
+                  <div className="col-xs-12">
+                    <h2 className="mb10">Contact Details</h2>
+                    <h4><small>Email</small>&nbsp;guest@cgi.com</h4>
+                    <h4><small>Work Phone</small>&nbsp;+44777777 7777</h4>
+                  </div>
+                </div>
+              </div>
+              <div className="cvHeader paper pd15">
+                <i className="fa fa-file-text-o headerIcon"></i>
+                <div className="row">
+                  <div className="col-xs-12">
+                    <h2 className="mb10">Summary</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="col-sm-9 col-xs-12">
+            <div className="col-md-8 col-sm-6 col-xs-12">
+              <ul className="nav nav-tabs">
+                <li className="active"><a data-toggle="tab" href="#skills">Skills</a></li>
+                <li><a data-toggle="tab" href="#qualifications">Qualifications</a></li>
+                <li><a data-toggle="tab" href="#projects">Projects</a></li>
+              </ul>
               <div className="tab-content">
                 <div id="skills" className="tab-pane fade in active">
                   <div className="paper pd15 mb20">
@@ -139,6 +151,16 @@ class CvViewComponent extends Component {
                   </table>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-sm-3 col-xs-12">
+              <div className="">
+              </div>
+            </div>
+            <div className="col-sm-9 col-xs-12">
             </div>
           </div>
         </div>

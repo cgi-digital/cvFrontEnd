@@ -16,13 +16,48 @@ class CvSearchComponent extends Component {
     } = this.props;
 
     return (
-      <div class="container-fluid">
-        <div class="cvSearchResults">
-          {users.map((user) => (
-            <div class="cv-box">
-              {user.username}
+      <div className={'searchCvPage'}>
+        <div className="searchFilter">
+          <div className="container-fluid">
+
+          </div>
+        </div>
+        <div className="container-fluid">
+          <div className="cvHeader paper pd15 mb30">
+            <i className="fa fa-book headerIcon"></i>
+            <div className="row">
+              <div className="col-xs-12">
+                <h1>Search CV Library</h1>
+              </div>
             </div>
-          ))}
+          </div>
+          <table className="table paper">
+            <thead>
+              <tr>
+                <th>Username</th>
+                <th>First Name</th>
+              </tr>
+            </thead>
+            <tbody>
+              {users.map((user) => (
+                <tr>
+                  <td>{user.username}</td>
+                  <td>{user.firstname}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <div className="container-fluid">
+          <div className="row">
+            {users.map((user) => (
+              <div className="col-md-3 col-sm-6 col-xs-12">
+                <div className="paper pd15">
+                  <h3>{user.username}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     );
