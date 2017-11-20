@@ -9,7 +9,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 const renderField = ({ input, label, meta: { touched, error }, ...custom }) => (
   <TextField hintText={label}
     floatingLabelText={label}
-    errorText={touched && error  && <span>{error}</span>}
+    errorText={touched && error && <span>{error}</span>}
     {...input}
     {...custom}
   />
@@ -17,7 +17,7 @@ const renderField = ({ input, label, meta: { touched, error }, ...custom }) => (
 
 const renderErrorField = ({ input, label, type, meta: { touched, error } }) => (
   <div>
-    <input disabled="true" {...input} type={type}/>
+    <input disabled="true" {...input} type={type} />
     {touched && error}
   </div>
 )
@@ -28,10 +28,10 @@ const style = {
 
 const validate = values => {
   const errors = {}
-  const requiredFields = [ 'Username', 'Password' ]
+  const requiredFields = ['Username', 'Password']
   requiredFields.forEach(field => {
-    if (!values[ field ]) {
-      errors[ field ] = 'Required'
+    if (!values[field]) {
+      errors[field] = 'Required'
     }
   })
   return errors
@@ -39,32 +39,42 @@ const validate = values => {
 
 
 class AuthComponent extends Component {
-  componentWillMount() {}
+  componentWillMount() { }
   render() {
-    const {handleSubmit } = this.props;
-    return ( 
-      <div className={'form-group loginForm'}>
-        <form onSubmit={handleSubmit}> 
-          <div id="errField" className=''> 
-            <Field name='ResponseMessage' component={renderErrorField}  type='text'/>
-          </div>
-          <div className=''>
-            <label className='control-label' htmlFor='Username'></label>
-            <Field name='Username' component={renderField} type='text' label="Username"/>
-          </div>
-          <div className=''>
-            <label className='control-label' htmlFor='Password'></label>
-            <Field name='Password' component={renderField} type='password'label="Password" />
-          </div>
-          <RaisedButton type='submit' id="login" label="Login" primary={true} style={style} />
-          <RaisedButton linkButton={true} href="/signUp" label="Sign Up" style={style} />
-        </form>
+    const { handleSubmit } = this.props;
+    return (
+      <div className={'loginPage'}>
+        <div>
+          <form className="paper" onSubmit={handleSubmit}>
+            <div className="">
+              <h1>Login</h1>
+            </div>
+            <div id="errField" className='hidden'>
+              <Field name='ResponseMessage' component={renderErrorField} type='text' />
+            </div>
+            <div className=''>
+              <label className='control-label' htmlFor='Username'></label>
+              <Field name='Username' component={renderField} type='text' label="Username" />
+            </div>
+            <div className=''>
+              <label className='control-label' htmlFor='Password'></label>
+              <Field name='Password' component={renderField} type='password' label="Password" />
+            </div>
+            <div className='mb20'>
+              <span><a>Forgot your username?</a></span>
+            </div>
+            <div class="text-center">
+              <RaisedButton type='submit' id="login" label="Login" primary={true} style={style} />
+              <RaisedButton linkButton={true} href="/signUp" label="Sign Up" style={style} />
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
 }
 
-export default reduxForm({ 
+export default reduxForm({
   form: 'login_form',
   validate
 })(AuthComponent)
