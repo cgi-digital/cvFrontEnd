@@ -48,7 +48,7 @@ class CvSearchComponent extends Component {
             </tbody>
           </table>
         </div>
-        <div className="container-fluid">
+        <div className="container-fluid hidden">
           <div className="row">
             {users.map((user) => (
               <div className="col-md-3 col-sm-6 col-xs-12">

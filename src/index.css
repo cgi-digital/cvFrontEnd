@@ -3,7 +3,6 @@ body {
   padding: 0;
   font-family: sans-serif;
   background-color: #ededed;
-  padding-bottom:100px;
 }
 
 @media (min-width: 992px){
@@ -16,11 +15,6 @@ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-}
-
-.loginForm {
-   width:500px;
-   margin: 0 auto;
 }
 
 .header{
@@ -169,7 +163,7 @@ p{
 
 .nav-tabs{
   margin-bottom:15px;
-  background:#991F3D;
+  background:#E31937;
   border-radius: 2px;
 }
 .nav-tabs>li{
@@ -185,6 +179,7 @@ p{
   color:#fff;
   border-radius: 0;
   border:none;
+  cursor:pointer;
 }
 .nav-tabs>li>a:hover{
   background:rgba(255,255,255,0.1)
@@ -222,6 +217,31 @@ p{
   background-color:#F2A200;
 }
 
+@media (max-width:768px){
+  .nav-tabs{
+    margin-bottom:15px;
+    background:transparent;
+    border-radius: 2px;
+  }
+  .nav-vertical .nav-tabs{
+    padding:0;
+    border-radius: 2px;
+    border-bottom:0;
+  }
+  .nav-vertical .nav-tabs li{
+    display:inline-block;
+    width:auto; 
+  }
+  .nav-tabs>li>a, .nav-tabs>li>a:hover, .nav-tabs>li>a:focus{
+    background-color:#E31937 !important; 
+    margin:2px;
+  }
+  .nav-tabs>li.active>a{
+    background:#F2A200 !important;
+    margin:2px;
+  }
+}
+
 /* Table */
 
 .table.table-basic {
@@ -254,9 +274,42 @@ p{
 }
 
 /* PAGES */
+
+
+.editCvPage,
+.viewCvPage{
+  margin-top:50px; 
+}
+
+@media (max-width:768px){
+  .editCvPage,
+  .viewCvPage{
+    margin-top:25px; 
+  }
+}
+
+/* Login */
+.loginPage{
+  display: table;
+  height:100vh;
+  width:100%;
+  text-align:center;
+}
+.loginPage > div{
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.loginPage .paper{
+  display: inline-block;
+  padding:25px 35px;
+  text-align: left;
+}
+
+/* CV Header */
 .cvHeader{
   position: relative;
-  border-left:100px solid #991F3D;
+  border-left:100px solid #E31937;
   min-height:100px;
 }
 .cvHeader .headerIcon{
@@ -274,7 +327,7 @@ p{
 
 @media (max-width:768px){
   .cvHeader{
-    border-left:50px solid #991F3D;
+    border-left:50px solid #E31937;
   }
   .cvHeader .headerIcon{
     left:-50px;
@@ -285,9 +338,6 @@ p{
 }
 
 /* CV Edit Page */
-.editCvPage{
-  margin-top:50px; 
-}
 .editCvPage .editRow{
   padding: 5px 15px;
 }
@@ -310,13 +360,14 @@ p{
   padding:0 15px;
 }
 /* CV View page */
-.viewCvPage{
-  margin-top:50px; 
-} 
 
 @media (max-width:768px){
   .viewCvPage .nav-tabs{
     margin-top:20px;
+  }
+
+  .viewCvPage .tab-content .tab-header{
+    display: none;
   }
 }
 

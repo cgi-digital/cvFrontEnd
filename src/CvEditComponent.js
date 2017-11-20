@@ -317,13 +317,9 @@ class CvEditComponent extends Component {
           <div className="cvHeader paper pd15 mb30">
             <i className="fa fa-pencil headerIcon"></i>
             <div className="row">
-              <div className="col-sm-6 col-xs-12">
-                <h1>{user.lastname}, {user.firstname}</h1>
-                <h2><small>{user.title}</small></h2>
-              </div>
-              <div className="col-sm-6 col-xs-12">
-                <h3>Summary</h3>
-                <p>{user.summary}</p>
+              <div className="col-xs-12">
+                <h1>Edit your Profile</h1>
+                <h2><small>{user.firstname} {user.lastname}</small></h2>
               </div>
             </div>
           </div>

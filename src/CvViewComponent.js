@@ -75,7 +75,7 @@ class CvViewComponent extends Component {
               </ul>
               <div className="tab-content">
                 <div id="skills" className="tab-pane fade in active">
-                  <div className="paper pd15 mb20">
+                  <div className="paper pd15 mb20 tab-header">
                     <h2 className="mb20">Skills</h2>
                   </div>
 
@@ -99,7 +99,7 @@ class CvViewComponent extends Component {
                   </table>
                 </div>
                 <div id="qualifications" className="tab-pane fade">
-                  <div className="paper pd15 mb20">
+                  <div className="paper pd15 mb20 tab-header">
                     <h2 className="mb20">Qualifications</h2>
                   </div>
                   <table className="table paper">
@@ -122,7 +122,7 @@ class CvViewComponent extends Component {
                   </table>
                 </div>
                 <div id="projects" className="tab-pane fade">
-                  <div className="paper pd15 mb20">
+                  <div className="paper pd15 mb20 tab-header">
                     <h2 className="mb20">Projects</h2>
                   </div>
                   <table className="table paper">
