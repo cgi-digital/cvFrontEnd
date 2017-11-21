@@ -318,21 +318,30 @@ p{
 
 /* Login */
 .loginPage{
-  /* display: table;
-  height:100vh;
-  width:100%; */
   text-align:center;
   padding-top:5%;
-}
-.loginPage > div{
-  /* display: table-cell;
-  vertical-align: middle; */
 }
 
 .loginPage .paper{
   display: inline-block;
   padding:25px 35px;
   text-align: left;
+  max-width:700px;
+  min-width: 400px;
+}
+
+.loginPage .buttonRow{
+  margin: 0 -10px;
+  text-align: center; 
+}
+
+@media (max-width:768px){
+  .loginPage{
+    padding-top:20%;
+  }  
+  .loginPage .paper{
+    min-width: 0px;
+  }
 }
 
 /* CV Header */

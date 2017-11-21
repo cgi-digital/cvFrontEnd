@@ -10,6 +10,7 @@ const renderField = ({ input, label, meta: { touched, error }, ...custom }) => (
   <TextField hintText={label}
     floatingLabelText={label}
     errorText={touched && error && <span>{error}</span>}
+    fullWidth={true}
     {...input}
     {...custom}
   />
@@ -44,7 +45,7 @@ class AuthComponent extends Component {
     const { handleSubmit } = this.props;
     return (
       <div className={'loginPage'}>
-        <div>
+        <div className="container-fluid">
           <form className="paper" onSubmit={handleSubmit}>
             <div className="">
               <h1>Login</h1>
@@ -56,14 +57,12 @@ class AuthComponent extends Component {
               <label className='control-label' htmlFor='Username'></label>
               <Field name='Username' component={renderField} type='text' label="Username" />
             </div>
-            <div className=''>
+            <div className='mb20'>
               <label className='control-label' htmlFor='Password'></label>
               <Field name='Password' component={renderField} type='password' label="Password" />
             </div>
-            <div className='mb20'>
-              <span><a>Forgot your username?</a></span>
-            </div>
-            <div class="text-center">
+            <div className="buttonRow">
+              <div className="mb10"><a href="#" >Forgot your username or password?</a></div>
               <RaisedButton type='submit' id="login" label="Login" primary={true} style={style} />
               <RaisedButton linkButton={true} href="/signUp" label="Sign Up" style={style} />
             </div>
