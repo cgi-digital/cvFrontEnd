@@ -40,29 +40,37 @@ class CvViewComponent extends Component {
               <div className="cvHeader paper pd15 mb10">
                 <i className="fa fa-user headerIcon"></i>
                 <div className="row mb10">
-                  <div className="col">
-                    <h1 className="mb10">{user.lastname}, {user.firstname}</h1>
-                    <h4><small>Title</small>&nbsp;{user.title}</h4>
-                    <h4><small>Username</small>&nbsp;{user.username}</h4>
-                  </div>
-                </div>
-              </div>
-              <div className="cvHeader paper pd15 mb10">
-                <i className="fa fa-envelope-o headerIcon"></i>
-                <div className="row">
                   <div className="col-xs-12">
-                    <h2 className="mb10">Contact Details</h2>
-                    <h4><small>Email</small>&nbsp;guest@cgi.com</h4>
-                    <h4><small>Work Phone</small>&nbsp;+44777777 7777</h4>
-                  </div>
-                </div>
-              </div>
-              <div className="cvHeader paper pd15">
-                <i className="fa fa-file-text-o headerIcon"></i>
-                <div className="row">
-                  <div className="col-xs-12">
-                    <h2 className="mb10">Summary</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</p>
+                    <h1 className="mb10">
+                      {user.lastname}, {user.firstname}
+                      <a className="tableToggle" data-toggle="collapse" data-target="#InfoTable" aria-expanded="trues"><i className="fa fa-angle-down"></i></a>
+                    </h1>
+                    <div id="InfoTable" className="collapse in">
+                      <table className="table table-condensed">
+                        <tbody>
+                          <tr>
+                            <th>Title</th>
+                            <td>{user.title}</td>
+                          </tr>
+                          <tr>
+                            <th>Username</th>
+                            <td>{user.username}</td>
+                          </tr>
+                          <tr>
+                            <th>Email</th>
+                            <td>guest@cgi.com</td>
+                          </tr>
+                          <tr>
+                            <th>Work Phone</th>
+                            <td>+44777777 7777</td>
+                          </tr>
+                          <tr>
+                            <th>Summary</th>
+                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>

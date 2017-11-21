@@ -113,6 +113,12 @@ p{
   p{font-size:12px;}
 }
 
+/* links */
+
+a,a:hover,a:focus{
+  color:#E31937;
+}
+
 /* appBar */
 
 #appBar .tabs{
@@ -309,17 +315,17 @@ p{
 /* CV Header */
 .cvHeader{
   position: relative;
-  border-left:100px solid #E31937;
-  min-height:100px;
+  border-left:75px solid #E31937;
+  min-height:75px;
 }
 .cvHeader .headerIcon{
   position: absolute;
   z-index: 100;
   top:0;
-  left:-100px;
-  line-height:100px;
-  width:100px;
-  font-size:50px;
+  left:-75px;
+  line-height: 75px;
+  width:75px;
+  font-size:38px;
   text-align: center;
   color:#fff;
   margin-right:15px;
@@ -360,6 +366,22 @@ p{
   padding:0 15px;
 }
 /* CV View page */
+
+.viewCvPage .tableToggle{
+  float: right;
+}
+.viewCvPage .tableToggle[aria-expanded=false] .fa{
+  transform: rotate(-90deg)
+}
+
+.viewCvPage #InfoTable table td,
+.viewCvPage .infoTable th{
+  border-top:none;
+  border-bottom: 1px solid #ccc
+}
+.viewCvPage #InfoTable table th{
+  color:#E31937;
+}
 
 @media (max-width:768px){
   .viewCvPage .nav-tabs{
