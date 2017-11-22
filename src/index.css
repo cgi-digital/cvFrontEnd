@@ -190,7 +190,7 @@ p{
   h1{font-size:22px;}
   h2{font-size:20px;}
   h3{font-size:18px}
-  h4{font-size:16px}  
+  h4{font-size:16px}
   p{font-size:12px;}
 }
 
@@ -232,7 +232,7 @@ a,a:hover,a:focus{
   border-left: 10px solid #991F3D;
 }
 .accordion .accordionHeader:hover,
-.accordion .accordionHeader:focus{  
+.accordion .accordionHeader:focus{
   background-color:#fff !important;
   color:#333;
 }
@@ -311,7 +311,7 @@ a,a:hover,a:focus{
     border-radius: 2px;
   }
   .nav-tabs>li>a, .nav-tabs>li>a:hover, .nav-tabs>li>a:focus{
-    background-color:#E31937 !important; 
+    background-color:#E31937 !important;
     margin:2px;
   }
   .nav-tabs>li.active>a{
@@ -326,7 +326,7 @@ a,a:hover,a:focus{
   .nav-vertical .nav-tabs li{
     display:block;
     float:left;
-    width:auto; 
+    width:auto;
     background:transparent;
   }
   .nav-vertical .nav-tabs>li>a,
@@ -335,14 +335,14 @@ a,a:hover,a:focus{
   .nav-vertical .nav-tabs>li>a:focus{
     background:#E31937;
     width:auto;
-    
+
   }
 }
 
 /* Table */
 
 .table.table-basic {
-  background-color:#fff;  
+  background-color:#fff;
 }
 .table.table-basic thead{
   color:#333;
@@ -356,7 +356,7 @@ a,a:hover,a:focus{
 }
 
 .table.table-cherry {
-  background-color:#fff;  
+  background-color:#fff;
 }
 .table.table-cherry thead{
   background: #E31937;
@@ -376,14 +376,14 @@ a,a:hover,a:focus{
 .editCvPage,
 .viewCvPage,
 .searchCvPage{
-  margin-top:50px; 
+  margin-top:50px;
 }
 
 @media (max-width:768px){
   .editCvPage,
   .viewCvPage,
   .searchCvPage{
-    margin-top:25px; 
+    margin-top:25px;
   }
 }
 

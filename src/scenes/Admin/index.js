@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { getSkill } from './Ducks/skills';
 
-import CvAdminComponent from './CvAdminComponent';
+import CvAdminComponent from './component';
 
 function mapStateToProps(state) {
   return { skill: state.skill, skills: state.skills.skills };

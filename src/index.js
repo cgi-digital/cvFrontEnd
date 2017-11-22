@@ -13,9 +13,9 @@ import configureStore from './store';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 import './index.css';
-import './colors';
+import './utils/colors';
 
-var _colors = require('./colors');
+var _colors = require('./utils/colors');
 var _colorManipulator = require('material-ui/utils/colorManipulator');
 var _spacing = require('material-ui/styles/spacing');
 var _spacing2 = _interopRequireDefault(_spacing);

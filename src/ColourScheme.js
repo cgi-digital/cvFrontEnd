@@ -1,7 +1,7 @@
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import './colors';
+import './utils/colors';
 
-var _colors = require('./colors');
+var _colors = require('./utils/colors');
 var _colorManipulator = require('material-ui/utils/colorManipulator');
 
 var _spacing = require('material-ui/styles/spacing');

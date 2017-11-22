@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getUsers } from './Ducks/users';
-import { updateSearch } from './Ducks/search';
+import { getUsers } from '../../Reducers/users';
+import { updateSearch } from '../../Reducers/search';
 
-import CvSearchComponent from './CvSearchComponent';
+import CvSearchComponent from './component';
 
 function mapStateToProps(state) {
   return {

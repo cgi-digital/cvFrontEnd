@@ -70,10 +70,13 @@ export function Login() {
       .catch(function(error) {
         if (error.message === 'Network Error') {
           dispatch({ type: LOGIN_UPDATE, data: currentState.form.login_form.values });
-          dispatch(push('/edit'));
-        } else {
+          dispatch(push('/edit')); 
+        } else if(error.response.status === 500){
+          dispatch({type: LOGIN_FAILURE});
+          throw new SubmissionError({ ResponseMessage: "Server can not be reached", _error: LOGIN_FAILURE});
+        } else if(error.response.status === 400){
           dispatch({ type: LOGIN_FAILURE });
-          throw new SubmissionError({ Password: 'wrong username and password combination', _error: 'LOGIN_FAILURE' });
+          throw new SubmissionError({ ResponseMessage: 'wrong username and password combination', _error: 'LOGIN_FAILURE' });
         }
       });
   };

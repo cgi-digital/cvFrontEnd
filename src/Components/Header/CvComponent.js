@@ -7,9 +7,9 @@ import MenuItem from 'material-ui/MenuItem';
 import { Link } from 'react-router';
 import FlatButton from 'material-ui/FlatButton';
 
-import CvEditComponent from "./CvEditComponent";
-import CvSearchComponent from "./CvSearchComponent";
-import Logo from "./CGI_Logo_color.png"
+import CvEditComponent from "../../scenes/EditCV/component";
+import CvSearchComponent from "../../scenes/Search/component";
+import Logo from "../../CGI_Logo_color.png"
 
 class CvComponent extends Component {
   constructor(props) {

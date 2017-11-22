@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Login } from './Ducks/login';
-import AuthComponent from './AuthComponent';
+import { Login } from '../../Reducers/login';
+import AuthComponent from './component';
 
 function mapStateToProps(state) {
   return {};
