@@ -27,6 +27,75 @@ ul {
   margin: 0 auto;
 }
 
+/* App Bar */
+
+#appBar{
+  color: #E31937;
+  background-color: #fff;
+  transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+  box-sizing: border-box;
+  font-family: Arial, "Helvetica Neue";
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+  border-radius: 0px;
+  position: relative;
+  z-index: 1100;
+  width: 100%;
+  overflow:hidden;
+  border-top:5px solid #E31937;
+}
+#appBar .appBarLogo{
+  float:left;
+  height:64px;
+}
+#appBar .appBarTitle{
+  float:left;
+  font-size:18px;
+  line-height:1;
+  margin-top:32px;
+  vertical-align: bottom;
+  color:#991F3D;
+  font-weight: 700;
+}
+#appBar nav{
+  float:right;
+}
+#appBar nav > a{
+  display: inline-block;
+  padding:0 15px;
+  margin:15px 5px;
+  color:#991F3D;
+  line-height:34px;
+  text-decoration:none;
+}
+#appBar nav > a + a{
+}
+#appBar nav > a:hover{
+}
+
+@media (max-width:768px){
+  #appBar nav{
+    width:100%;
+  }
+  #appBar nav > a{
+    display: block;
+    width:33.3333%;
+    float:left;
+    margin:0;
+    text-align:center;
+    padding:10px;
+  }
+}
+
+/* Footer */
+
+footer{
+  padding:20px 0 30px;
+  margin: 50px 0 0;
+  background:#991F3D;
+  color:#fff;
+}
+
 /* PAPER */
 
 .paper{
@@ -229,15 +298,6 @@ a,a:hover,a:focus{
     background:transparent;
     border-radius: 2px;
   }
-  .nav-vertical .nav-tabs{
-    padding:0;
-    border-radius: 2px;
-    border-bottom:0;
-  }
-  .nav-vertical .nav-tabs li{
-    display:inline-block;
-    width:auto; 
-  }
   .nav-tabs>li>a, .nav-tabs>li>a:hover, .nav-tabs>li>a:focus{
     background-color:#E31937 !important; 
     margin:2px;
@@ -245,6 +305,25 @@ a,a:hover,a:focus{
   .nav-tabs>li.active>a{
     background:#F2A200 !important;
     margin:2px;
+  }
+  .nav-vertical .nav-tabs{
+    padding:0;
+    border-radius: 2px;
+    border-bottom:0;
+  }
+  .nav-vertical .nav-tabs li{
+    display:block;
+    float:left;
+    width:auto; 
+    background:transparent;
+  }
+  .nav-vertical .nav-tabs>li>a,
+  .nav-vertical .nav-tabs>li.active>a,
+  .nav-vertical .nav-tabs>li>a:hover,
+  .nav-vertical .nav-tabs>li>a:focus{
+    background:#E31937;
+    width:auto;
+    
   }
 }
 
@@ -283,13 +362,15 @@ a,a:hover,a:focus{
 
 
 .editCvPage,
-.viewCvPage{
+.viewCvPage,
+.searchCvPage{
   margin-top:50px; 
 }
 
 @media (max-width:768px){
   .editCvPage,
-  .viewCvPage{
+  .viewCvPage,
+  .searchCvPage{
     margin-top:25px; 
   }
 }
@@ -315,17 +396,17 @@ a,a:hover,a:focus{
 /* CV Header */
 .cvHeader{
   position: relative;
-  border-left:75px solid #E31937;
-  min-height:75px;
+  min-height:50px;
+  border-left:50px solid #E31937;
 }
 .cvHeader .headerIcon{
   position: absolute;
   z-index: 100;
   top:0;
-  left:-75px;
-  line-height: 75px;
-  width:75px;
-  font-size:38px;
+  left:-50px;
+  line-height: 50px;
+  width:50px;
+  font-size:25px;
   text-align: center;
   color:#fff;
   margin-right:15px;
@@ -370,14 +451,17 @@ a,a:hover,a:focus{
 .viewCvPage .tableToggle{
   float: right;
 }
+.viewCvPage .tableToggle .fa{
+  transition: transform 0.3s;
+}
 .viewCvPage .tableToggle[aria-expanded=false] .fa{
   transform: rotate(-90deg)
 }
 
 .viewCvPage #InfoTable table td,
-.viewCvPage .infoTable th{
+.viewCvPage #InfoTable th{
   border-top:none;
-  border-bottom: 1px solid #ccc
+  border-bottom: 1px solid #ccc;
 }
 .viewCvPage #InfoTable table th{
   color:#E31937;

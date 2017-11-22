@@ -9,6 +9,7 @@ import FlatButton from 'material-ui/FlatButton';
 
 import CvEditComponent from "./CvEditComponent";
 import CvSearchComponent from "./CvSearchComponent";
+import Logo from "./CGI_Logo_color.png"
 
 class CvComponent extends Component {
   constructor(props) {
@@ -23,17 +24,29 @@ class CvComponent extends Component {
   render() {
     const { content } = this.props;
     return (
-      <div id="appBar">
-        <AppBar className="AppBarHeader"
-          title="CV Lib"
-          showMenuIconButton={false}
-        />
-        <Tabs className="tabs">
-          <Tab containerElement={<Link to="/view" />}label="My CV" />
+      <div>
+        <div id="appBar">
+          <div className="container-fluid">
+            <img className="appBarLogo" src={Logo} />
+            <div className="appBarTitle">CV Library</div>
+            <nav>
+              <Link to="/view">View</Link>
+              <Link to="/edit">Edit</Link>
+              <Link to="/search">Search</Link>
+            </nav>
+          </div>
+        </div>
+        <Tabs className="tabs hidden">
+          <Tab containerElement={<Link to="/view" />} label="My CV" />
           <Tab containerElement={<Link to="/edit" />} label="Edit" />
-          <Tab containerElement={<Link to="/search" />}label="Search" />
+          <Tab containerElement={<Link to="/search" />} label="Search" />
         </Tabs>
         {content}
+        <footer>
+          <div className="container-fluid">
+            <div class="copyright">© CGI Group Inc.</div>
+          </div>
+        </footer>
       </div>
     );
   }

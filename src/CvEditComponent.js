@@ -33,7 +33,6 @@ import {
 
 const renderField = ({ input, multiLine, rows, label, meta: { touched, error }, ...custom }) => (
   <TextField hintText={label}
-    floatingLabelText={label}
     multiLine={multiLine}
     fullWidth={true}
     rows={rows}
@@ -55,7 +54,6 @@ const style = {
 
 const renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }) => (
   <SelectField
-    floatingLabelText={label}
     errorText={touched && error}
     {...input}
     onChange={(event, index, value) => input.onChange(value)}
@@ -103,30 +101,32 @@ const renderSkills = ({ fields }) => (
 )
 
 const renderIndustryXP = ({ fields }) => (
-  <div className="row">
+  <div>
     {fields.map((industryxp, index) =>
-      <Paper zDepth="2" className="col-xs-12" key={index}>
-        <Field name={`${industryxp}.industryName`} type="text" component={renderField} label="Industry name" />
-
-        <Field
-          name={`${industryxp}.summary`}
-          type="text"
-          multiLine
-          component={renderField}
-          label="Experience Summary">
-        </Field>
-        {<IconButton onClick={() => { fields.remove(index); }} ><NavigationClose /></IconButton>}
-      </Paper>
+      <div className="paper editRow" key={index}>
+        <div className="col">
+          <Field name={`${industryxp}.industryName`} type="text" component={renderField} />
+        </div>
+        <div className="col pull-right">
+          {<a className="deleteActionButton" onClick={() => { fields.remove(index); }}><i className="fa fa-trash"></i></a>}
+        </div>
+        <div className="col-xs-12">
+          <Field
+            name={`${industryxp}.summary`}
+            type="text"
+            multiLine
+            component={renderField}
+            label="Experience Summary">
+          </Field>
+        </div>
+      </div>
     )}
-    <div className="col-xs-12">
-      <Paper zDepth="2">
-
-      </Paper>
-    </div>
-    <div className="col-xs-12">
-      <RaisedButton type='button' label="Add Industry Experience" primary={true} onClick={() => {
-        fields.push({})
-      }} />
+    <div className="row mt20">
+      <div className="col-xs-12 text-center">
+        <RaisedButton type='button' label="Add Industry Experience" primary={true} onClick={() => {
+          fields.push({})
+        }} />
+      </div>
     </div>
   </div>
 )
@@ -310,6 +310,11 @@ class CvEditComponent extends Component {
     const specialism = ['FrontEnd', 'BackEnd', 'Database', 'DevOps', 'Agile', 'FullStack'];
     const { handleSubmit } = this.props;
     const { user } = this.props;
+    const {
+      skills = [],
+      qualifications = [],
+      projects = [],
+    } = user;
 
     return (
       <div className={'editCvPage'}>
@@ -347,19 +352,19 @@ class CvEditComponent extends Component {
                         <div className="row">
                           <div className='col-sm-6 col-xs-12'>
                             <label className='control-label' htmlFor='firstName'></label>
-                            <Field name='firstname' component={renderField} type='text' label="First Name" fullWidth />
+                            <Field name='firstname' component={renderField} type='text' floatingLabelText="First Name" fullWidth />
                           </div>
                           <div className='col-sm-6 col-xs-12'>
                             <label className='control-label' htmlFor='lastName'></label>
-                            <Field name='lastname' component={renderField} type='text' label="Last Name" />
+                            <Field name='lastname' component={renderField} type='text' floatingLabelText="Last Name" />
                           </div>
                         </div>
                         <div className=''>
                           <label className='control-label' htmlFor='title'></label>
-                          <Field name='title' component={renderField} type='text' label="Title" />
+                          <Field name='title' component={renderField} type='text' floatingLabelText="Title" />
                         </div>
                         <div className=''>
-                          <Field name='summary' component={renderField} type='text' label="Profile Summary" />
+                          <Field name='summary' component={renderField} type='text' floatingLabelText="Profile Summary" />
                         </div>
                       </div>
                     </div>
@@ -371,7 +376,7 @@ class CvEditComponent extends Component {
                     </div>
                     <div id="industryExp" className="tab-pane fade">
                       <div className="paper pd15 mb20">
-                        <h2>Personal Detail</h2>
+                        <h2>Industry Experience</h2>
                       </div>
                       <FieldArray name="industryxp" component={renderIndustryXP} />
                     </div>

@@ -17,19 +17,17 @@ class CvSearchComponent extends Component {
 
     return (
       <div className={'searchCvPage'}>
-        <div className="searchFilter">
-          <div className="container-fluid">
-
-          </div>
-        </div>
         <div className="container-fluid">
-          <div className="cvHeader paper pd15 mb30">
+          <div className="cvHeader paper pd15">
             <i className="fa fa-book headerIcon"></i>
             <div className="row">
               <div className="col-xs-12">
                 <h1>Search CV Library</h1>
               </div>
             </div>
+          </div>
+          <div className="searchFilter mb30">
+            <h3>Filter</h3>
           </div>
           <table className="table paper">
             <thead>

@@ -86,25 +86,26 @@ class CvViewComponent extends Component {
                   <div className="paper pd15 mb20 tab-header">
                     <h2 className="mb20">Skills</h2>
                   </div>
-
-                  <table className="table paper">
-                    <thead>
-                      <tr>
-                        <th>Skill</th>
-                        <th>Level</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {skills.map((skill, index) => {
-                        return (
-                          <tr>
-                            <td key={index}>{skill.skill}</td>
-                            <td >{skill.level}</td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
+                  <div className="table-responsive">
+                    <table className="table paper">
+                      <thead>
+                        <tr>
+                          <th>Skill</th>
+                          <th>Level</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {skills.map((skill, index) => {
+                          return (
+                            <tr>
+                              <td key={index}>{skill.skill}</td>
+                              <td >{skill.level}</td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
                 <div id="qualifications" className="tab-pane fade">
                   <div className="paper pd15 mb20 tab-header">
