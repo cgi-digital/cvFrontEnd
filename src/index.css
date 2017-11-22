@@ -74,6 +74,18 @@ ul {
 }
 
 @media (max-width:768px){
+  #appBar .appBarLogo{
+    display: block;
+    float: none;
+    margin:auto;
+    height:50px;
+  }
+  #appBar .appBarTitle{
+    margin:0;
+    width:100%;
+    text-align: center;
+
+  }
   #appBar nav{
     width:100%;
   }
