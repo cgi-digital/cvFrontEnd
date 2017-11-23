@@ -6,6 +6,8 @@ import { Field, reduxForm } from 'redux-form';
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton';
 
+import Logo from '../../../CGI_Logo_color.png'
+
 const renderField = ({ input, label, meta: { touched, error }, ...custom }) => (
   <TextField hintText={label}
     floatingLabelText={label}
@@ -45,6 +47,12 @@ class AuthComponent extends Component {
     const { handleSubmit } = this.props;
     return (
       <div className={'loginPage'}>
+        <div id="appBar">
+          <div className="container-fluid">
+            <img className="appBarLogo" src={Logo} />
+            <div className="appBarTitle">CV Library</div>
+          </div>
+        </div>
         <div className="container-fluid">
           <form className="paper" onSubmit={handleSubmit}>
             <div className="">
@@ -68,6 +76,12 @@ class AuthComponent extends Component {
             </div>
           </form>
         </div>
+        <footer>
+          <div className="container-fluid">
+            <div className="pull-left">© CGI Group Inc.</div>
+            <div className="pull-right">Made by ADSC</div>
+          </div>
+        </footer>
       </div>
     );
   }
