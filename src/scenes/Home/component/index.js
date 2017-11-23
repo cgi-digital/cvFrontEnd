@@ -58,7 +58,7 @@ class CvViewComponent extends Component {
                           </tr>
                           <tr>
                             <th>Email</th>
-                            <td>guest@cgi.com</td>
+                            <td>{user.Email}</td>
                           </tr>
                           <tr>
                             <th>Work Phone</th>
@@ -82,31 +82,7 @@ class CvViewComponent extends Component {
                 <li><a data-toggle="tab" href="#projects">Projects</a></li>
               </ul>
               <div className="tab-content">
-                <div id="skills" className="tab-pane fade in active">
-                  <div className="paper pd15 mb20 tab-header">
-                    <h2 className="mb20">Skills</h2>
-                  </div>
-                  <div className="table-responsive">
-                    <table className="table paper">
-                      <thead>
-                        <tr>
-                          <th>Skill</th>
-                          <th>Level</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {skills.map((skill, index) => {
-                          return (
-                            <tr>
-                              <td key={index}>{skill.skill}</td>
-                              <td >{skill.level}</td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+                <skillComponent {...this.props}/>
                 <div id="qualifications" className="tab-pane fade">
                   <div className="paper pd15 mb20 tab-header">
                     <h2 className="mb20">Qualifications</h2>

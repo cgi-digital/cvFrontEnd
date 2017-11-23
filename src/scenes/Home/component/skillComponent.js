@@ -8,7 +8,7 @@ class skillComponent extends React.Component {
     render() {
 
         const { skills } = this.props;
-
+        console.log("skills :", skills)
         return (
             <div id="skills" className="tab-pane fade in active">
             <div className="paper pd15 mb20 tab-header">
