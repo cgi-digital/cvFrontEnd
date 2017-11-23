@@ -5,17 +5,8 @@ class AppComponent extends Component {
   render() {
     const { header, content, sidebar, footer } = this.props;
     return (
-      <div>
-        <div>
-          {header}
-        </div>
-        <div>
-          <div>{content}</div>
-          <div>{sidebar}</div>
-        </div>
-        <div>
-          {footer}
-        </div>
+      <div className="appComponent">
+        {content}
       </div>
     );
   }

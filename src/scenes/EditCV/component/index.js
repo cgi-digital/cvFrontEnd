@@ -4,23 +4,37 @@
 
 import React, { Component } from 'react';
 import { Field, FieldArray, reduxForm } from 'redux-form';
+import Subheader from 'material-ui/Subheader';
+import Divider from 'material-ui/Divider';
 import TextField from 'material-ui/TextField';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import Checkbox from 'material-ui/Checkbox';
-//import SelectField from 'material-ui/SelectField'
+import SelectField from 'material-ui/SelectField'
 import IconButton from 'material-ui/IconButton';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import Paper from 'material-ui/Paper';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import {
-  SelectField,
-} from 'redux-form-material-ui'
+  Table,
+  TableBody,
+  TableHeader,
+  TableHeaderColumn,
+  TableRow,
+  TableRowColumn,
+} from 'material-ui/Table';
+
+// import {
+//   SelectField,
+// } from 'redux-form-material-ui'
 
 const renderField = ({ input, multiLine, rows, label, meta: { touched, error }, ...custom }) => (
   <TextField hintText={label}
-    floatingLabelText={label}
     multiLine={multiLine}
+    fullWidth={true}
     rows={rows}
     errorText={touched && error}
     {...input}
@@ -31,7 +45,7 @@ const renderField = ({ input, multiLine, rows, label, meta: { touched, error }, 
 const renderCheckbox = ({ input, label }) => (
   <Checkbox label={label}
     checked={input.value ? true : false}
-    onCheck={input.onChange}/>
+    onCheck={input.onChange} />
 )
 
 const style = {
@@ -40,80 +54,89 @@ const style = {
 
 const renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }) => (
   <SelectField
-    floatingLabelText={label}
     errorText={touched && error}
     {...input}
     onChange={(event, index, value) => input.onChange(value)}
     children={children}
-    {...custom}/>
+    {...custom} />
 )
 
 const renderSkills = ({ fields }) => (
-  <ul>
-    <li>
-    <RaisedButton type='button' label="Add Skill / Competency" primary={true} onClick={() => {
-      fields.push({})
-    }} />
-    </li>
+  <div>
     {fields.map((skill, index) =>
-      <li key={index}>
-        <Field
-          name={`${skill}.skill`}
-          type="text"
-          component={renderField}
-          label="Skill"/>
+      <div key={index} className="paper editRow">
+        <div className="pull-left editCol">
+          <Field
+            name={`${skill}.skill`}
+            type="text"
+            component={renderField}
+            label="Skill"
+            fullWidth={false} />
+        </div>
+        <div className="pull-left editCol">
+          <Field
+            name={`${skill}.level`}
+            component={renderSelectField}
+            label="Level"
+            fullWidth={false}>
 
-        <Field
-          name={`${skill}.level`}
-          normalize={(value) => {
-            return Number(value);
-          }}
-          component={SelectField}
-          label="Level">
-          
-          <MenuItem value={1} primaryText="1"/>
-          <MenuItem value={5} primaryText="5"/>
-          <MenuItem value={10} primaryText="10"/>
-        </Field>
-        {<IconButton onClick={() => {fields.remove(index);}} ><NavigationClose  /></IconButton>}
-      </li>
+            <MenuItem value={1} primaryText="1" />
+            <MenuItem value={5} primaryText="5" />
+            <MenuItem value={10} primaryText="10" />
+          </Field>
+        </div>
+        <div className="pull-right editCol text-center">
+          {<a className="deleteActionButton" onClick={() => { fields.remove(index); }}><i className="fa fa-trash"></i></a>}
+        </div>
+      </div>
     )}
-  </ul>
+    <div className="row mt20">
+      <div className="col-xs-12 text-center">
+        <RaisedButton type='button' label="Add Skill" primary={true} onClick={() => {
+          fields.push({})
+        }} />
+      </div>
+    </div>
+  </div>
 )
 
 const renderIndustryXP = ({ fields }) => (
-  <ul>
-    <li>
-    <RaisedButton type='button' label="Add Industry Experience" primary={true} onClick={() => {
-      fields.push({})
-    }} />
-    </li>
+  <div>
     {fields.map((industryxp, index) =>
-      <li key={index}>
-        <Field
-          name={`${industryxp}.industryName`}
-          type="text"
-          component={renderField}
-          label="Industry name"/>
-        <Field
-          name={`${industryxp}.summary`}
-          type="text"
-          multiLine
-          component={renderField}
-          label="Experience Summary">
+      <div className="paper editRow" key={index}>
+        <div className="col">
+          <Field name={`${industryxp}.industryName`} type="text" component={renderField} />
+        </div>
+        <div className="col pull-right">
+          {<a className="deleteActionButton" onClick={() => { fields.remove(index); }}><i className="fa fa-trash"></i></a>}
+        </div>
+        <div className="col-xs-12">
+          <Field
+            name={`${industryxp}.summary`}
+            type="text"
+            multiLine
+            component={renderField}
+            label="Experience Summary">
           </Field>
-          {<IconButton onClick={() => {fields.remove(index);}} ><NavigationClose  /></IconButton>}
-      </li>
+        </div>
+      </div>
     )}
-  </ul>
+    <div className="row mt20">
+      <div className="col-xs-12 text-center">
+        <RaisedButton type='button' label="Add Industry Experience" primary={true} onClick={() => {
+          fields.push({})
+        }} />
+      </div>
+    </div>
+  </div>
 )
 
 const renderCareerHistory = ({ fields }) => (
   <ul>
     <li>
-    <RaisedButton type='button' label="Add Career History" primary={true} onClick={() => {
-      fields.push({})
-    }} />
+      <RaisedButton type='button' label="Add Career History" primary={true} onClick={() => {
+        fields.push({})
+      }} />
     </li>
     {fields.map((career, index) =>
       <li key={index}>
@@ -121,30 +144,30 @@ const renderCareerHistory = ({ fields }) => (
           name={`${career}.employer`}
           type="text"
           component={renderField}
-          label="Employer"/>
+          label="Employer" />
         <Field
           name={`${career}.careerName`}
           type="text"
           component={renderField}
-          label="Date Started"/>
+          label="Date Started" />
         <Field
           name={`${career}.role`}
           type="text"
           component={renderField}
-          label="Date Finished"/>
+          label="Date Finished" />
         <Field
           name={`${career}.summary`}
           type="text"
           multiLine
           component={renderField}
-          label="Job Title"/>
+          label="Job Title" />
         <Field
           name={`${career}.summary`}
           type="text"
           multiLine
           component={renderField}
-          label="Experience"/>
-          {<IconButton onClick={() => {fields.remove(index);}} ><NavigationClose  /></IconButton>}
+          label="Experience" />
+        {<IconButton onClick={() => { fields.remove(index); }} ><NavigationClose /></IconButton>}
 
       </li>
     )}
@@ -153,9 +176,9 @@ const renderCareerHistory = ({ fields }) => (
 const renderLanguages = ({ fields }) => (
   <ul>
     <li>
-    <RaisedButton type='button' label="Add project" primary={true} onClick={() => {
-      fields.push({})
-    }} />
+      <RaisedButton type='button' label="Add project" primary={true} onClick={() => {
+        fields.push({})
+      }} />
     </li>
     {fields.map((project, index) =>
       <li key={index}>
@@ -163,24 +186,24 @@ const renderLanguages = ({ fields }) => (
           name={`${project}.employer`}
           type="text"
           component={renderField}
-          label="Employer"/>
+          label="Employer" />
         <Field
           name={`${project}.projectName`}
           type="text"
           component={renderField}
-          label="Project name"/>
+          label="Project name" />
         <Field
           name={`${project}.role`}
           type="text"
           component={renderField}
-          label="Role"/>
+          label="Role" />
         <Field
           name={`${project}.summary`}
           type="text"
           multiLine
           component={renderField}
-          label="Project Summary"/>
-          {<IconButton onClick={() => {fields.remove(index);}} ><NavigationClose  /></IconButton>}
+          label="Project Summary" />
+        {<IconButton onClick={() => { fields.remove(index); }} ><NavigationClose /></IconButton>}
 
       </li>
     )}
@@ -200,8 +223,8 @@ const renderQualifications = ({ fields }) => (
           name={`${qualification}.qualification`}
           type="text"
           component={renderField}
-          label="Qualification"/>
-          {<IconButton onClick={() => {fields.remove(index);}} ><NavigationClose  /></IconButton>}
+          label="Qualification" />
+        {<IconButton onClick={() => { fields.remove(index); }} ><NavigationClose /></IconButton>}
 
       </li>
     )}
@@ -211,9 +234,9 @@ const renderQualifications = ({ fields }) => (
 const renderProjects = ({ fields }) => (
   <ul>
     <li>
-    <RaisedButton type='button' label="Add project" primary={true} onClick={() => {
-      fields.push({})
-    }} />
+      <RaisedButton type='button' label="Add project" primary={true} onClick={() => {
+        fields.push({})
+      }} />
     </li>
     {fields.map((project, index) =>
       <li key={index}>
@@ -221,24 +244,24 @@ const renderProjects = ({ fields }) => (
           name={`${project}.employer`}
           type="text"
           component={renderField}
-          label="Employer"/>
+          label="Employer" />
         <Field
           name={`${project}.projectName`}
           type="text"
           component={renderField}
-          label="Project name"/>
+          label="Project name" />
         <Field
           name={`${project}.role`}
           type="text"
           component={renderField}
-          label="Role"/>
+          label="Role" />
         <Field
           name={`${project}.summary`}
           type="text"
           multiLine
           component={renderField}
-          label="Project Summary"/>
-          {<IconButton onClick={() => {fields.remove(index);}} ><NavigationClose  /></IconButton>}
+          label="Project Summary" />
+        {<IconButton onClick={() => { fields.remove(index); }} ><NavigationClose /></IconButton>}
 
       </li>
     )}
@@ -249,75 +272,135 @@ class CvEditComponent extends Component {
   componentDidMount() {
     this.props.getUserData();
   }
-/*
-As a User I want to be able to create my CV in the CV App so that all my CV data is stored in the database.
+  /*
+  As a User I want to be able to create my CV in the CV App so that all my CV data is stored in the database.
 
-Fields Required:
-Profile
-Industry Experience
-  Industry
-  Experience
-Skills & Competencies
-  Skill/Competency
-  Years
-  Proficiency (check what these are - something like Junior, middle, senior, expert)
-Career History
-  Company
-  From MMM YYY
-  To MMM YYY
-  Job Title
-  Experience
-Skills & Experience
-  Business Skills
-    Skill
+  Fields Required:
+  Profile
+  Industry Experience
+    Industry
     Experience
-  IT Skills
-    Skill
+  Skills & Competencies
+    Skill/Competency
+    Years
+    Proficiency (check what these are - something like Junior, middle, senior, expert)
+  Career History
+    Company
+    From MMM YYY
+    To MMM YYY
+    Job Title
     Experience
-Languages
-  Language
-  Proficiency (Check - think it's something like Native, Expert, Conversational)
-Qualifications/Affiliations
-  Qualification
-  Institution
-  Year
-  Grade Attained
-*/
+  Skills & Experience
+    Business Skills
+      Skill
+      Experience
+    IT Skills
+      Skill
+      Experience
+  Languages
+    Language
+    Proficiency (Check - think it's something like Native, Expert, Conversational)
+  Qualifications/Affiliations
+    Qualification
+    Institution
+    Year
+    Grade Attained
+  */
   render() {
-    const specialism = [ 'FrontEnd', 'BackEnd', 'Database', 'DevOps', 'Agile', 'FullStack' ];
+    const specialism = ['FrontEnd', 'BackEnd', 'Database', 'DevOps', 'Agile', 'FullStack'];
     const { handleSubmit } = this.props;
+    const { user } = this.props;
+    const {
+      skills = [],
+      qualifications = [],
+      projects = [],
+    } = user;
 
     return (
-      <div className={'EditCVPage'}>
-        <form onSubmit={handleSubmit} >
-          <div className=''>
-            <label className='control-label' htmlFor='firstName'></label>
-            <Field name='firstname' component={renderField} type='text' label="First Name" />
+      <div className={'editCvPage'}>
+        <div className="container-fluid">
+          <div className="cvHeader paper pd15 mb30">
+            <i className="fa fa-pencil headerIcon"></i>
+            <div className="row">
+              <div className="col-xs-12">
+                <h1>Edit your Profile</h1>
+                <h2><small>{user.firstname} {user.lastname}</small></h2>
+              </div>
+            </div>
           </div>
-          <div className=''>
-            <label className='control-label' htmlFor='lastName'></label>
-            <Field name='lastname' component={renderField} type='text' label="Last Name" />
-          </div>
-          <div className=''>
-            <label className='control-label' htmlFor='title'></label>
-            <Field name='title' component={renderField} type='text' label="Title"/>
-          </div>
-          <div className=''>
-            <Field name='summary' component={renderField} type='text' label="Profile Summary" />
-          </div>
-
-          <FieldArray name="skills" component={renderSkills} />
-
-
-          <FieldArray name="industryxp" component={renderIndustryXP} />
-          <FieldArray name="careerhistory" component={renderCareerHistory} />
-          <FieldArray name="languages" component={renderLanguages} />
-          <FieldArray name="qualifications" component={renderQualifications} />
-          <FieldArray name="projects" component={renderProjects} />
-
-
-          <RaisedButton type='submit' label="Update User Info" primary={true} style={style} />
-        </form>
+          <form className="paperForm" onSubmit={handleSubmit} >
+            <div className="row">
+              <div className="nav-vertical">
+                <div className="col-sm-3 col-xs-12">
+                  <ul className="nav nav-tabs">
+                    <li><a data-toggle="tab" href="#personalDetail">Personal Details</a></li>
+                    <li className="active"><a data-toggle="tab" href="#skills">Skills</a></li>
+                    <li><a data-toggle="tab" href="#industryExp">Industry Experience</a></li>
+                    <li><a data-toggle="tab" href="#careerExp">Career Experience</a></li>
+                    <li><a data-toggle="tab" href="#languages">Languages</a></li>
+                    <li><a data-toggle="tab" href="#qualifications">Qualifications</a></li>
+                    <li><a data-toggle="tab" href="#projects">Projects</a></li>
+                  </ul>
+                </div>
+                <div className="col-sm-9 col-xs-12">
+                  <div className="tab-content">
+                    <div id="personalDetail" className="tab-pane fade">
+                      <div className="paper pd15 mb20">
+                        <h2>Personal Detail</h2>
+                      </div>
+                      <div className="paper pd15">
+                        <div className="row">
+                          <div className='col-sm-6 col-xs-12'>
+                            <label className='control-label' htmlFor='firstName'></label>
+                            <Field name='firstname' component={renderField} type='text' floatingLabelText="First Name" fullWidth />
+                          </div>
+                          <div className='col-sm-6 col-xs-12'>
+                            <label className='control-label' htmlFor='lastName'></label>
+                            <Field name='lastname' component={renderField} type='text' floatingLabelText="Last Name" />
+                          </div>
+                        </div>
+                        <div className=''>
+                          <label className='control-label' htmlFor='title'></label>
+                          <Field name='title' component={renderField} type='text' floatingLabelText="Title" />
+                        </div>
+                        <div className=''>
+                          <Field name='summary' component={renderField} type='text' floatingLabelText="Profile Summary" />
+                        </div>
+                      </div>
+                    </div>
+                    <div id="skills" className="tab-pane fade active in">
+                      <div className="paper pd15 mb20">
+                        <h2>Skills</h2>
+                      </div>
+                      <FieldArray name="skills" component={renderSkills} />
+                    </div>
+                    <div id="industryExp" className="tab-pane fade">
+                      <div className="paper pd15 mb20">
+                        <h2>Industry Experience</h2>
+                      </div>
+                      <FieldArray name="industryxp" component={renderIndustryXP} />
+                    </div>
+                    <div id="careerExp" className="tab-pane fade paper pd15">
+                      <FieldArray name="careerhistory" component={renderCareerHistory} />
+                    </div>
+                    <div id="languages" className="tab-pane fade paper pd15">
+                      <FieldArray name="languages" component={renderLanguages} />
+                    </div>
+                    <div id="qualifications" className="tab-pane fade paper pd15">
+                      <FieldArray name="qualifications" component={renderQualifications} />
+                    </div>
+                    <div id="projects" className="tab-pane fade paper pd15">
+                      <FieldArray name="projects" component={renderProjects} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="text-right">
+              <RaisedButton type='submit' label="Update User Info" primary={true} style={style} />
+            </div>
+          </form>
+        </div>
       </div>
 
       /*

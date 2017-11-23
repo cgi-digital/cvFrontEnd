@@ -1,25 +1,52 @@
 import React, { Component } from 'react';
 import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
+import { Tabs, Tab } from 'material-ui/Tabs';
+import FontIcon from 'material-ui/FontIcon';
+import MenuItem from 'material-ui/MenuItem';
 import { Link } from 'react-router';
 import FlatButton from 'material-ui/FlatButton';
 
+import CvEditComponent from "../../scenes/EditCV/component";
+import CvSearchComponent from "../../scenes/Search/component";
+import Logo from "../../CGI_Logo_color.png"
+
 class CvComponent extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { open: false }
+  }
+
+  handleToggle = () => this.setState({ open: !this.state.open });
+
+  handleClose = () => this.setState({ open: false });
+
   render() {
     const { content } = this.props;
     return (
       <div>
-        <AppBar  className="AppBarHeader"
-          title={
-            <header>
-              <Link to={'/edit'}><FlatButton label="Edit CV" /></Link>
-              <Link to={'/view'}><FlatButton label="View CV" /></Link>
-              <Link to={'/search'}><FlatButton label="CV Search" /></Link>
-            </header>
-          }
-          iconElementLeft={<span />}
-          iconElementRight={<span />}
-        />
+        <div id="appBar">
+          <div className="container-fluid">
+            <img className="appBarLogo" src={Logo} />
+            <div className="appBarTitle">CV Library</div>
+            <nav>
+              <Link to="/view">View</Link>
+              <Link to="/edit">Edit</Link>
+              <Link to="/search">Search</Link>
+            </nav>
+          </div>
+        </div>
+        <Tabs className="tabs hidden">
+          <Tab containerElement={<Link to="/view" />} label="My CV" />
+          <Tab containerElement={<Link to="/edit" />} label="Edit" />
+          <Tab containerElement={<Link to="/search" />} label="Search" />
+        </Tabs>
         {content}
+        <footer>
+          <div className="container-fluid">
+            <div class="copyright">© CGI Group Inc.</div>
+          </div>
+        </footer>
       </div>
     );
   }
