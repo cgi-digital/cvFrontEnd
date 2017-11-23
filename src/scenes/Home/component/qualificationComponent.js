@@ -1,14 +1,14 @@
 import React from 'react';
 
 
-class qualificationComponent extends React.Component {
+class QualificationComponent extends React.Component {
 
     componentDidMount(){
         this.props.qualifications
     }
 
     render() {
-        const { qualifications } = this.props
+        const { qualifications = [] } = this.props
 
         return (
             <div id="qualifications" className="tab-pane fade">
@@ -39,4 +39,4 @@ class qualificationComponent extends React.Component {
 
 }
 
-export default qualificationComponent;
+export default QualificationComponent;

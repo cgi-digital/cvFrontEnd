@@ -1,14 +1,12 @@
 import  React from 'react';
-class skillComponent extends React.Component {
+class SkillComponent extends React.Component {
 
     componentDidMount(){
         this.props.skills
     }
 
     render() {
-
-        const { skills } = this.props;
-        console.log("skills :", skills)
+        const { skills = [] } = this.props;
         return (
             <div id="skills" className="tab-pane fade in active">
             <div className="paper pd15 mb20 tab-header">
@@ -40,4 +38,4 @@ class skillComponent extends React.Component {
 
 }
 
-export default skillComponent;
+export default SkillComponent;

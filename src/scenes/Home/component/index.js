@@ -8,7 +8,9 @@ import Divider from 'material-ui/Divider'
 import { Tabs, Tab } from 'material-ui/Tabs';
 import { Link } from 'react-router';
 import FontIcon from 'material-ui/FontIcon';
-
+import SkillComponent from './skillComponent';
+import QualificationComponent from './qualificationComponent';
+import ProjectComponent from './projectComponent';
 
 import {
   Table,
@@ -82,59 +84,13 @@ class CvViewComponent extends Component {
                 <li><a data-toggle="tab" href="#projects">Projects</a></li>
               </ul>
               <div className="tab-content">
-                <skillComponent {...this.props}/>
-                <div id="qualifications" className="tab-pane fade">
-                  <div className="paper pd15 mb20 tab-header">
-                    <h2 className="mb20">Qualifications</h2>
-                  </div>
-                  <table className="table paper">
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Qualification Name</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {qualifications.map((q, index) => {
-                        return (
-                          <tr>
-                            <td>{q.id}</td>
-                            <td key={index}>{q.qualification}</td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-                <div id="projects" className="tab-pane fade">
-                  <div className="paper pd15 mb20 tab-header">
-                    <h2 className="mb20">Projects</h2>
-                  </div>
-                  <table className="table paper">
-                    <thead>
-                      <tr>
-                        <th>#</th>
-                        <th>Employer</th>
-                        <th>Project Name</th>
-                        <th>Role</th>
-                        <th>Summary</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {projects.map((p, index) => {
-                        return (
-                          <tr>
-                            <td>{p.id}</td>
-                            <td key={index}>{p.employer}</td>
-                            <td>{p.projectName}</td>
-                            <td>{p.role}</td>
-                            <td>{p.summary}</td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
+
+                <SkillComponent {...this.props}/>
+
+                <QualificationComponent {...this.props}/>
+
+                <ProjectComponent {...this.props}/>
+                
               </div>
             </div>
           </div>
