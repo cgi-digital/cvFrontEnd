@@ -32,8 +32,9 @@ import {
 // } from 'redux-form-material-ui'
 
 const renderField = ({ input, multiLine, rows, label, meta: { touched, error }, ...custom }) => (
-  <TextField hintText={label}
+  <TextField
     multiLine={multiLine}
+    underlineShow={false}
     fullWidth={true}
     rows={rows}
     errorText={touched && error}
@@ -55,6 +56,7 @@ const style = {
 const renderSelectField = ({ input, label, meta: { touched, error }, children, ...custom }) => (
   <SelectField
     errorText={touched && error}
+    underlineShow={false}
     {...input}
     onChange={(event, index, value) => input.onChange(value)}
     children={children}
@@ -63,33 +65,44 @@ const renderSelectField = ({ input, label, meta: { touched, error }, children, .
 
 const renderSkills = ({ fields }) => (
   <div>
-    {fields.map((skill, index) =>
-      <div key={index} className="paper editRow">
-        <div className="pull-left editCol">
-          <Field
-            name={`${skill}.skill`}
-            type="text"
-            component={renderField}
-            label="Skill"
-            fullWidth={false} />
-        </div>
-        <div className="pull-left editCol">
-          <Field
-            name={`${skill}.level`}
-            component={renderSelectField}
-            label="Level"
-            fullWidth={false}>
-
-            <MenuItem value={1} primaryText="1" />
-            <MenuItem value={5} primaryText="5" />
-            <MenuItem value={10} primaryText="10" />
-          </Field>
-        </div>
-        <div className="pull-right editCol text-center">
-          {<a className="deleteActionButton" onClick={() => { fields.remove(index); }}><i className="fa fa-trash"></i></a>}
-        </div>
-      </div>
-    )}
+    <table className="table paper table-bordered table-form">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Skill Level</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {fields.map((skill, index) =>
+          <tr key={index}>
+            <td>
+              <Field
+                name={`${skill}.skill`}
+                type="text"
+                component={renderField}
+                label="Skill">
+              </Field>
+            </td>
+            <td>
+              <Field
+                name={`${skill}.level`}
+                component={renderField}
+                label="Level"
+                type="number"
+                min="1"
+                max="10">
+              </Field>
+            </td>
+            <td>
+              <div className="actions">
+                {<a onClick={() => { fields.remove(index); }}><i className="fa fa-close"></i></a>}
+              </div>
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
     <div className="row mt20">
       <div className="col-xs-12 text-center">
         <RaisedButton type='button' label="Add Skill" primary={true} onClick={() => {
@@ -102,25 +115,38 @@ const renderSkills = ({ fields }) => (
 
 const renderIndustryXP = ({ fields }) => (
   <div>
-    {fields.map((industryxp, index) =>
-      <div className="paper editRow" key={index}>
-        <div className="col">
-          <Field name={`${industryxp}.industryName`} type="text" component={renderField} />
-        </div>
-        <div className="col pull-right">
-          {<a className="deleteActionButton" onClick={() => { fields.remove(index); }}><i className="fa fa-trash"></i></a>}
-        </div>
-        <div className="col-xs-12">
-          <Field
-            name={`${industryxp}.summary`}
-            type="text"
-            multiLine
-            component={renderField}
-            label="Experience Summary">
-          </Field>
-        </div>
-      </div>
-    )}
+    <table className="table paper table-bordered table-form">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Summary</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {fields.map((industryxp, index) =>
+          <tr key={index}>
+            <td>
+              <Field name={`${industryxp}.industryName`} type="text" component={renderField} />
+            </td>
+            <td>
+              <Field
+                name={`${industryxp}.summary`}
+                type="text"
+                multiLine
+                component={renderField}
+                label="Experience Summary">
+              </Field>
+            </td>
+            <td>
+              <div className="actions">
+                {<a onClick={() => { fields.remove(index); }}><i className="fa fa-trash"></i></a>}
+              </div>
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
     <div className="row mt20">
       <div className="col-xs-12 text-center">
         <RaisedButton type='button' label="Add Industry Experience" primary={true} onClick={() => {
@@ -132,140 +158,225 @@ const renderIndustryXP = ({ fields }) => (
 )
 
 const renderCareerHistory = ({ fields }) => (
-  <ul>
-    <li>
-      <RaisedButton type='button' label="Add Career History" primary={true} onClick={() => {
-        fields.push({})
-      }} />
-    </li>
-    {fields.map((career, index) =>
-      <li key={index}>
-        <Field
-          name={`${career}.employer`}
-          type="text"
-          component={renderField}
-          label="Employer" />
-        <Field
-          name={`${career}.careerName`}
-          type="text"
-          component={renderField}
-          label="Date Started" />
-        <Field
-          name={`${career}.role`}
-          type="text"
-          component={renderField}
-          label="Date Finished" />
-        <Field
-          name={`${career}.summary`}
-          type="text"
-          multiLine
-          component={renderField}
-          label="Job Title" />
-        <Field
-          name={`${career}.summary`}
-          type="text"
-          multiLine
-          component={renderField}
-          label="Experience" />
-        {<IconButton onClick={() => { fields.remove(index); }} ><NavigationClose /></IconButton>}
-
-      </li>
-    )}
-  </ul>
+  <div>
+    <table className="table paper table-bordered table-form">
+      <thead>
+        <tr>
+          <th>Employer</th>
+          <th>Date Started</th>
+          <th>Date Finished</th>
+          <th>Job Title</th>
+          <th>Experience</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {fields.map((career, index) =>
+          <tr key={index}>
+            <td>
+              <Field
+                name={`${career}.employer`}
+                type="text"
+                component={renderField}
+                label="Employer" />
+            </td>
+            <td>
+              <Field
+                name={`${career}.dateStarted`}
+                type="text"
+                component={renderField}
+                label="Date Started" />
+            </td>
+            <td>
+              <Field
+                name={`${career}.dateFinished`}
+                type="text"
+                component={renderField}
+                label="Date Finished" />
+            </td>
+            <td>
+              <Field
+                name={`${career}.jobTitle`}
+                type="text"
+                multiLine
+                component={renderField}
+                label="Job Title" />
+            </td>
+            <td>
+              <Field
+                name={`${career}.experience`}
+                type="text"
+                multiLine
+                component={renderField}
+                label="Experience" />
+            </td>
+            <td>
+              <div className="actions">
+                {<a onClick={() => { fields.remove(index); }} ><i className="fa fa-close"></i></a>}
+              </div>
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+    <div className="row mt20">
+      <div className="col-xs-12 text-center">
+        <RaisedButton type='button' label="Add" primary={true} onClick={() => {
+          fields.push({})
+        }} />
+      </div>
+    </div>
+  </div>
 )
 const renderLanguages = ({ fields }) => (
-  <ul>
-    <li>
-      <RaisedButton type='button' label="Add project" primary={true} onClick={() => {
-        fields.push({})
-      }} />
-    </li>
-    {fields.map((project, index) =>
-      <li key={index}>
-        <Field
-          name={`${project}.employer`}
-          type="text"
-          component={renderField}
-          label="Employer" />
-        <Field
-          name={`${project}.projectName`}
-          type="text"
-          component={renderField}
-          label="Project name" />
-        <Field
-          name={`${project}.role`}
-          type="text"
-          component={renderField}
-          label="Role" />
-        <Field
-          name={`${project}.summary`}
-          type="text"
-          multiLine
-          component={renderField}
-          label="Project Summary" />
-        {<IconButton onClick={() => { fields.remove(index); }} ><NavigationClose /></IconButton>}
-
-      </li>
-    )}
-  </ul>
+  <div>
+    <table className="table paper table-bordered table-form">
+      <thead>
+        <tr>
+          <th>Language</th>
+          <th>Level</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {fields.map((language, index) =>
+          <tr key={index}>
+            <td>
+              <Field
+                name={`${language}.name`}
+                type="text"
+                component={renderField}
+                placeholder="Language" />
+            </td>
+            <td>
+              <Field
+                name={`${language}.level`}
+                type="number"
+                component={renderField}
+                placeholder="Level"
+                min="1"
+                max="10" />
+            </td>
+            <td>
+              <div className="actions">
+                {<a onClick={() => { fields.remove(index); }} ><i className="fa fa-close"></i></a>}
+              </div>
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+    <div className="row mt20">
+      <div className="col-xs-12 text-center">
+        <RaisedButton type='button' label="Add Skill" primary={true} onClick={() => {
+          fields.push({})
+        }} />
+      </div>
+    </div>
+  </div>
 )
 
 const renderQualifications = ({ fields }) => (
-  <ul>
-    <li>
-      <RaisedButton type='button' label="Add qualification" primary={true} onClick={() => {
-        fields.push({})
-      }} />
-    </li>
-    {fields.map((qualification, index) =>
-      <li key={index}>
-        <Field
-          name={`${qualification}.qualification`}
-          type="text"
-          component={renderField}
-          label="Qualification" />
-        {<IconButton onClick={() => { fields.remove(index); }} ><NavigationClose /></IconButton>}
-
-      </li>
-    )}
-  </ul>
+  <div>
+    <table className="table paper table-bordered table-form">
+      <thead>
+        <tr>
+          <th>Qualification</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {fields.map((qualification, index) =>
+          <tr key={index}>
+            <td>
+              <Field
+                name={`${qualification}.qualification`}
+                type="text"
+                component={renderField}
+                label="Qualification" />
+            </td>
+            <td>
+              <div className="actions">
+                {<a onClick={() => { fields.remove(index); }} ><i className="fa fa-close"></i></a>}
+              </div>
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+    <div class="row mt20">
+      <div class="col-xs-12 text-center">
+        <RaisedButton type='button' label="Add qualification" primary={true} onClick={() => {
+          fields.push({})
+        }} />
+      </div>
+    </div>
+  </div>
 )
 //to do ADD DATE_RANGE
 const renderProjects = ({ fields }) => (
-  <ul>
-    <li>
-      <RaisedButton type='button' label="Add project" primary={true} onClick={() => {
-        fields.push({})
-      }} />
-    </li>
-    {fields.map((project, index) =>
-      <li key={index}>
-        <Field
-          name={`${project}.employer`}
-          type="text"
-          component={renderField}
-          label="Employer" />
-        <Field
-          name={`${project}.projectName`}
-          type="text"
-          component={renderField}
-          label="Project name" />
-        <Field
-          name={`${project}.role`}
-          type="text"
-          component={renderField}
-          label="Role" />
-        <Field
-          name={`${project}.summary`}
-          type="text"
-          multiLine
-          component={renderField}
-          label="Project Summary" />
-        {<IconButton onClick={() => { fields.remove(index); }} ><NavigationClose /></IconButton>}
-
-      </li>
-    )}
-  </ul>
+  <div>
+    <div className="table-responsive">
+      <table className="table paper table-bordered table-form">
+        <thead>
+          <tr>
+            <th>Employer</th>
+            <th>Project</th>
+            <th>Role</th>
+            <th>Project Summary</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {fields.map((project, index) =>
+            <tr key={index}>
+              <td>
+                <Field
+                  name={`${project}.employer`}
+                  type="text"
+                  component={renderField}
+                  label="Employer" />
+              </td>
+              <td>
+                <Field
+                  name={`${project}.projectName`}
+                  type="text"
+                  component={renderField}
+                  label="Project name" />
+              </td>
+              <td>
+                <Field
+                  name={`${project}.role`}
+                  type="text"
+                  component={renderField}
+                  label="Role" />
+              </td>
+              <td>
+                <Field
+                  name={`${project}.summary`}
+                  type="text"
+                  multiLine
+                  component={renderField}
+                  label="Project Summary" />
+              </td>
+              <td>
+                <div className="actions">
+                  {<a onClick={() => { fields.remove(index); }} ><i className="fa fa-close"></i></a>}
+                </div>
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
+    <div className="row mt20">
+      <div className="col-xs-12 text-center">
+        <RaisedButton type='button' label="Add project" primary={true} onClick={() => {
+          fields.push({})
+        }} />
+      </div>
+    </div>
+  </div>
 )
 
 class CvEditComponent extends Component {
@@ -319,16 +430,19 @@ class CvEditComponent extends Component {
     return (
       <div className={'editCvPage'}>
         <div className="container-fluid">
-          <div className="cvHeader paper pd15 mb30">
-            <i className="fa fa-pencil headerIcon"></i>
-            <div className="row">
-              <div className="col-xs-12">
-                <h1>Edit your Profile</h1>
-                <h2><small>{user.firstname} {user.lastname}</small></h2>
+          <form className="paperForm" onSubmit={handleSubmit} >
+            <div className="cvHeader paper pd15 mb30">
+              <i className="fa fa-pencil headerIcon"></i>
+              <div className="row">
+                <div className="col">
+                  <h1>Edit your Profile</h1>
+                  <h2><small>{user.firstname} {user.lastname}</small></h2>
+                </div>
+                <div className="col pull-right">
+                  <RaisedButton type='submit' label={<i className="fa fa-floppy-o"></i>} primary={true} style={style}/>
+                </div>
               </div>
             </div>
-          </div>
-          <form className="paperForm" onSubmit={handleSubmit} >
             <div className="row">
               <div className="nav-vertical">
                 <div className="col-sm-3 col-xs-12">
@@ -352,19 +466,19 @@ class CvEditComponent extends Component {
                         <div className="row">
                           <div className='col-sm-6 col-xs-12'>
                             <label className='control-label' htmlFor='firstName'></label>
-                            <Field name='firstname' component={renderField} type='text' floatingLabelText="First Name" fullWidth />
+                            <Field name='firstname' component={renderField} type='text' floatingLabelText="First Name" underlineShow fullWidth />
                           </div>
                           <div className='col-sm-6 col-xs-12'>
                             <label className='control-label' htmlFor='lastName'></label>
-                            <Field name='lastname' component={renderField} type='text' floatingLabelText="Last Name" />
+                            <Field name='lastname' component={renderField} type='text' floatingLabelText="Last Name" underlineShow />
                           </div>
                         </div>
                         <div className=''>
                           <label className='control-label' htmlFor='title'></label>
-                          <Field name='title' component={renderField} type='text' floatingLabelText="Title" />
+                          <Field name='title' component={renderField} type='text' floatingLabelText="Title" underlineShow />
                         </div>
                         <div className=''>
-                          <Field name='summary' component={renderField} type='text' floatingLabelText="Profile Summary" />
+                          <Field name='summary' component={renderField} type='text' multiLine floatingLabelText="Profile Summary" underlineShow />
                         </div>
                       </div>
                     </div>
@@ -380,24 +494,33 @@ class CvEditComponent extends Component {
                       </div>
                       <FieldArray name="industryxp" component={renderIndustryXP} />
                     </div>
-                    <div id="careerExp" className="tab-pane fade paper pd15">
+                    <div id="careerExp" className="tab-pane fade">
+                      <div className="paper pd15 mb20">
+                        <h2>Career History</h2>
+                      </div>
                       <FieldArray name="careerhistory" component={renderCareerHistory} />
                     </div>
-                    <div id="languages" className="tab-pane fade paper pd15">
+                    <div id="languages" className="tab-pane fade">
+                      <div className="paper pd15 mb20">
+                        <h2>Languages</h2>
+                      </div>
                       <FieldArray name="languages" component={renderLanguages} />
                     </div>
-                    <div id="qualifications" className="tab-pane fade paper pd15">
+                    <div id="qualifications" className="tab-pane fade">
+                      <div className="paper pd15 mb20">
+                        <h2>Qualifications</h2>
+                      </div>
                       <FieldArray name="qualifications" component={renderQualifications} />
                     </div>
-                    <div id="projects" className="tab-pane fade paper pd15">
+                    <div id="projects" className="tab-pane fade">
+                      <div className="paper pd15 mb20">
+                        <h2>Qualifications</h2>
+                      </div>
                       <FieldArray name="projects" component={renderProjects} />
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="text-right">
-              <RaisedButton type='submit' label="Update User Info" primary={true} style={style} />
             </div>
           </form>
         </div>

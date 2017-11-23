@@ -125,13 +125,6 @@ footer{
   border-left:none;
 }
 
-/* Paper Form */
-
-.paperForm .paper{
-  padding:15px 0;
-  overflow:hidden;
-}
-
 /* helper classes */
 
 .mb10{margin-bottom: 10px;}
@@ -151,6 +144,7 @@ footer{
 /* color */
 
 .tWhite{color:#fff}
+.tGreen{color:rgb(39, 168, 39)}
 
 .bgCherry{
   background-color:#E31937;
@@ -368,6 +362,45 @@ a,a:hover,a:focus{
 }
 .table.table-cherry td{
   border-bottom:1px solid #ccc;
+}
+
+.table.table-form>tbody>tr>td{
+  vertical-align: middle;
+}
+.table.table-form>tbody>tr>td input,
+.table.table-form>tbody>tr>td textarea{
+  padding:0 10px !important;
+  background-color: #fff !important;
+  border: 1px solid #e3e3e3 !important;
+  border-radius: 4px !important;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05) !important;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.05) !important;
+}
+.table.table-form>tbody>tr>td textarea{
+  padding:10px !important;
+}
+.table.table-form>tbody>tr>td input:hover,
+.table.table-form>tbody>tr>td textarea:hover{
+  background:#fcfcfc !important;
+}
+.table.table-form>tbody>tr>td input:focus,
+.table.table-form>tbody>tr>td textarea:focus{
+  background:#fcfcfc !important;
+}
+.table.table-form>tbody>tr>td input[type=number]::-webkit-inner-spin-button, 
+.table.table-form>tbody>tr>td input[type=number]::-webkit-outer-spin-button {  
+   opacity: 1;
+}
+.table.table-form>tbody>tr>td .actions{
+  padding:0 10px;
+  text-align: center;
+}
+.table.table-form>tbody>tr>td .actions a{
+  font-size:16px;
+  cursor:pointer;
+}
+.table.table-form>tbody>tr>td .actions a + a{
+  margin-left:5px;
 }
 
 /* PAGES */
