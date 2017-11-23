@@ -12,7 +12,7 @@ import { Routes } from './routes';
 import configureStore from './store';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
-import './App.css';
+import './index.css';
 //import './utils/colors';
 
 // var _colors = require('./utils/colors');

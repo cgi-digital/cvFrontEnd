@@ -53,28 +53,30 @@ class AuthComponent extends Component {
             <div className="appBarTitle">CV Library</div>
           </div>
         </div>
-        <div className="container-fluid">
-          <form className="paper" onSubmit={handleSubmit}>
-            <div className="">
-              <h1>Login</h1>
-            </div>
-            <div id="errField" className='hidden'>
-              <Field name='ResponseMessage' component={renderErrorField} type='text' />
-            </div>
-            <div className=''>
-              <label className='control-label' htmlFor='Username'></label>
-              <Field name='Username' component={renderField} type='text' label="Username" />
-            </div>
-            <div className='mb20'>
-              <label className='control-label' htmlFor='Password'></label>
-              <Field name='Password' component={renderField} type='password' label="Password" />
-            </div>
-            <div className="buttonRow">
-              <div className="mb10"><a href="#" >Forgot your username or password?</a></div>
-              <RaisedButton type='submit' id="login" label="Login" primary={true} style={style} />
-              <RaisedButton linkButton={true} href="/signUp" label="Sign Up" style={style} />
-            </div>
-          </form>
+        <div className="loginBody">
+          <div className="container-fluid">
+            <form className="paper" onSubmit={handleSubmit}>
+              <div className="">
+                <h1>Login</h1>
+              </div>
+              <div id="errField" className='hidden'>
+                <Field name='ResponseMessage' component={renderErrorField} type='text' />
+              </div>
+              <div className=''>
+                <label className='control-label' htmlFor='Username'></label>
+                <Field name='Username' component={renderField} type='text' label="Username" />
+              </div>
+              <div className='mb20'>
+                <label className='control-label' htmlFor='Password'></label>
+                <Field name='Password' component={renderField} type='password' label="Password" />
+              </div>
+              <div className="buttonRow">
+                <div className="mb10"><a href="#" >Forgot your username or password?</a></div>
+                <RaisedButton type='submit' id="login" label="Login" primary={true} style={style} />
+                <RaisedButton linkButton={true} href="/signUp" label="Sign Up" style={style} />
+              </div>
+            </form>
+          </div>
         </div>
         <footer>
           <div className="container-fluid">

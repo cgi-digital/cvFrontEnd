@@ -3,8 +3,9 @@
  */
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import TextField from 'material-ui/TextField'
+import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import Logo from '../../../CGI_Logo_color.png';
 
 const renderField = ({ input, label, meta: { touched, error }, ...custom }) => (
   <TextField hintText={label}
@@ -50,46 +51,60 @@ class SignUpComponent extends Component {
     const { error, handleSubmit } = this.props;
     return (
       <div className={'loginPage'}>
-        <div className="container-fluid">
-          <div className="paper">
-            <form onSubmit={handleSubmit}>
-              <div className="">
-                <h1>Register</h1>
-              </div>
-              <div className="row mb20">
-                <div className='col-sm-6 col-xs-12'>
-                  <label className='control-label' htmlFor='firstName'></label>
-                  <Field name='FirstName' component={renderField} type='text' label="First Name" />
-                </div>
-                <div className='col-sm-6 col-xs-12'>
-                  <label className='control-label' htmlFor='lastName'></label>
-                  <Field name='LastName' component={renderField} type='text' label="Last Name" />
-                </div>
-                <div className='col-sm-6 col-xs-12'>
-                  <label className='control-label' htmlFor='Username'></label>
-                  <Field name='Username' id='username' component={renderField} type='text' label="Username" />
-                  {error && <strong>{error.Username}</strong>}
-                </div>
-                <div className='col-sm-6 col-xs-12'>
-                  <label className='control-label' htmlFor='email'></label>
-                  <Field name='Email' component={renderField} type='text' label="Email" />
-                </div>
-                <div className='col-xs-12'>
-                  <label className='control-label' htmlFor='Password'></label>
-                  <Field name='Password' component={renderField} type='password' label="Password" />
-                </div>
-                <div className='col-xs-12'>
-                  <label className='control-label' htmlFor='Password'></label>
-                  <Field name='ReTypePassword' component={renderField} type='password' label="Confirm Password" />
-                </div>
-              </div>
-              <div className="buttonRow">
-                <RaisedButton className="mb20" type='submit' id='signUp' label="Sign Up" primary={true} />
-                <div><a href="/login">Already have an account? Log In</a></div>
-              </div>
-            </form>
+        <div id="appBar">
+          <div className="container-fluid">
+            <img className="appBarLogo" src={Logo} />
+            <div className="appBarTitle">CV Library</div>
           </div>
         </div>
+        <div className="loginBody">
+          <div className="container-fluid">
+            <div className="paper">
+              <form onSubmit={handleSubmit}>
+                <div className="">
+                  <h1>Register</h1>
+                </div>
+                <div className="row mb20">
+                  <div className='col-sm-6 col-xs-12'>
+                    <label className='control-label' htmlFor='firstName'></label>
+                    <Field name='FirstName' component={renderField} type='text' label="First Name" />
+                  </div>
+                  <div className='col-sm-6 col-xs-12'>
+                    <label className='control-label' htmlFor='lastName'></label>
+                    <Field name='LastName' component={renderField} type='text' label="Last Name" />
+                  </div>
+                  <div className='col-sm-6 col-xs-12'>
+                    <label className='control-label' htmlFor='Username'></label>
+                    <Field name='Username' id='username' component={renderField} type='text' label="Username" />
+                    {error && <strong>{error.Username}</strong>}
+                  </div>
+                  <div className='col-sm-6 col-xs-12'>
+                    <label className='control-label' htmlFor='email'></label>
+                    <Field name='Email' component={renderField} type='text' label="Email" />
+                  </div>
+                  <div className='col-xs-12'>
+                    <label className='control-label' htmlFor='Password'></label>
+                    <Field name='Password' component={renderField} type='password' label="Password" />
+                  </div>
+                  <div className='col-xs-12'>
+                    <label className='control-label' htmlFor='Password'></label>
+                    <Field name='ReTypePassword' component={renderField} type='password' label="Confirm Password" />
+                  </div>
+                </div>
+                <div className="buttonRow">
+                  <RaisedButton className="mb20" type='submit' id='signUp' label="Sign Up" primary={true} />
+                  <div><a href="/login">Already have an account? Log In</a></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <footer>
+          <div className="container-fluid">
+            <div className="pull-left">© CGI Group Inc.</div>
+            <div className="pull-right">Made by ADSC</div>
+          </div>
+        </footer>
       </div>
     );
   }
