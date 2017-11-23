@@ -84,6 +84,7 @@ ul {
     margin:0;
     width:100%;
     text-align: center;
+    margin-bottom:15px;
 
   }
   #appBar nav{
@@ -408,10 +409,10 @@ a,a:hover,a:focus{
 }
 
 @media (max-width:768px){
-  .loginPage{
-    padding-top:20%;
-  }  
-  .loginPage .paper{
+  .loginPage .loginBody{
+    margin-top:25px;  
+  }
+  .loginPage .loginBody .paper{
     min-width: 0px;
   }
 }
