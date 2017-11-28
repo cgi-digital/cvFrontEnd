@@ -74,6 +74,8 @@ ul {
 }
 #appBar nav > a i.fa{
   font-size:1.5em;
+  line-height: 34px;
+  vertical-align: middle;
 }
 
 @media (max-width:768px){

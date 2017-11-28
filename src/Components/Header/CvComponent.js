@@ -33,7 +33,7 @@ class CvComponent extends Component {
               <Link to="/view">View</Link>
               <Link to="/edit">Edit</Link>
               <Link to="/search">Search</Link>
-              <Link to="/logout"><i className="fa fa-sign-out"></i>&nbsp;Logout</Link>
+              <Link to="/logout"><i className="fa fa-sign-out"></i></Link>
             </nav>
           </div>
         </div>
@@ -45,7 +45,7 @@ class CvComponent extends Component {
         {content}
         <footer>
           <div className="container-fluid">
-            <div className="copyright">© CGI Group Inc.</div>
+            <div className  ="copyright">© CGI Group Inc.</div>
           </div>
         </footer>
       </div>
