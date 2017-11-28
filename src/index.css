@@ -365,27 +365,29 @@ a,a:hover,a:focus{
 }
 
 .table.table-form>tbody>tr>td{
-  vertical-align: middle;
+  vertical-align: top;
 }
 .table.table-form>tbody>tr>td input,
 .table.table-form>tbody>tr>td textarea{
-  padding:0 10px !important;
-  background-color: #fff !important;
+  padding:10px !important;
+  background-color: #fafafa!important;
   border: 1px solid #e3e3e3 !important;
   border-radius: 4px !important;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05) !important;
   box-shadow: inset 0 1px 1px rgba(0,0,0,.05) !important;
+  transition: border-color 0.3s;
+  line-height: 1.5 !important;
 }
 .table.table-form>tbody>tr>td textarea{
-  padding:10px !important;
+  min-height:48px;
+  margin:0 !important;
 }
 .table.table-form>tbody>tr>td input:hover,
 .table.table-form>tbody>tr>td textarea:hover{
-  background:#fcfcfc !important;
 }
 .table.table-form>tbody>tr>td input:focus,
 .table.table-form>tbody>tr>td textarea:focus{
-  background:#fcfcfc !important;
+  background:#f6f6f6 !important;
 }
 .table.table-form>tbody>tr>td input[type=number]::-webkit-inner-spin-button, 
 .table.table-form>tbody>tr>td input[type=number]::-webkit-outer-spin-button {  
