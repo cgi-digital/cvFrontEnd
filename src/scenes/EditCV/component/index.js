@@ -304,8 +304,8 @@ const renderQualifications = ({ fields }) => (
         )}
       </tbody>
     </table>
-    <div class="row mt20">
-      <div class="col-xs-12 text-center">
+    <div className="row mt20">
+      <div className="col-xs-12 text-center">
         <RaisedButton type='button' label="Add qualification" primary={true} onClick={() => {
           fields.push({})
         }} />
