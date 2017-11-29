@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+<<<<<<< HEAD
 import { connect } from 'react-redux';
+=======
+>>>>>>> Search by First Name and Last name 1.0
 import TextField from 'material-ui/TextField'
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton'
 import Checkbox from 'material-ui/Checkbox'
@@ -8,16 +11,32 @@ import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import { Tabs, Tab } from 'material-ui/Tabs'
 
+<<<<<<< HEAD
 import SearchSkillComponent from './searchSkill'
 import SearchNameComponent from './searchName'
+=======
+const renderField = ({ input, multiLine, rows, label, meta: { touched, error }, ...custom }) => (
+  <TextField
+    multiLine={multiLine}
+    floatingLabelText={label}
+    rows={rows}
+    errorText={touched && error}
+    {...input}
+    {...custom}
+  />
+)
+>>>>>>> Search by First Name and Last name 1.0
 
 class CvSearchComponent extends Component {
 
   constructor(props, context) {
     super(props, context);
+<<<<<<< HEAD
 
     this.submitSearchName = this.submitSearchName.bind(this); 
     this.submitSearchSkill = this.submitSearchSkill.bind(this); 
+=======
+>>>>>>> Search by First Name and Last name 1.0
   }
 
   componentDidMount() {
