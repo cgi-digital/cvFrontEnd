@@ -44,17 +44,22 @@ export default function reducer(state = initialState, action) {
 
 // To be imported into container component, and assigned via mapDispatchToProps
 export function getUsers(params = {}) {
-  return function(dispatch) {
+  return function (dispatch, getState) {
+    const currentState = getState();
+    const formState = currentState.form.search_form.values;
     dispatch({ type: USERS_LOAD });
-
-    // Axios - first argument is endpoint, second is params object
-    axios
-      .get(API_URL + 'user/all')
-      .then(function(response) {
-        dispatch({ type: USERS_SUCCESS, data: response.data });
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  };
+    if (formState) {
+      // SEARCH BY FIRST AND LAST NAME
+      axios
+        .get(API_URL + 'user/search/name?firstName=' + formState.firstname + '&lastName=' + formState.lastname)
+        .then(function (response) {
+          console.log("HERE");
+          console.log(response);
+          dispatch({ type: USERS_SUCCESS, data: response.data });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  }
 }

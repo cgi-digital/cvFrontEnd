@@ -276,6 +276,8 @@ a,a:hover,a:focus{
   background:#F2A200;
 }
 
+/* nav vertical */
+
 .nav-vertical .nav-tabs{
 }
 .nav-vertical .nav-tabs{
@@ -301,6 +303,35 @@ a,a:hover,a:focus{
 }
 .nav-vertical .nav-tabs>li.active>a {
   background-color:#F2A200;
+}
+
+/* nav inner */
+
+.nav-inner .tab-content{
+  border:1px solid #ccc;
+  padding:15px;
+}
+.nav-inner .nav-tabs{
+  margin:0;
+  border-bottom:0;
+  background:transparent;
+}
+.nav-inner .nav-tabs>li{
+  margin-bottom:-1px;
+}
+.nav-inner .nav-tabs>li>a,
+.nav-inner .nav-tabs>li.active>a,
+.nav-inner .nav-tabs>li>a:hover,
+.nav-inner .nav-tabs>li>a:focus{
+  color:#000;
+  width:100%;
+  background:transparent;
+  border:1px solid transparent;
+  border-radius: 2px;
+}
+.nav-inner .nav-tabs>li.active>a {
+  border: 1px solid #ccc;
+  border-bottom:1px solid #fff;
 }
 
 @media (max-width:768px){
@@ -543,8 +574,5 @@ a,a:hover,a:focus{
 /* CV Search Page */
 
 .searchCvPage .searchFilter{
-  background-color:#991F3D;
-  color:#fff;
   padding:15px;
-  margin-bottom: 30px;
 }
