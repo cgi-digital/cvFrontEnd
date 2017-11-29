@@ -421,16 +421,11 @@ class CvEditComponent extends Component {
     const specialism = ['FrontEnd', 'BackEnd', 'Database', 'DevOps', 'Agile', 'FullStack'];
     const { handleSubmit } = this.props;
     const { user } = this.props;
-    const {
-      skills = [],
-      qualifications = [],
-      projects = [],
-    } = user;
 
     return (
       <div className={'editCvPage'}>
         <div className="container-fluid">
-          <form className="paperForm" onSubmit={handleSubmit} >
+          <form className="paperForm" onSubmit={handleSubmit} id="saveForm">
             <div className="cvHeader paper pd15 mb30">
               <i className="fa fa-pencil headerIcon"></i>
               <div className="row">
@@ -439,7 +434,7 @@ class CvEditComponent extends Component {
                   <h2><small>{user.firstname} {user.lastname}</small></h2>
                 </div>
                 <div className="col pull-right">
-                  <RaisedButton type='submit' label={<i className="fa fa-floppy-o"></i>} primary={true} style={style}/>
+                  <button className="btn btn-default" type="submit" form="saveForm" value="Save"><i className="fa fa-floppy-o"></i>&nbsp;Save</button>
                 </div>
               </div>
             </div>

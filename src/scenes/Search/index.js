@@ -18,16 +18,20 @@ function mapDispatchToProps(dispatch) {
     getUsers: a => {
       dispatch(getUsers(a));
     },
-    onSearchChange: e => {
-      dispatch(updateSearch(e.currentTarget.value));
+    onSearch: e => {
+      e.preventDefault();
+      dispatch(getUsers(e));
     }
   };
 }
 
-class CvViewContainer extends Component {
+class CvSearchContainer extends Component {
   render() {
-    return <CvSearchComponent {...this.props} />;
+    return <CvSearchComponent {...this.props} initialValues={
+      {firstname:'', lastname:''}
+    }
+      handleSubmit={this.props.onSearch} />;
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CvViewContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(CvSearchContainer)
