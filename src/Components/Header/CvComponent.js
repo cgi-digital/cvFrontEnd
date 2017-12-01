@@ -17,10 +17,6 @@ class CvComponent extends Component {
     this.state = { open: false }
   }
 
-  handleToggle = () => this.setState({ open: !this.state.open });
-
-  handleClose = () => this.setState({ open: false });
-
   render() {
     const { content } = this.props;
     return (
