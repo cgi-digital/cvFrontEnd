@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 import TextField from 'material-ui/TextField'
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton'
 import Checkbox from 'material-ui/Checkbox'
@@ -7,30 +8,32 @@ import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import { Tabs, Tab } from 'material-ui/Tabs'
 
-const renderField = ({ input, multiLine, rows, label, meta: { touched, error }, ...custom }) => (
-  <TextField
-    multiLine={multiLine}
-    floatingLabelText={label}
-    rows={rows}
-    errorText={touched && error}
-    {...input}
-    {...custom}
-  />
-)
+import SearchSkillComponent from './searchSkill'
+import SearchNameComponent from './searchName'
 
 class CvSearchComponent extends Component {
 
   constructor(props, context) {
     super(props, context);
+
+    this.submitSearchName = this.submitSearchName.bind(this); 
+    this.submitSearchSkill = this.submitSearchSkill.bind(this); 
   }
 
   componentDidMount() {
     this.props.getUsers();
   }
 
+  submitSearchName(){
+    this.props.submitNameSearch();
+  }
+  submitSearchSkill(searchString){
+    this.props.submitSkillSearch(searchString);
+  }
+
   render() {
     const {
-      users = [],
+      users = [{}],
     } = this.props;
 
     const { handleSubmit } = this.props;
@@ -54,14 +57,10 @@ class CvSearchComponent extends Component {
                 </ul>
                 <div className="tab-content">
                   <div id="searchName" className="tab-pane fade in active">
-                    <form id="searchForm" onSubmit={handleSubmit}>
-                      <Field name='firstname' component={renderField} type='text' value="" floatingLabelText="First Name" underlineShow fullWidth />
-                      <Field name='lastname' component={renderField} type='text' value="" floatingLabelText="Last Name" underlineShow fullWidth />                 
-                      <button type="submit" form="searchForm" value="submit">Submit</button>
-                    </form>
+                    <SearchNameComponent initialValues={{firstname:'', lastname:''}} handleSubmit={this.submitSearchName} />
                   </div>
                   <div id="searchSkill" className="tab-pane fade">
-                    SEARCHSKILL
+                    <SearchSkillComponent {...this.props} initialValues={{skills:[]}} handleSubmit={this.submitSearchSkill}/>
                   </div>
                 </div>
               </div>
@@ -90,6 +89,4 @@ class CvSearchComponent extends Component {
     );
   }
 }
-export default reduxForm({ form: 'search_form', enableReinitialize: true })(
-  CvSearchComponent
-)
+export default CvSearchComponent
