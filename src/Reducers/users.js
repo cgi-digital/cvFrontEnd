@@ -43,18 +43,54 @@ export default function reducer(state = initialState, action) {
 }
 
 // To be imported into container component, and assigned via mapDispatchToProps
+
+export function getAllUsers(params = {}) {
+  return function (dispatch) {
+    dispatch({ type: USERS_LOAD });
+    // GET ALL
+    axios
+      .get(API_URL + 'user/search/name')
+      .then(function (response) {
+        dispatch({ type: USERS_SUCCESS, data: response.data });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+}
+
 export function getUsers(params = {}) {
   return function (dispatch, getState) {
     const currentState = getState();
-    const formState = currentState.form.search_form.values;
+    const formState = currentState.form.search_name_form.values;
+
+    console.log(currentState);
+
     dispatch({ type: USERS_LOAD });
     if (formState) {
       // SEARCH BY FIRST AND LAST NAME
       axios
-        .get(API_URL + 'user/search/name?firstName=' + formState.firstname + '&lastName=' + formState.lastname)
+        .get(API_URL + 'user/search/name?firstname=' + formState.firstname + '&lastname=' + formState.lastname)
         .then(function (response) {
-          console.log("HERE");
-          console.log(response);
+          dispatch({ type: USERS_SUCCESS, data: response.data });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  }
+}
+
+export function getUsersBySkill(params = {}) {
+  return function (dispatch) {
+    const searchString = params;
+
+    dispatch({ type: USERS_LOAD });
+    if (searchString!='') {
+      // SEARCH BY SKILLS
+      axios
+        .get(API_URL + 'user/search/skills?skills='+searchString)
+        .then(function (response) {
           dispatch({ type: USERS_SUCCESS, data: response.data });
         })
         .catch(function (error) {

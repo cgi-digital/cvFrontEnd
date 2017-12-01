@@ -224,6 +224,17 @@ p{
   p{font-size:12px;}
 }
 
+/* badge */
+
+.badge a{
+  color:#fff;
+  margin-left:5px;
+  cursor:pointer;
+}
+.badge a:hover{
+  color:#f7f7f7;
+}
+
 /* links */
 
 a,a:hover,a:focus{
