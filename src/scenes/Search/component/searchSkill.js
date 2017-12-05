@@ -27,6 +27,7 @@ class SearchSkillComponent extends Component {
         this.skillInputChange = this.skillInputChange.bind(this);
         this.addSkill = this.addSkill.bind(this);
         this.removeSkill = this.removeSkill.bind(this);
+        this.clearSkillList = this.clearSkillList.bind(this);
         this.submit = this.submit.bind(this);
     }
 
@@ -44,12 +45,17 @@ class SearchSkillComponent extends Component {
     addSkill(e) {
         // prevent page from refreshing
         e.preventDefault();
-        // new var concatArr is the new Skill List Array
-        const concatArr = this.state.skillList.concat(this.state.skillInput);
-        // reset Skill Input so that it is now empty 
-        this.setState({ skillInput: { name: '' } })
-        // set state so that Skill List Array now has new Skill in it
-        this.setState({ skillList: concatArr });
+        if (this.state.skillInput.name) {
+            // new var concatArr is the new Skill List Array
+            const concatArr = this.state.skillList.concat(this.state.skillInput);
+            // reset Skill Input so that it is now empty 
+            this.setState({ skillInput: { name: '' } })
+            // set state so that Skill List Array now has new Skill in it
+            this.setState({ skillList: concatArr });
+        }
+        else {
+            this.submit();
+        }
     }
 
     removeSkill(i) {
@@ -58,8 +64,14 @@ class SearchSkillComponent extends Component {
         this.setState({ skillList: concatArr });
     }
 
+    clearSkillList(){
+        this.setState({ skillList: []})
+    }
+
     submit(e) {
-        e.preventDefault();
+        if (e) {
+            e.preventDefault();
+        }
         this.props.handleSubmit(this.state.skillList);
     }
 
@@ -70,18 +82,21 @@ class SearchSkillComponent extends Component {
                 <form id="searchSkillForm" onSubmit={this.submit}>
                     <div className="row">
                         <div className="col pull-left">
+                            <span onClick={this.clearSkillList} className="badge badge-danger"><i className="fa fa-trash"></i></span>
                             {this.state.skillList.map((skill, index) => (
                                 <span key={index} className="badge">{skill.name}({index})<a onClick={() => this.removeSkill(index)}><i className="fa fa-close"></i></a></span>
                             ))}
                         </div>
                         <div className="col pull-right">
                             <button className="btn btn-default" type="submit" form="searchSkillForm" value="Search"><i className="fa fa-search">&nbsp;</i>Search</button>
-                            <a className="btn btn-default" onClick={this.refreshSearch} value="Refresh"><i className="fa fa-refresh">&nbsp;</i>Refresh</a>
                         </div>
                     </div>
                 </form>
                 <form id="skillInput" autoComplete="off" onSubmit={this.addSkill}>
-                    <TextField className="mb20"
+                    <TextField
+                        className="mb20"
+                        ref="skillInput"
+                        value={this.state.skillInput.name}
                         type='text'
                         floatingLabelText="Search Skill"
                         floatingLabelFixed={true}
