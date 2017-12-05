@@ -27,8 +27,8 @@ class CvSearchComponent extends Component {
   submitSearchName(){
     this.props.submitNameSearch();
   }
-  submitSearchSkill(searchString){
-    this.props.submitSkillSearch(searchString);
+  submitSearchSkill(array){
+    this.props.submitSkillSearch(array);
   }
 
   render() {

@@ -60,13 +60,7 @@ class SearchSkillComponent extends Component {
 
     submit(e) {
         e.preventDefault();
-        // Convert SkillList to search string
-        var searchString = "";
-        this.state.skillList.forEach(function(item,index){
-            searchString = searchString + item.name.toLowerCase() + ",";
-        })
-        searchString = searchString.substring(0, searchString.length - 1)
-        this.props.handleSubmit(searchString);
+        this.props.handleSubmit(this.state.skillList);
     }
 
     render() {
