@@ -247,7 +247,8 @@ a,a:hover,a:focus{
 
 /* Nav */
 
-.nav-tabs{
+.nav-tabs,
+.nav-tabs-v{
   background:#E31937;
   border-radius: 2px;
   border:none;
@@ -280,30 +281,30 @@ a,a:hover,a:focus{
   background:#F2A200;
 }
 
-.nav-vertical .nav-tabs{
+.nav-vertical .nav-tabs-v{
 }
-.nav-vertical .nav-tabs{
+.nav-vertical .nav-tabs-v{
   padding:15px 0;
   border-radius: 2px;
 }
-.nav-vertical .nav-tabs li{
+.nav-vertical .nav-tabs-v li{
   display:block;
   width:100%;
 }
-.nav-vertical .nav-tabs>li>a,
-.nav-vertical .nav-tabs>li.active>a,
-.nav-vertical .nav-tabs>li>a:hover,
-.nav-vertical .nav-tabs>li>a:focus{
+.nav-vertical .nav-tabs-v>li>a,
+.nav-vertical .nav-tabs-v>li.active>a,
+.nav-vertical .nav-tabs-v>li>a:hover,
+.nav-vertical .nav-tabs-v>li>a:focus{
   color:#fff;
   width:100%;
   background:transparent;
   border:none;
   border-radius:0;
 }
-.nav-vertical .nav-tabs>li>a:hover{
+.nav-vertical .nav-tabs-v>li>a:hover{
   background:rgba(255,255,255,0.1)
 }
-.nav-vertical .nav-tabs>li.active>a {
+.nav-vertical .nav-tabs-v>li.active>a {
   background-color:#F2A200;
 }
 
@@ -314,21 +315,21 @@ a,a:hover,a:focus{
   .nav-tabs>li.active>a{
     background:#F2A200 !important;
   }
-  .nav-vertical .nav-tabs{
+  .nav-vertical .nav-tabs-v{
     padding:0;
     border-radius: 2px;
     border-bottom:0;
   }
-  .nav-vertical .nav-tabs li{
+  .nav-vertical .nav-tabs-v li{
     display:block;
     float:left;
     width:auto;
     background:transparent;
   }
-  .nav-vertical .nav-tabs>li>a,
-  .nav-vertical .nav-tabs>li.active>a,
-  .nav-vertical .nav-tabs>li>a:hover,
-  .nav-vertical .nav-tabs>li>a:focus{
+  .nav-vertical .nav-tabs-v>li>a,
+  .nav-vertical .nav-tabs-v>li.active>a,
+  .nav-vertical .nav-tabs-v>li>a:hover,
+  .nav-vertical .nav-tabs-v>li>a:focus{
     background:#E31937;
     width:auto;
 

@@ -437,14 +437,14 @@ class CvEditComponent extends Component {
                   <h2><small>{user.firstname} {user.lastname}</small></h2>
                 </div>
                 <div className="col pull-right">
-                  <RaisedButton type='submit' label={<i className="fa fa-floppy-o"></i>} primary={true} style={style}/>
+                  <RaisedButton type='submit' label={<i className="fa fa-floppy-o"></i>} primary={true} style={style} />
                 </div>
               </div>
             </div>
             <div className="row">
               <div className="nav-vertical">
                 <div className="col-sm-3 col-xs-12">
-                  <ul className="nav nav-tabs">
+                  <ul className="nav nav-tabs-v">
                     <li><a data-toggle="tab" href="#personalDetail">Personal Details</a></li>
                     <li className="active"><a data-toggle="tab" href="#skills">Skills</a></li>
                     <li><a data-toggle="tab" href="#industryExp">Industry Experience</a></li>
@@ -481,10 +481,24 @@ class CvEditComponent extends Component {
                       </div>
                     </div>
                     <div id="skills" className="tab-pane fade active in">
-                      <div className="paper pd15 mb20">
-                        <h2>Skills</h2>
+                      <ul className="nav nav-tabs subCategory mb20">
+                        <li className="active"><a data-toggle="tab" href="#allSkills">All Skills</a></li>
+                        <li><a data-toggle="tab" href="#techSkills">Tech Skills</a></li>
+                      </ul>
+                      <div className="tab-content">
+                        <div id="allSkills" className="tab-pane fade active in">
+                          <div className="paper pd15 mb20">
+                            <h2>All Skills</h2>
+                          </div>
+                          <FieldArray name="skills" component={renderSkills} />
+                        </div>
+                        <div id="techSkills" className="tab-pane fade">
+                          <div className="paper pd15 mb20">
+                            <h2>Tech Skills</h2>
+                          </div>
+                          <FieldArray name="techSkills" component={renderSkills} />
+                        </div>
                       </div>
-                      <FieldArray name="skills" component={renderSkills} />
                     </div>
                     <div id="industryExp" className="tab-pane fade">
                       <div className="paper pd15 mb20">
