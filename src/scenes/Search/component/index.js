@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
-<<<<<<< HEAD
-<<<<<<< HEAD
 import { connect } from 'react-redux';
-=======
->>>>>>> Search by First Name and Last name 1.0
-=======
-import { connect } from 'react-redux';
->>>>>>> Search by Name or Skill 1.0
 import TextField from 'material-ui/TextField'
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton'
 import Checkbox from 'material-ui/Checkbox'
@@ -15,43 +8,16 @@ import SelectField from 'material-ui/SelectField'
 import MenuItem from 'material-ui/MenuItem'
 import { Tabs, Tab } from 'material-ui/Tabs'
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 import SearchSkillComponent from './searchSkill'
 import SearchNameComponent from './searchName'
-=======
-const renderField = ({ input, multiLine, rows, label, meta: { touched, error }, ...custom }) => (
-  <TextField
-    multiLine={multiLine}
-    floatingLabelText={label}
-    rows={rows}
-    errorText={touched && error}
-    {...input}
-    {...custom}
-  />
-)
->>>>>>> Search by First Name and Last name 1.0
-=======
-import SearchSkillComponent from './searchSkill'
-import SearchNameComponent from './searchName'
->>>>>>> Search by Name or Skill 1.0
 
 class CvSearchComponent extends Component {
 
   constructor(props, context) {
     super(props, context);
-<<<<<<< HEAD
-<<<<<<< HEAD
 
     this.submitSearchName = this.submitSearchName.bind(this); 
     this.submitSearchSkill = this.submitSearchSkill.bind(this); 
-=======
->>>>>>> Search by First Name and Last name 1.0
-=======
-
-    this.submitSearchName = this.submitSearchName.bind(this); 
-    this.submitSearchSkill = this.submitSearchSkill.bind(this); 
->>>>>>> Search by Name or Skill 1.0
   }
 
   componentDidMount() {
@@ -61,13 +27,9 @@ class CvSearchComponent extends Component {
   submitSearchName(){
     this.props.submitNameSearch();
   }
-<<<<<<< HEAD
+  
   submitSearchSkill(array){
     this.props.submitSkillSearch(array);
-=======
-  submitSearchSkill(searchString){
-    this.props.submitSkillSearch(searchString);
->>>>>>> Search by Name or Skill 1.0
   }
 
   render() {

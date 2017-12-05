@@ -83,20 +83,26 @@ export function getUsers(params = {}) {
 
 export function getUsersBySkill(params = {}) {
   return function (dispatch) {
-    const searchString = params;
+    const searchArray = params;
+    console.log(searchArray);
+
+    // searchArray.forEach(function (item, index) {
+    //   searchString = searchString + item.name.toLowerCase() + ",";
+    // })
+    // searchString = searchString.substring(0, searchString.length - 1)
 
     dispatch({ type: USERS_LOAD });
-    if (searchString!='') {
+    // if (searchString != '') {
       // SEARCH BY SKILLS
       axios
-        .get(API_URL + 'user/search/skills?skills='+searchString)
+        .get(API_URL + 'user/search/skills?skills=Java&skills=CSS&skills=HTML')
         .then(function (response) {
           dispatch({ type: USERS_SUCCESS, data: response.data });
         })
         .catch(function (error) {
           console.log(error);
         });
-    }
+    // }
   }
 }
 
