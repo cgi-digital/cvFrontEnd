@@ -89,21 +89,17 @@ export function getUsersBySkill(params = {}) {
     searchArray.forEach(function(item,index){
       searchObj.skills.push(item.name);
     })
-    console.log(qs.stringify(searchObj,{indices:false}));
 
     dispatch({ type: USERS_LOAD });
-    // if (searchString != '') {
     // SEARCH BY SKILLS
     axios
       .get(API_URL + 'user/search/skills?' + qs.stringify(searchObj, {indices:false}) )  
       .then(function (response) {
-        console.log(response);
         dispatch({ type: USERS_SUCCESS, data: response.data });
       })
       .catch(function (error) {
         console.log(error);
       });
-    // }
   }
 }
 
