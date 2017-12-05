@@ -248,9 +248,13 @@ a,a:hover,a:focus{
 /* Nav */
 
 .nav-tabs{
-  margin-bottom:15px;
   background:#E31937;
   border-radius: 2px;
+  border:none;
+}
+.nav-tabs.subCategory{
+  background:#991F3D;
+  margin: -20px 0 20px;
 }
 .nav-tabs>li{
   margin-bottom:0;
@@ -306,16 +310,9 @@ a,a:hover,a:focus{
 @media (max-width:768px){
   .nav-tabs{
     margin-bottom:15px;
-    background:transparent;
-    border-radius: 2px;
-  }
-  .nav-tabs>li>a, .nav-tabs>li>a:hover, .nav-tabs>li>a:focus{
-    background-color:#E31937 !important;
-    margin:2px;
   }
   .nav-tabs>li.active>a{
     background:#F2A200 !important;
-    margin:2px;
   }
   .nav-vertical .nav-tabs{
     padding:0;

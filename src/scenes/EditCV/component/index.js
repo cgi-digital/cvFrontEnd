@@ -4,8 +4,6 @@
 
 import React, { Component } from 'react';
 import { Field, FieldArray, reduxForm } from 'redux-form';
-import Subheader from 'material-ui/Subheader';
-import Divider from 'material-ui/Divider';
 import TextField from 'material-ui/TextField';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import Checkbox from 'material-ui/Checkbox';

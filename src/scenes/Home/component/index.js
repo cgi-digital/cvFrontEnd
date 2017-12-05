@@ -76,35 +76,68 @@ class CvViewComponent extends Component {
               </div>
             </div>
             <div className="col-md-8 col-sm-6 col-xs-12">
-              <ul className="nav nav-tabs">
-                <li className="active"><a data-toggle="tab" href="#skills">Skills</a></li>
-                <li><a data-toggle="tab" href="#qualifications">Qualifications</a></li>
-                <li><a data-toggle="tab" href="#projects">Projects</a></li>
-              </ul>
+              <div className="mb20">
+                <ul className="nav nav-tabs">
+                  <li className="active"><a data-toggle="tab" href="#skills">Skills</a></li>
+                  <li><a data-toggle="tab" href="#qualifications">Qualifications</a></li>
+                  <li><a data-toggle="tab" href="#projects">Projects</a></li>
+                </ul>
+              </div>
               <div className="tab-content">
                 <div id="skills" className="tab-pane fade in active">
-                  <div className="paper pd15 mb20 tab-header">
-                    <h2 className="mb20">Skills</h2>
+                  <ul className="nav nav-tabs subCategory">
+                    <li className="active"><a data-toggle="tab" href="#businessSkills">Business Skills</a></li>
+                    <li><a data-toggle="tab" href="#techSkills">Technical Skills</a></li>
+                  </ul>
+                  <div className="tab-content">
+                    <div id="businessSkills" className="tab-pane fade in active">
+                      <div className="paper pd15 mb20 tab-header">
+                        <h2 className="mb20">Business Skills</h2>
+                      </div>
+                      <table className="table paper">
+                        <thead>
+                          <tr>
+                            <th>Skill</th>
+                            <th>Level</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {skills.map((skill, index) => {
+                            return (
+                              <tr>
+                                <td key={index}>{skill.skill}</td>
+                                <td >{skill.level}</td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
+                    <div id="techSkills" className="tab-pane fade">
+                      <div className="paper pd15 mb20 tab-header">
+                        <h2 className="mb20">Technical Skills</h2>
+                      </div>
+                      <table className="table paper">
+                        <thead>
+                          <tr>
+                            <th>Skill</th>
+                            <th>Level</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {skills.map((skill, index) => {
+                            return (
+                              <tr>
+                                <td key={index}>{skill.skill}</td>
+                                <td >{skill.level}</td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                   <div className="table-responsive">
-                    <table className="table paper">
-                      <thead>
-                        <tr>
-                          <th>Skill</th>
-                          <th>Level</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {skills.map((skill, index) => {
-                          return (
-                            <tr>
-                              <td key={index}>{skill.skill}</td>
-                              <td >{skill.level}</td>
-                            </tr>
-                          );
-                        })}
-                      </tbody>
-                    </table>
                   </div>
                 </div>
                 <div id="qualifications" className="tab-pane fade">
