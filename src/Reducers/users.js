@@ -84,7 +84,11 @@ export function getUsers(params = {}) {
 export function getUsersBySkill(params = {}) {
   return function (dispatch) {
     const searchArray = params;
-    const searchObj = {skills:["Java","HTML"]};
+    const searchObj = {skills:[]};
+
+    searchArray.forEach(function(item,index){
+      searchObj.skills.push(item.name);
+    })
     console.log(qs.stringify(searchObj,{indices:false}));
 
     dispatch({ type: USERS_LOAD });
