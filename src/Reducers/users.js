@@ -84,25 +84,21 @@ export function getUsers(params = {}) {
 export function getUsersBySkill(params = {}) {
   return function (dispatch) {
     const searchArray = params;
-    const skillsObj = {skills:['Java','HTML']};
-    console.log(qs.stringify(skillsObj));
-
-    // searchArray.forEach(function (item, index) {
-    //   searchString = searchString + item.name.toLowerCase() + ",";
-    // })
-    // searchString = searchString.substring(0, searchString.length - 1)
+    const searchObj = {skills:["Java","HTML"]};
+    console.log(qs.stringify(searchObj,{indices:false}));
 
     dispatch({ type: USERS_LOAD });
     // if (searchString != '') {
-      // SEARCH BY SKILLS
-      axios
-        .get(API_URL + 'user/search/skills', qs.stringify(skillsObj))
-        .then(function (response) {
-          dispatch({ type: USERS_SUCCESS, data: response.data });
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+    // SEARCH BY SKILLS
+    axios
+      .get(API_URL + 'user/search/skills?' + qs.stringify(searchObj, {indices:false}) )  
+      .then(function (response) {
+        console.log(response);
+        dispatch({ type: USERS_SUCCESS, data: response.data });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     // }
   }
 }
