@@ -84,7 +84,8 @@ export function getUsers(params = {}) {
 export function getUsersBySkill(params = {}) {
   return function (dispatch) {
     const searchArray = params;
-    console.log(searchArray);
+    const skillsObj = {skills:['Java','HTML']};
+    console.log(qs.stringify(skillsObj));
 
     // searchArray.forEach(function (item, index) {
     //   searchString = searchString + item.name.toLowerCase() + ",";
@@ -95,7 +96,7 @@ export function getUsersBySkill(params = {}) {
     // if (searchString != '') {
       // SEARCH BY SKILLS
       axios
-        .get(API_URL + 'user/search/skills?skills=Java&skills=CSS&skills=HTML')
+        .get(API_URL + 'user/search/skills', qs.stringify(skillsObj))
         .then(function (response) {
           dispatch({ type: USERS_SUCCESS, data: response.data });
         })
