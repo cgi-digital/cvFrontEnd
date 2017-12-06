@@ -75,6 +75,18 @@ ul {
   line-height:34px;
   text-decoration:none;
 }
+#appBar ul#nav > li.dropdown .dropdown-user-detail{
+  padding: 5px 20px;
+}
+#appBar ul#nav > li.dropdown .dropdown-user-detail .name{
+  font-size:18px;
+  font-weight: 800;
+  text-transform: capitalize;
+  color:#333;
+}
+#appBar ul#nav > li.dropdown > .dropdown-menu > li > a{
+  padding: 5px 20px;
+}
 /* nav */
 #appBar nav{
   float:right;

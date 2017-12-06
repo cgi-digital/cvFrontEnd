@@ -32,18 +32,13 @@ class CvComponent extends Component {
             <div className="appBarTitle">CV Library</div>
             <ul id="nav">
               <li>
-                <Link to="/search" className="btn btn-default"><i className="fa fa-search"></i></Link>
+                <Link to="/search" className="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Search"><i className="fa fa-search"></i></Link>
               </li>
-              <li className="dropdown">
-                <a className="btn btn-default dropdown-toggle" data-toggle="dropdown" ><i className="fa fa-user"></i></a>
-                <ul className="dropdown-menu dropdown-menu-right">
-                  <li className="dropdown-user-detail">
-                    {this.props.user.firstname}&nbsp;{this.props.user.lastname}
-                  </li>
-                  <li><Link to="/view"><i className="fa fa-user"></i>&nbsp;Profile</Link></li>
-                  <li role="separator" className="divider"></li>
-                  <li><Link to="/logout"><i className="fa fa-sign-out"></i>&nbsp;Logout</Link></li>
-                </ul>
+              <li>
+                <Link to="view" className="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Profile" ><i className="fa fa-user"></i></Link>
+              </li>
+              <li>
+                <Link to="logout" className="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Logout" ><i className="fa fa-sign-out"></i></Link>
               </li>
             </ul>
           </div>
