@@ -23,21 +23,32 @@ class CvComponent extends Component {
 
   render() {
     const { content } = this.props;
+    const { user } = this.props;
     return (
       <div>
         <div id="appBar">
           <div className="container-fluid">
             <img className="appBarLogo" src={Logo} />
             <div className="appBarTitle">CV Library</div>
-            <nav>
-              <Link to="/view">View</Link>
-              <Link to="/edit">Edit</Link>
-              <Link to="/search">Search</Link>
-              <Link to="/logout"><i className="fa fa-sign-out"></i></Link>
-            </nav>
+            <ul id="nav">
+              <li>
+                <Link to="/search" className="btn btn-default"><i className="fa fa-search"></i></Link>
+              </li>
+              <li className="dropdown">
+                <a className="btn btn-default dropdown-toggle" data-toggle="dropdown" ><i className="fa fa-user"></i></a>
+                <ul className="dropdown-menu dropdown-menu-right">
+                  <li className="dropdown-user-detail">
+                    {this.props.user.firstname}&nbsp;{this.props.user.lastname}
+                  </li>
+                  <li><Link to="/view"><i className="fa fa-user"></i>&nbsp;Profile</Link></li>
+                  <li role="separator" className="divider"></li>
+                  <li><Link to="/logout"><i className="fa fa-sign-out"></i>&nbsp;Logout</Link></li>
+                </ul>
+              </li>
+            </ul>
           </div>
         </div>
-        <Tabs className="tabs hidden">
+        <Tabs className="tabs hidden visible-xs">
           <Tab containerElement={<Link to="/view" />} label="My CV" />
           <Tab containerElement={<Link to="/edit" />} label="Edit" />
           <Tab containerElement={<Link to="/search" />} label="Search" />
@@ -45,7 +56,7 @@ class CvComponent extends Component {
         {content}
         <footer>
           <div className="container-fluid">
-            <div className  ="copyright">© CGI Group Inc.</div>
+            <div className="copyright">© CGI Group Inc.</div>
           </div>
         </footer>
       </div>
