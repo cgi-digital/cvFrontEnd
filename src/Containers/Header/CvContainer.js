@@ -4,11 +4,14 @@ import { getUser } from '../../Reducers/user';
 import CvComponent from '../../Components/Header/CvComponent';
 
 function mapStateToProps(state) {
-  return {};
+  return { user: state.user };
 }
-
 function mapDispatchToProps(dispatch) {
-  return {};
+  return {
+    getUser: a => {
+      dispatch(getUser(a));
+    }
+  };
 }
 
 class CvContainer extends Component {

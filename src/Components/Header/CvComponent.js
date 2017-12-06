@@ -23,21 +23,27 @@ class CvComponent extends Component {
 
   render() {
     const { content } = this.props;
+    const { user } = this.props;
     return (
       <div>
         <div id="appBar">
           <div className="container-fluid">
             <img className="appBarLogo" src={Logo} />
             <div className="appBarTitle">CV Library</div>
-            <nav>
-              <Link to="/view">View</Link>
-              <Link to="/edit">Edit</Link>
-              <Link to="/search">Search</Link>
-              <Link to="/logout"><i className="fa fa-sign-out"></i></Link>
-            </nav>
+            <ul id="nav">
+              <li>
+                <Link to="/search" className="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Search"><i className="fa fa-search"></i></Link>
+              </li>
+              <li>
+                <Link to="view" className="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Profile" ><i className="fa fa-user"></i></Link>
+              </li>
+              <li>
+                <Link to="logout" className="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Logout" ><i className="fa fa-sign-out"></i></Link>
+              </li>
+            </ul>
           </div>
         </div>
-        <Tabs className="tabs hidden">
+        <Tabs className="tabs hidden visible-xs">
           <Tab containerElement={<Link to="/view" />} label="My CV" />
           <Tab containerElement={<Link to="/edit" />} label="Edit" />
           <Tab containerElement={<Link to="/search" />} label="Search" />
@@ -45,7 +51,7 @@ class CvComponent extends Component {
         {content}
         <footer>
           <div className="container-fluid">
-            <div className  ="copyright">© CGI Group Inc.</div>
+            <div className="copyright">© CGI Group Inc.</div>
           </div>
         </footer>
       </div>
