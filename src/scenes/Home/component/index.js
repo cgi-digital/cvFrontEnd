@@ -110,7 +110,7 @@ class CvViewComponent extends Component {
                         {skills.map((skill, index) => {
                           return (
                             <tr>
-                              <td key={index}>{skill.skill}</td>
+                              <td key={index}>{skill.skillName}</td>
                               <td >{skill.level}</td>
                             </tr>
                           );

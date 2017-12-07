@@ -78,7 +78,7 @@ const renderSkills = ({ fields }) => (
           <tr key={index}>
             <td>
               <Field
-                name={`${skill}.skill`}
+                name={`${skill}.skillName`}
                 type="text"
                 component={renderField}
                 label="Skill">
