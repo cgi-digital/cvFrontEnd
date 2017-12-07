@@ -27,9 +27,9 @@ function mapDispatchToProps(dispatch) {
 
 class CvEditContainer extends Component {
   render() {
-    return <CvEditComponent {...this.props} initialValues={
-      this.props.user
-    } handleSubmit={this.props.postUserData} />;
+    return <CvEditComponent {...this.props} 
+      initialValues={this.props.user} 
+      handleSubmit={this.props.postUserData} />;
   }
 }
 
