@@ -466,7 +466,8 @@ a,a:hover,a:focus{
   background:transparent;
 }
 
-#ActionBar #editProfileButton{
+#ActionBar #editProfileButton,
+#ActionBar #saveProfileButton{
   display: inline-block;
   margin:8px 0;
 }
@@ -599,6 +600,15 @@ a,a:hover,a:focus{
   .viewCvPage .tab-content .tab-header{
     display: none;
   }
+}
+
+.viewCvPage input.profileField{
+  display: inline-block;
+  width:100%;
+  font-size:14px;
+  padding:7px 12px;
+  border:none;
+  border-bottom:1px solid #ccc;
 }
 
 /* CV Search Page */
