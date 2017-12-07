@@ -21,7 +21,7 @@ import {
 
 class CvViewComponent extends Component {
   componentDidMount() {
-    this.props.getUser()
+    this.props.getUser();
   }
 
   render() {
@@ -34,17 +34,34 @@ class CvViewComponent extends Component {
 
     return (
       <div className={'viewCvPage'}>
+        <div id="ActionBar">
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-md-4 col-sm-5">
+                <h1>{user.firstname}'s Profile</h1>
+              </div>
+              <div className="col-md-8 col-sm-7">
+                <ul className="nav nav-tabs pull-left">
+                  <li className="active"><a data-toggle="tab" href="#skills">Skills</a></li>
+                  <li><a data-toggle="tab" href="#qualifications">Qualifications</a></li>
+                  <li><a data-toggle="tab" href="#projects">Projects</a></li>
+                </ul>
+                <a id="editProfileButton" className="btn btn-default pull-right">Edit Profile</a>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="container-fluid">
           <div className="row">
-            <div className="col-md-4 col-sm-6">
+            <div className="col-md-4 col-sm-5">
               <div className="cvHeader paper pd15 mb10">
                 <i className="fa fa-user headerIcon"></i>
                 <div className="row mb10">
                   <div className="col-xs-12">
-                    <h1 className="mb10">
+                    <h4 className="mb10">
                       {user.lastname}, {user.firstname}
                       <a className="tableToggle" data-toggle="collapse" data-target="#InfoTable" aria-expanded="trues"><i className="fa fa-angle-down"></i></a>
-                    </h1>
+                    </h4>
                     <div id="InfoTable" className="collapse in">
                       <table className="table table-condensed">
                         <tbody>
@@ -75,12 +92,7 @@ class CvViewComponent extends Component {
                 </div>
               </div>
             </div>
-            <div className="col-md-8 col-sm-6 col-xs-12">
-              <ul className="nav nav-tabs">
-                <li className="active"><a data-toggle="tab" href="#skills">Skills</a></li>
-                <li><a data-toggle="tab" href="#qualifications">Qualifications</a></li>
-                <li><a data-toggle="tab" href="#projects">Projects</a></li>
-              </ul>
+            <div className="col-md-8 col-sm-7 col-xs-12">
               <div className="tab-content">
                 <div id="skills" className="tab-pane fade in active">
                   <div className="paper pd15 mb20 tab-header">
