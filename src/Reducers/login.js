@@ -65,12 +65,12 @@ export function Login() {
       })
       .then(function(response) {
         dispatch({ type: LOGIN_UPDATE, data: currentState.form.login_form.values });
-        dispatch(push('/edit'));
+        dispatch(push('/view'));
       })
       .catch(function(error) {
         if (error.message === 'Network Error') {
           dispatch({ type: LOGIN_UPDATE, data: currentState.form.login_form.values });
-          dispatch(push('/edit')); 
+          dispatch(push('/view'));
         } else if(error.response.status === 500){
           dispatch({type: LOGIN_FAILURE});
           throw new SubmissionError({ ResponseMessage: "Server can not be reached", _error: LOGIN_FAILURE});
