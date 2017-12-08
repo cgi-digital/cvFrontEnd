@@ -46,7 +46,7 @@ class CvViewComponent extends Component {
                   <li><a data-toggle="tab" href="#qualifications">Qualifications</a></li>
                   <li><a data-toggle="tab" href="#projects">Projects</a></li>
                 </ul>
-                <a id="editProfileButton" className="btn btn-default pull-right">Edit Profile</a>
+                <Link to="/edit" id="editProfileButton" className="btn btn-default pull-right">Edit Profile</Link>
               </div>
             </div>
           </div>

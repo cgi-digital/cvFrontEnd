@@ -311,6 +311,7 @@ a,a:hover,a:focus{
   border-bottom:2px solid #E31937;
 }
 .nav-vertical .nav-tabs{
+  background-color:#E31937;
   padding:15px 0;
   border-radius: 2px;
 }
