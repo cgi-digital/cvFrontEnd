@@ -190,7 +190,6 @@ const renderProjects = ({ fields }) => (
 )
 
 // View Tables
-
 const SkillsTable = (props) => {
   const fields = props.fields;
   return (
@@ -205,9 +204,62 @@ const SkillsTable = (props) => {
         <tbody>
           {fields.map((skill, index) => {
             return (
+              <tr key={index}>
+                <td>{skill.skillName}</td>
+                <td>{skill.level}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+const QualificationsTable = (props) => {
+  const fields = props.fields;
+  return (
+    <div className="table-responsive">
+      <table className="table paper">
+        <thead>
+          <tr>
+            <th>Qualification</th>
+          </tr>
+        </thead>
+        <tbody>
+          {fields.map((q, index) => {
+            return (
               <tr>
-                <td key={index}>{skill.skillName}</td>
-                <td >{skill.level}</td>
+                <td key={index}>{q.qualification}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+const ProjectsTable = (props) => {
+  const fields = props.fields;
+  return (
+    <div className="table-responsive">
+      <table className="table paper">
+        <thead>
+          <tr>
+            <th>Employer</th>
+            <th>Project</th>
+            <th>Role</th>
+            <th>Project Summary</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {fields.map((p, index) => {
+            return (
+              <tr key={index}>
+                <td>{p.employer}</td>
+                <td>{p.projectName}</td>
+                <td>{p.role}</td>
+                <td>{p.summary}</td>
               </tr>
             );
           })}
@@ -221,26 +273,22 @@ const SkillsTable = (props) => {
 const ProfileTab = (props) => {
   const user = props.user;
 
-  const isEdit = props.isEdit;
-  const id = props.fieldArrayName;
+  const id = props.tabID;
   const headerText = props.headerText;
+
+  const isEdit = props.isEdit;
   const isActive = props.isActive;
-  const tabClasses = 'tab-pane fade';
-  const arrayComponent = props.fieldArrayComponent;
+
   const viewTable = props.viewTable;
+  const editTable = props.editTable;
 
-  const ViewTab = (props) => {
-    
-    const fields = props.fields;
-    if (props.tabid) {
-      return <SkillsTable fields={fields} />
-    }
+  const tabClasses = 'tab-pane fade';
 
+  const ViewTab = () => {
+    return viewTable;
   }
-  const EditTab = (props) => {
-    return (
-      <FieldArray name={id} component={arrayComponent} />
-    )
+  const EditTab = () => {
+    return editTable;
   }
 
   return (
@@ -251,7 +299,7 @@ const ProfileTab = (props) => {
       {isEdit ? (
         <EditTab />
       ) : (
-          <ViewTab tabid={id} fields={user.skills} />
+          <ViewTab />
         )}
     </div>
   )
@@ -259,75 +307,84 @@ const ProfileTab = (props) => {
 
 const Overview = (props) => {
   const user = props.user;
-  return (
-    <div className="cvHeader paper pd15 mb10">
-      <i className="fa fa-user headerIcon"></i>
-      <div className="row mb10">
-        <div className="col-xs-12">
-          <h4 className="mb10">
-            {user.lastname}, {user.firstname}
-            <a className="tableToggle" data-toggle="collapse" data-target="#InfoTable" aria-expanded="trues"><i className="fa fa-angle-down"></i></a>
-          </h4>
-          <div id="InfoTable" className="collapse in">
-            <table className="table table-condensed">
-              <tbody>
-                <tr>
-                  <th>Title</th>
-                  <td>{user.title}</td>
-                </tr>
-                <tr>
-                  <th>Username</th  >
-                  <td>{user.username}</td>
-                </tr>
-                <tr>
-                  <th>Email</th>
-                  <td>guest@cgi.com</td>
-                </tr>
-                <tr>
-                  <th>Work Phone</th>
-                  <td>+44777777 7777</td>
-                </tr>
-                <tr>
-                  <th>Summary</th>
-                  <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
-const OverviewEdit = (props) => {
-  const user = props.user;
-  return (
-    <div className="cvHeader paper pd15 mb10">
-      <i className="fa fa-user headerIcon"></i>
-      <div className="row mb10">
-        <div className="col-xs-12">
-          <div className="row mb20">
-            <div className="col-sm-6">
-              <Field name='firstname' component={renderField} type='text' floatingLabelText="First Name" underlineShow fullWidth />
-            </div>
-            <div className="col-sm-6">
-              <Field name='lastname' component={renderField} type='text' floatingLabelText="Last Name" underlineShow fullWidth />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-xs-12">
-              <Field name='title' component={renderField} type='text' floatingLabelText="Title" underlineShow />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-xs-12">
-              <Field name='summary' component={renderField} type='text' multiLine floatingLabelText="Profile Summary" underlineShow />
+  const isEdit = props.isEdit;
+
+  const View = () => {
+    return (
+      <div className="cvHeader paper pd15 mb10">
+        <i className="fa fa-user headerIcon"></i>
+        <div className="row mb10">
+          <div className="col-xs-12">
+            <h4 className="mb10">
+              {user.lastname}, {user.firstname}
+              <a className="tableToggle" data-toggle="collapse" data-target="#InfoTable" aria-expanded="trues"><i className="fa fa-angle-down"></i></a>
+            </h4>
+            <div id="InfoTable" className="collapse in">
+              <table className="table table-condensed">
+                <tbody>
+                  <tr>
+                    <th>Title</th>
+                    <td>{user.title}</td>
+                  </tr>
+                  <tr>
+                    <th>Username</th  >
+                    <td>{user.username}</td>
+                  </tr>
+                  <tr>
+                    <th>Email</th>
+                    <td>guest@cgi.com</td>
+                  </tr>
+                  <tr>
+                    <th>Work Phone</th>
+                    <td>+44777777 7777</td>
+                  </tr>
+                  <tr>
+                    <th>Summary</th>
+                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
+  const Edit = (user) => {
+    return (
+      <div className="cvHeader paper pd15 mb10">
+        <i className="fa fa-user headerIcon"></i>
+        <div className="row mb10">
+          <div className="col-xs-12">
+            <div className="row mb20">
+              <div className="col-sm-6">
+                <Field name='firstname' component={renderField} type='text' floatingLabelText="First Name" underlineShow fullWidth />
+              </div>
+              <div className="col-sm-6">
+                <Field name='lastname' component={renderField} type='text' floatingLabelText="Last Name" underlineShow fullWidth />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-xs-12">
+                <Field name='title' component={renderField} type='text' floatingLabelText="Title" underlineShow />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-xs-12">
+                <Field name='summary' component={renderField} type='text' multiLine floatingLabelText="Profile Summary" underlineShow />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Return Edit view if is Edit State
+  if (isEdit) {
+    return <Edit />
+  }
+  return <View />
 }
 
 class CvViewComponent extends Component {
@@ -388,34 +445,32 @@ class CvViewComponent extends Component {
           <div className="container-fluid">
             <div className="row">
               <div className="col-md-4 col-sm-5">
-                {isEdit ? (
-                  <OverviewEdit user={user} />
-                ) : (
-                    <Overview user={user} />
-                  )}
+                <Overview user={user} isEdit={isEdit} />
               </div>
               <div className="col-md-8 col-sm-7 col-xs-12">
                 <div className="tab-content">
                   <ProfileTab
+                    tabID="skills"
                     headerText="Skills"
-                    fieldArrayName="skills"
-                    fieldArrayComponent={renderSkills}
-                    viewTable={SkillsTable}
+                    viewTable={<SkillsTable fields={skills} />}
+                    editTable={<FieldArray name="skills" component={renderSkills} />}
                     user={user}
                     isEdit={isEdit}
                     isActive={true} />
 
                   <ProfileTab
-                    fieldArrayName="qualifications"
-                    fieldArrayComponent={renderQualifications}
+                    tabID="qualifications"
                     headerText="Qualifications"
+                    viewTable={<QualificationsTable fields={qualifications} />}
+                    editTable={<FieldArray name="qualifications" component={renderQualifications} />}
                     user={user}
                     isEdit={isEdit} />
 
                   <ProfileTab
-                    fieldArrayName="projects"
-                    fieldArrayComponent={renderProjects}
+                    tabID="projects"
                     headerText="Projects"
+                    viewTable={<ProjectsTable fields={projects} />}
+                    editTable={<FieldArray name="projects" component={renderProjects} />}
                     user={user}
                     isEdit={isEdit} />
                 </div>
