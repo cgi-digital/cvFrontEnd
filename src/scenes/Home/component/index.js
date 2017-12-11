@@ -11,8 +11,6 @@ import { Link } from 'react-router';
 import FontIcon from 'material-ui/FontIcon';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import EditView from './editView';
-
 
 import {
   Table,
@@ -36,6 +34,8 @@ const renderField = ({ input, multiLine, rows, label, meta: { touched, error }, 
   />
 )
 
+// FIELD ARRAY RENDERS
+// Skills Edit Table
 const renderSkills = ({ fields }) => (
   <div>
     <table className="table paper table-bordered table-form">
@@ -51,7 +51,7 @@ const renderSkills = ({ fields }) => (
           <tr key={index}>
             <td>
               <Field
-                name={`${skill}.skill`}
+                name={`${skill}.skillName`}
                 type="text"
                 component={renderField}
                 label="Skill">
@@ -85,7 +85,177 @@ const renderSkills = ({ fields }) => (
     </div>
   </div>
 )
+// Qualifications Edit Table
+const renderQualifications = ({ fields }) => (
+  <div>
+    <table className="table paper table-bordered table-form">
+      <thead>
+        <tr>
+          <th>Qualification</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {fields.map((qualification, index) =>
+          <tr key={index}>
+            <td>
+              <Field
+                name={`${qualification}.qualification`}
+                type="text"
+                component={renderField}
+                label="Qualification" />
+            </td>
+            <td>
+              <div className="actions">
+                {<a onClick={() => { fields.remove(index); }} ><i className="fa fa-close"></i></a>}
+              </div>
+            </td>
+          </tr>
+        )}
+      </tbody>
+    </table>
+    <div className="row mt20">
+      <div className="col-xs-12 text-center">
+        <RaisedButton type='button' label="Add qualification" primary={true} onClick={() => {
+          fields.push({})
+        }} />
+      </div>
+    </div>
+  </div>
+)
+// Projects Edit Table
+const renderProjects = ({ fields }) => (
+  <div>
+    <div className="table-responsive">
+      <table className="table paper table-bordered table-form">
+        <thead>
+          <tr>
+            <th>Employer</th>
+            <th>Project</th>
+            <th>Role</th>
+            <th>Project Summary</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {fields.map((project, index) =>
+            <tr key={index}>
+              <td>
+                <Field
+                  name={`${project}.employer`}
+                  type="text"
+                  component={renderField}
+                  label="Employer" />
+              </td>
+              <td>
+                <Field
+                  name={`${project}.projectName`}
+                  type="text"
+                  component={renderField}
+                  label="Project name" />
+              </td>
+              <td>
+                <Field
+                  name={`${project}.role`}
+                  type="text"
+                  component={renderField}
+                  label="Role" />
+              </td>
+              <td>
+                <Field
+                  name={`${project}.summary`}
+                  type="text"
+                  multiLine
+                  component={renderField}
+                  label="Project Summary" />
+              </td>
+              <td>
+                <div className="actions">
+                  {<a onClick={() => { fields.remove(index); }} ><i className="fa fa-close"></i></a>}
+                </div>
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </div>
+    <div className="row mt20">
+      <div className="col-xs-12 text-center">
+        <RaisedButton type='button' label="Add project" primary={true} onClick={() => {
+          fields.push({})
+        }} />
+      </div>
+    </div>
+  </div>
+)
 
+// View Tables
+
+const SkillsTable = (props) => {
+  const fields = props.fields;
+  return (
+    <div className="table-responsive">
+      <table className="table paper">
+        <thead>
+          <tr>
+            <th>Skill</th>
+            <th>Level</th>
+          </tr>
+        </thead>
+        <tbody>
+          {fields.map((skill, index) => {
+            return (
+              <tr>
+                <td key={index}>{skill.skillName}</td>
+                <td >{skill.level}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  )
+}
+
+// Project Tab Content
+const ProfileTab = (props) => {
+  const user = props.user;
+
+  const isEdit = props.isEdit;
+  const id = props.fieldArrayName;
+  const headerText = props.headerText;
+  const isActive = props.isActive;
+  const tabClasses = 'tab-pane fade';
+  const arrayComponent = props.fieldArrayComponent;
+  const viewTable = props.viewTable;
+
+  const ViewTab = (props) => {
+    
+    const fields = props.fields;
+    if (props.tabid) {
+      return <SkillsTable fields={fields} />
+    }
+
+  }
+  const EditTab = (props) => {
+    return (
+      <FieldArray name={id} component={arrayComponent} />
+    )
+  }
+
+  return (
+    <div id={id} className={isActive ? (tabClasses + ' active in') : (tabClasses)}>
+      <div className="paper pd15 mb20 tab-header">
+        <h2 className="mb20">{headerText}</h2>
+      </div>
+      {isEdit ? (
+        <EditTab />
+      ) : (
+          <ViewTab tabid={id} fields={user.skills} />
+        )}
+    </div>
+  )
+}
 
 const Overview = (props) => {
   const user = props.user;
@@ -160,166 +330,6 @@ const OverviewEdit = (props) => {
   )
 }
 
-const TabContent = (props) => {
-  const user = props.user;
-  const {
-    skills = [],
-    qualifications = [],
-    projects = []
-  } = user;
-  return (
-    <div className="tab-content">
-      <div id="skills" className="tab-pane fade in active">
-        <div className="paper pd15 mb20 tab-header">
-          <h2 className="mb20">Skills</h2>
-        </div>
-        <div className="table-responsive">
-          <table className="table paper">
-            <thead>
-              <tr>
-                <th>Skill</th>
-                <th>Level</th>
-              </tr>
-            </thead>
-            <tbody>
-              {skills.map((skill, index) => {
-                return (
-                  <tr>
-                    <td key={index}>{skill.skill}</td>
-                    <td >{skill.level}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div id="qualifications" className="tab-pane fade">
-        <div className="paper pd15 mb20 tab-header">
-          <h2 className="mb20">Qualifications</h2>
-        </div>
-        <table className="table paper">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Qualification Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {qualifications.map((q, index) => {
-              return (
-                <tr>
-                  <td>{q.id}</td>
-                  <td key={index}>{q.qualification}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-      <div id="projects" className="tab-pane fade">
-        <div className="paper pd15 mb20 tab-header">
-          <h2 className="mb20">Projects</h2>
-        </div>
-        <table className="table paper">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Employer</th>
-              <th>Project Name</th>
-              <th>Role</th>
-              <th>Summary</th>
-            </tr>
-          </thead>
-          <tbody>
-            {projects.map((p, index) => {
-              return (
-                <tr>
-                  <td>{p.id}</td>
-                  <td key={index}>{p.employer}</td>
-                  <td>{p.projectName}</td>
-                  <td>{p.role}</td>
-                  <td>{p.summary}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  )
-}
-const TabContentEdit = (props) => {
-  const user = props.user;
-  const {
-    skills = [],
-    qualifications = [],
-    projects = []
-  } = user;
-  return (
-    <div className="tab-content">
-      <div id="skills" className="tab-pane fade in active">
-        <div className="paper pd15 mb20 tab-header">
-          <h2 className="mb20">Skills</h2>
-        </div>
-        <FieldArray name="skills" component={renderSkills} />
-      </div>
-      <div id="qualifications" className="tab-pane fade">
-        <div className="paper pd15 mb20 tab-header">
-          <h2 className="mb20">Qualifications</h2>
-        </div>
-        <table className="table paper">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Qualification Name</th>
-            </tr>
-          </thead>
-          <tbody>
-            {qualifications.map((q, index) => {
-              return (
-                <tr>
-                  <td>{q.id}</td>
-                  <td key={index}>{q.qualification}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-      <div id="projects" className="tab-pane fade">
-        <div className="paper pd15 mb20 tab-header">
-          <h2 className="mb20">Projects</h2>
-        </div>
-        <table className="table paper">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Employer</th>
-              <th>Project Name</th>
-              <th>Role</th>
-              <th>Summary</th>
-            </tr>
-          </thead>
-          <tbody>
-            {projects.map((p, index) => {
-              return (
-                <tr>
-                  <td>{p.id}</td>
-                  <td key={index}>{p.employer}</td>
-                  <td>{p.projectName}</td>
-                  <td>{p.role}</td>
-                  <td>{p.summary}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    </div>
-  )
-}
-
 class CvViewComponent extends Component {
   constructor(props, context) {
     super(props, context);
@@ -331,30 +341,24 @@ class CvViewComponent extends Component {
     this.toggleEditState = this.toggleEditState.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-
   componentDidMount() {
     this.props.getUser()
   }
-
   toggleEditState() {
     const newState = !this.state.isEdit;
     this.setState({ isEdit: newState });
   }
-
   onSubmit(e) {
     e.preventDefault();
     this.props.handleSubmit();
   }
-
   render() {
     const isEdit = this.state.isEdit;
-    const { user } = this.props;
     const { handleSubmit } = this.props;
-    const {
-      skills = [],
-      qualifications = [],
-      projects = []
-    } = user;
+    const { user } = this.props;
+    const { skills = [] } = user;
+    const { qualifications = [] } = user;
+    const { projects = [] } = user;
 
     return (
       <div className={'viewCvPage'}>
@@ -391,11 +395,30 @@ class CvViewComponent extends Component {
                   )}
               </div>
               <div className="col-md-8 col-sm-7 col-xs-12">
-                {isEdit ? (
-                  <TabContentEdit user={user} />
-                ) : (
-                    <TabContent user={user} />
-                  )}
+                <div className="tab-content">
+                  <ProfileTab
+                    headerText="Skills"
+                    fieldArrayName="skills"
+                    fieldArrayComponent={renderSkills}
+                    viewTable={SkillsTable}
+                    user={user}
+                    isEdit={isEdit}
+                    isActive={true} />
+
+                  <ProfileTab
+                    fieldArrayName="qualifications"
+                    fieldArrayComponent={renderQualifications}
+                    headerText="Qualifications"
+                    user={user}
+                    isEdit={isEdit} />
+
+                  <ProfileTab
+                    fieldArrayName="projects"
+                    fieldArrayComponent={renderProjects}
+                    headerText="Projects"
+                    user={user}
+                    isEdit={isEdit} />
+                </div>
               </div>
             </div>
           </div>
