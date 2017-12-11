@@ -39,7 +39,7 @@ class CvSearchComponent extends Component {
             <tbody>
               {users.map((user) => (
                 <tr>
-                  <td>{user.username}</td>
+                  <td>{user.email}</td>
                   <td>{user.firstname}</td>
                 </tr>
               ))}
@@ -51,7 +51,7 @@ class CvSearchComponent extends Component {
             {users.map((user) => (
               <div className="col-md-3 col-sm-6 col-xs-12">
                 <div className="paper pd15">
-                  <h3>{user.username}</h3>
+                  <h3>{user.email}</h3>
                 </div>
               </div>
             ))}
