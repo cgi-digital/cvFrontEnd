@@ -28,7 +28,15 @@ class CvSearchComponent extends Component {
     this.props.submitNameSearch();
   }
   submitSearchSkill(array) {
-    this.props.submitSkillSearch(array);
+    if(array.length<1){
+      // If array is empty
+      // Get all users
+      this.props.getAllUsers();
+    } else{
+      // If array has items
+      // Get users based on search parameters (Skills)
+      this.props.submitSkillSearch(array);
+    }
   }
 
   render() {

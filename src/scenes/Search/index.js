@@ -31,7 +31,8 @@ class CvSearchContainer extends Component {
   render() {
     return <CvSearchComponent {...this.props}
       submitNameSearch={this.props.onSearch}
-      submitSkillSearch={this.props.onSearchBySkill} />;
+      submitSkillSearch={this.props.onSearchBySkill}
+      getAllUsers={this.props.getUsers} />;
   }
 }
 
