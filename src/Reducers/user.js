@@ -55,16 +55,16 @@ export default function reducer(state = initialState, action) {
 
 // To be imported into container component, and assigned via mapDispatchToProps
 export function getUser(params = {}) {
-  return function(dispatch) {
+  return function (dispatch) {
     dispatch({ type: USER_LOAD });
-      
+
     // Axios - first argument is endpoint, second is params object
     axios
       .get(API_URL + 'user')
-      .then(function(response) {
+      .then(function (response) {
         dispatch({ type: USER_SUCCESS, data: response.data });
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
   };
@@ -80,9 +80,11 @@ const addUserEntity = (entityName, payload) => {
 };
 
 export function postUser(params = {}) {
-  return function(dispatch, getState) {
+  return function (dispatch, getState) {
     const currentState = getState();
     const formState = currentState.form.cv_form.values;
+
+    console.log(formState);
 
     // Add new skills independently
     formState.skills.filter(k => !k.id).forEach(skill => {
@@ -124,5 +126,7 @@ export function postUser(params = {}) {
         dispatch({ type: USER_FAILURE });
         console.log(error);
       });*/
+    
+    dispatch({ type: USER_UPDATE, data: currentState.form.cv_form.values });
   };
 }

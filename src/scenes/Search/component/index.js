@@ -32,30 +32,21 @@ class CvSearchComponent extends Component {
           <table className="table paper">
             <thead>
               <tr>
-                <th>Username</th>
+                <th>Email</th>
                 <th>First Name</th>
+                <th>Last Name</th>
               </tr>
             </thead>
             <tbody>
-              {users.map((user) => (
-                <tr>
+              {users.map((user,index) => (
+                <tr key={index}>
                   <td>{user.email}</td>
                   <td>{user.firstname}</td>
+                  <td>{user.lastname}</td>
                 </tr>
               ))}
             </tbody>
           </table>
-        </div>
-        <div className="container-fluid hidden">
-          <div className="row">
-            {users.map((user) => (
-              <div className="col-md-3 col-sm-6 col-xs-12">
-                <div className="paper pd15">
-                  <h3>{user.email}</h3>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     );
