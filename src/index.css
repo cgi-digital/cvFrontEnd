@@ -224,6 +224,43 @@ p{
   p{font-size:12px;}
 }
 
+/* paper form inline */
+
+.formInline.paper{
+  position: relative;
+  margin: 15px 0;
+}
+.formInline.paper .searchButtons{
+  position: absolute;
+  top:50%;
+  right:10px;
+  transform: translate(0,-50%);
+}
+.formInline.paper .searchButtons a,
+.formInline.paper .searchButtons button{
+  display: inline-block;
+  background:none;
+  border:none;
+  padding:0 10px;
+  cursor:pointer;
+  color:#555;
+  vertical-align: middle;
+}
+
+
+/* alt input */
+
+input.altInput,
+.altInput input{
+  padding: 7px 10px !important;
+  background-color: #fafafa!important;
+  border: 1px solid #e3e3e3 !important;
+  border-radius: 4px !important;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.05) !important;
+  transition: border-color 0.3s;
+  line-height: 1.5 !important
+}
+
 /* badge */
 
 .badge a{
@@ -507,7 +544,8 @@ a,a:hover,a:focus{
 }
 
 #ActionBar #editProfileButton,
-#ActionBar #saveProfileButton{
+#ActionBar #saveProfileButton,
+#ActionBar #searchFilterButton{
   display: inline-block;
   margin:8px 0;
 }
@@ -655,4 +693,24 @@ a,a:hover,a:focus{
 
 .searchCvPage .searchFilter{
   padding:15px;
+}
+
+.searchCvPage #filterBox{
+  margin:-25px 0 25px;
+}
+
+.searchCvPage #searchTags{
+  padding:10px 0 15px;
+  margin-top:-10px;
+}
+.searchCvPage #searchTags .badge,
+.searchCvPage #searchTags .badge a{
+  background:#fff;
+  color:#777;
+}
+.searchCvPage #searchTags .badge + .badge{
+  margin-left:5px;
+}
+.searchCvPage #searchTags .badge.badge-delete{
+  cursor: pointer;
 }

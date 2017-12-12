@@ -4,8 +4,11 @@ import TextField from 'material-ui/TextField'
 
 const renderField = ({ input, multiLine, rows, label, meta: { touched, error }, ...custom }) => (
   <TextField
+    className=''
+    placeholder={label}
     multiLine={multiLine}
-    floatingLabelText={label}
+    underlineShow={false}
+    fullWidth={true}
     rows={rows}
     errorText={touched && error}
     {...input}
@@ -30,18 +33,16 @@ class SearchNameComponent extends Component {
     return (
       <div>
         <form id="searchNameForm" onSubmit={this.submit}>
-          <div className="row">
-            <div className="col-xs-12">
-              <a className="btn btn-default pull-right" onClick={this.refreshSearch} value="Refresh"><i className="fa fa-refresh">&nbsp;</i>Refresh</a>
-              <button className="btn btn-default pull-right" type="submit" form="searchNameForm" value="Search"><i className="fa fa-search">&nbsp;</i>Search</button>
-            </div>
-          </div>
-          <div className="row">
+          <div className="formInline paper clearfix">
             <div className="col-sm-6 col-xs-12">
-              <Field name='firstname' component={renderField} type='text' value="" floatingLabelText="First Name" underlineShow fullWidth />
+              <Field name='firstname' component={renderField} type='text' label="First Name" value="" />
             </div>
             <div className="col-sm-6 col-xs-12">
-              <Field name='lastname' component={renderField} type='text' value="" floatingLabelText="Last Name" underlineShow fullWidth />
+              <Field name='lastname' component={renderField} type='text' label="Last Name" value="" />
+            </div>
+            <div className="searchButtons clearfix">
+              <button className="" type="submit" form="searchNameForm" value="Search"><i className="fa fa-search"></i></button>
+              <a className="" onClick={this.refreshSearch} value="Refresh"><i className="fa fa-close"></i></a>
             </div>
           </div>
         </form>
