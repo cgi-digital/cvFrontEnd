@@ -43,18 +43,61 @@ export default function reducer(state = initialState, action) {
 }
 
 // To be imported into container component, and assigned via mapDispatchToProps
-export function getUsers(params = {}) {
-  return function(dispatch) {
-    dispatch({ type: USERS_LOAD });
 
-    // Axios - first argument is endpoint, second is params object
+export function getAllUsers(params = {}) {
+  return function (dispatch) {
+    dispatch({ type: USERS_LOAD });
+    // GET ALL
     axios
-      .get(API_URL + 'user/all')
-      .then(function(response) {
+      .get(API_URL + 'user/search/name')
+      .then(function (response) {
         dispatch({ type: USERS_SUCCESS, data: response.data });
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.log(error);
       });
-  };
+  }
+}
+
+export function getUsers(params = {}) {
+  return function (dispatch, getState) {
+    const currentState = getState();
+    const formState = currentState.form.search_name_form.values;
+
+    console.log(currentState);
+
+    dispatch({ type: USERS_LOAD });
+    if (formState) {
+      // SEARCH BY FIRST AND LAST NAME
+      axios
+        .get(API_URL + 'user/search/name?firstname=' + formState.firstname + '&lastname=' + formState.lastname)
+        .then(function (response) {
+          dispatch({ type: USERS_SUCCESS, data: response.data });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  }
+}
+export function getUsersBySkill(params = {}) {
+  return function (dispatch) {
+    const searchArray = params;
+    const searchObj = {skills:[]};
+
+    searchArray.forEach(function(item,index){
+      searchObj.skills.push(item.name);
+    })
+
+    dispatch({ type: USERS_LOAD });
+    // SEARCH BY SKILLS
+    axios
+      .get(API_URL + 'user/search/skills?' + qs.stringify(searchObj, {indices:false}) )  
+      .then(function (response) {
+        dispatch({ type: USERS_SUCCESS, data: response.data });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 }

@@ -19,9 +19,8 @@ const renderField = ({ input, label, meta: { touched, error }, ...custom }) => (
 )
 
 const renderErrorField = ({ input, label, type, meta: { touched, error } }) => (
-  <div>
-    <input disabled="true" {...input} type={type} />
-    {touched && error}
+  <div className="mb20">
+    {error && <div className="text-danger text-center bg-danger pd10">{touched && error}</div> }    
   </div>
 )
 
@@ -59,9 +58,6 @@ class AuthComponent extends Component {
               <div className="">
                 <h1>Login</h1>
               </div>
-              <div id="errField" className='hidden'>
-                <Field name='ResponseMessage' component={renderErrorField} type='text' />
-              </div>
               <div className=''>
                 <label className='control-label' htmlFor='Username'></label>
                 <Field name='Username' component={renderField} type='text' label="Username" />
@@ -70,10 +66,13 @@ class AuthComponent extends Component {
                 <label className='control-label' htmlFor='Password'></label>
                 <Field name='Password' component={renderField} type='password' label="Password" />
               </div>
+              <div id="errField" className=''>
+                <Field name='ResponseMessage' component={renderErrorField} type='text' />
+              </div>
               <div className="buttonRow">
                 <div className="mb10"><a href="#" >Forgot your username or password?</a></div>
                 <RaisedButton type='submit' id="login" label="Login" primary={true} style={style} />
-                <RaisedButton linkButton={true} href="/signUp" label="Sign Up" style={style} />
+                <RaisedButton href="/signUp" label="Sign Up" style={style} />
               </div>
             </form>
           </div>

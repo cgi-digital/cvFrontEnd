@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getUsers } from '../../Reducers/users';
+import { getUsers, getAllUsers, getUsersBySkill } from '../../Reducers/users';
 import { updateSearch } from '../../Reducers/search';
 
 import CvSearchComponent from './component';
@@ -16,18 +16,24 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     getUsers: a => {
-      dispatch(getUsers(a));
+      dispatch(getAllUsers());
     },
-    onSearchChange: e => {
-      dispatch(updateSearch(e.currentTarget.value));
+    onSearch: e => {
+      dispatch(getUsers());
+    },
+    onSearchBySkill: e => {
+      dispatch(getUsersBySkill(e));
     }
   };
 }
 
-class CvViewContainer extends Component {
+class CvSearchContainer extends Component {
   render() {
-    return <CvSearchComponent {...this.props} />;
+    return <CvSearchComponent {...this.props}
+      submitNameSearch={this.props.onSearch}
+      submitSkillSearch={this.props.onSearchBySkill}
+      getAllUsers={this.props.getUsers} />;
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CvViewContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(CvSearchContainer)
