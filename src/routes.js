@@ -36,7 +36,7 @@ export const Routes = {
       indexRoute: { components: { content: HomeContainer } },
       childRoutes: [
         { path: '/edit', components: { content: CvEditContainer } },
-        { path: '/view', components: { content: HomeContainer } },
+        { path: '/profile', components: { content: HomeContainer } },
         { path: '/search', components: { content: CvSearchContainer } },
        // { path: '/admin', components: { content: CvAdminContainer } }
         

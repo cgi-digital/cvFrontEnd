@@ -379,7 +379,7 @@ const Overview = (props) => {
   return <View />
 }
 
-class CvViewComponent extends Component {
+class CvProfileComponent extends Component {
   constructor(props, context) {
     super(props, context);
 
