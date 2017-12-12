@@ -6,7 +6,10 @@ import { getUser, postUser } from '../../Reducers/user';
 import HomeComponent from './component';
 
 function mapStateToProps(state) {
-  return { user: state.user, skills: state.skills.skills };
+  return { 
+    user: state.user, 
+    skills: state.skills.skills 
+  };
 }
 
 function mapDispatchToProps(dispatch) {
