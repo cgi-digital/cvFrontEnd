@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 
 const renderField = ({ input, multiLine, rows, label, meta: { touched, error }, ...custom }) => (
     <TextField
-        multiLine={multiLine}
-        floatingLabelText={label}
         rows={rows}
         errorText={touched && error}
         {...input}
@@ -64,8 +62,8 @@ class SearchSkillComponent extends Component {
         this.setState({ skillList: concatArr });
     }
 
-    clearSkillList(){
-        this.setState({ skillList: []})
+    clearSkillList() {
+        this.setState({ skillList: [] })
     }
 
     submit(e) {
@@ -79,33 +77,34 @@ class SearchSkillComponent extends Component {
         const { searchSkills } = this.props;
         return (
             <div>
-                <form id="searchSkillForm" onSubmit={this.submit}>
-                    <div className="row">
-                        <div className="col pull-left">
-                            <span onClick={this.clearSkillList} className="badge badge-danger"><i className="fa fa-trash"></i></span>
-                            {this.state.skillList.map((skill, index) => (
-                                <span key={index} className="badge">{skill.name}({index})<a onClick={() => this.removeSkill(index)}><i className="fa fa-close"></i></a></span>
-                            ))}
-                        </div>
-                        <div className="col pull-right">
-                            <button className="btn btn-default" type="submit" form="searchSkillForm" value="Search"><i className="fa fa-search">&nbsp;</i>Search</button>
-                        </div>
+                <div className="paper formInline clearfix">
+                    <div className="col-xs-12">
+                        <form id="skillInput" autoComplete="off" onSubmit={this.addSkill}>
+                            <TextField
+                                ref="skillInput"
+                                value={this.state.skillInput.name}
+                                type='text'
+                                label="Search Skill"
+                                placeholder="Search Skill"
+                                onChange={this.skillInputChange}
+                                autoComplete="false"
+                                underlineShow={false}
+                                fullWidth={true} />
+                        </form>
                     </div>
-                </form>
-                <form id="skillInput" autoComplete="off" onSubmit={this.addSkill}>
-                    <TextField
-                        className="mb20"
-                        ref="skillInput"
-                        value={this.state.skillInput.name}
-                        type='text'
-                        floatingLabelText="Search Skill"
-                        floatingLabelFixed={true}
-                        underlineShow
-                        fullWidth
-                        onChange={this.skillInputChange}
-                        autoComplete="false"
-                    ></TextField>
-                </form>
+                    <div className="col-xs-12">
+                    </div>
+                    <form id="searchSkillForm" onSubmit={this.submit} className="searchButtons clearfix">
+                        <button type="submit" form="skillInput" value="Search"><i className="fa fa-plus"></i></button>
+                        <button className="btn btn-default" type="submit" form="searchSkillForm" value="Search"><i className="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <div id="searchTags" className="col">
+                    <span onClick={this.clearSkillList} className="badge badge-delete"><i className="fa fa-trash"></i></span>
+                    {this.state.skillList.map((skill, index) => (
+                        <span key={index} className="badge">{skill.name}<a onClick={() => this.removeSkill(index)}><i className="fa fa-close"></i></a></span>
+                    ))}
+                </div>
             </div>
         )
     }
