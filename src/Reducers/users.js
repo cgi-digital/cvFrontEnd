@@ -80,29 +80,6 @@ export function getUsers(params = {}) {
     }
   }
 }
-
-export function getUsersBySkill(params = {}) {
-  return function (dispatch) {
-    const searchArray = params;
-    const searchObj = {skills:[]};
-
-    searchArray.forEach(function(item,index){
-      searchObj.skills.push(item.name);
-    })
-
-    dispatch({ type: USERS_LOAD });
-    // SEARCH BY SKILLS
-    axios
-      .get(API_URL + 'user/search/skills?' + qs.stringify(searchObj, {indices:false}) )  
-      .then(function (response) {
-        dispatch({ type: USERS_SUCCESS, data: response.data });
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
-}
-
 export function getUsersBySkill(params = {}) {
   return function (dispatch) {
     const searchArray = params;
