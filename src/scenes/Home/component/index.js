@@ -228,8 +228,8 @@ const QualificationsTable = (props) => {
         <tbody>
           {fields.map((q, index) => {
             return (
-              <tr>
-                <td key={index}>{q.qualification}</td>
+              <tr key={index}>
+                <td>{q.qualification}</td>
               </tr>
             );
           })}
@@ -327,20 +327,12 @@ const Overview = (props) => {
                     <td>{user.title}</td>
                   </tr>
                   <tr>
-                    <th>Username</th  >
-                    <td>{user.username}</td>
-                  </tr>
-                  <tr>
                     <th>Email</th>
-                    <td>guest@cgi.com</td>
-                  </tr>
-                  <tr>
-                    <th>Work Phone</th>
-                    <td>+44777777 7777</td>
+                    <td>{user.email}</td>
                   </tr>
                   <tr>
                     <th>Summary</th>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</td>
+                    <td>{user.summary}</td>
                   </tr>
                 </tbody>
               </table>
