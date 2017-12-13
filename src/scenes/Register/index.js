@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SignUp } from '../../Reducers/signUp';
+import { Register } from '../../Reducers/register';
 import RegisterComponent from './component';
 
 function mapStateToProps(state) {
@@ -10,7 +10,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     submitRegister:()=> {
-       return dispatch(SignUp());
+       return dispatch(Register());
     }, 
     handleRegisterSuccess: () => {
     }

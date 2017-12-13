@@ -73,14 +73,9 @@ class RegisterComponent extends Component {
                     <label className='control-label' htmlFor='lastName'></label>
                     <Field name='LastName' component={renderField} type='text' label="Last Name" />
                   </div>
-                  <div className='col-sm-6 col-xs-12'>
-                    <label className='control-label' htmlFor='Username'></label>
-                    <Field name='Username' id='username' component={renderField} type='text' label="Username" />
-                    {error && <strong>{error.Username}</strong>}
-                  </div>
-                  <div className='col-sm-6 col-xs-12'>
+                  <div className='col-xs-12'>
                     <label className='control-label' htmlFor='email'></label>
-                    <Field name='Email' component={renderField} type='text' label="Email" />
+                    <Field name='EmailAddress' component={renderField} type='text' label="Email" />
                   </div>
                   <div className='col-xs-12'>
                     <label className='control-label' htmlFor='Password'></label>
