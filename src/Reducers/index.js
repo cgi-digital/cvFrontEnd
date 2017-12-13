@@ -2,9 +2,8 @@ import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import { routerReducer } from 'react-router-redux';
 
-import userReducer from './user';
+import profileReducer from './profile';
 import usersReducer from './users';
-import skillsReducer from './skills';
 import loginReducer from './login';
 import searchReducer from './search';
 
@@ -13,11 +12,9 @@ const RootReducer = combineReducers({
   form: formReducer,
   routing: routerReducer,
   // API
-  skills: skillsReducer,
-  user: userReducer,
+  profile: profileReducer,
   users: usersReducer,
-  login: loginReducer,
-  search: searchReducer
+  login: loginReducer
 });
 
 export default RootReducer;
