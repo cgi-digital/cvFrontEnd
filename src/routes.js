@@ -2,7 +2,7 @@ import isAuth from './utils/isAuth';
 import AppContainer from './AppContainer';
 import AuthContainer from './scenes/Login/';
 import LogoutContainer from './scenes/Logout/';
-import SignUpContainer from './scenes/Register/';
+import RegisterContainer from './scenes/Register/';
 import CvContainer from './Containers/Header/CvContainer';
 import CvProfileContainer from './scenes/Profile/';
 import CvSearchContainer from './scenes/Search/';
@@ -25,9 +25,9 @@ export const Routes = {
       components: { content: LogoutContainer},
     },
     {
-      path: '/signUp',
+      path: '/register',
       onEnter: isAuth,
-      components: { content: SignUpContainer},
+      components: { content: RegisterContainer},
     },
     {
       path: '/cv',

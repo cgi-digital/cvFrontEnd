@@ -44,7 +44,7 @@ const validate = values => {
 }
 
 
-class SignUpComponent extends Component {
+class RegisterComponent extends Component {
   componentWillMount() { }
 
   render() {
@@ -92,7 +92,7 @@ class SignUpComponent extends Component {
                   </div>
                 </div>
                 <div className="buttonRow">
-                  <RaisedButton className="mb20" type='submit' id='signUp' label="Sign Up" primary={true} />
+                  <RaisedButton className="mb20" type='submit' id='register' label="Register" primary={true} />
                   <div><a href="/login">Already have an account? Log In</a></div>
                 </div>
               </form>
@@ -113,5 +113,5 @@ class SignUpComponent extends Component {
 export default reduxForm({
   form: 'login_form',
   validate
-})(SignUpComponent)
+})(RegisterComponent)
 //i am going to be given an endpoint
