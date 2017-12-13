@@ -271,7 +271,7 @@ const ProjectsTable = (props) => {
 
 // Project Tab Content
 const ProfileTab = (props) => {
-  const profile = props.profile;
+  const user = props.user;
 
   const id = props.tabID;
   const headerText = props.headerText;
@@ -306,7 +306,7 @@ const ProfileTab = (props) => {
 }
 
 const Overview = (props) => {
-  const profile = props.profile;
+  const user = props.user;
   const isEdit = props.isEdit;
 
   const View = () => {
@@ -316,7 +316,7 @@ const Overview = (props) => {
         <div className="row mb10">
           <div className="col-xs-12">
             <h4 className="mb10">
-              {profile.lastname}, {profile.firstname}
+              {user.lastname}, {user.firstname}
               <a className="tableToggle" data-toggle="collapse" data-target="#InfoTable" aria-expanded="trues"><i className="fa fa-angle-down"></i></a>
             </h4>
             <div id="InfoTable" className="collapse in">
@@ -324,15 +324,15 @@ const Overview = (props) => {
                 <tbody>
                   <tr>
                     <th>Title</th>
-                    <td>{profile.title}</td>
+                    <td>{user.title}</td>
                   </tr>
                   <tr>
                     <th>Email</th>
-                    <td>{profile.email}</td>
+                    <td>{user.email}</td>
                   </tr>
                   <tr>
                     <th>Summary</th>
-                    <td>{profile.summary}</td>
+                    <td>{user.summary}</td>
                   </tr>
                 </tbody>
               </table>
@@ -342,7 +342,7 @@ const Overview = (props) => {
       </div>
     )
   }
-  const Edit = () => {
+  const Edit = (user) => {
     return (
       <div className="cvHeader paper pd15 mb10">
         <i className="fa fa-user headerIcon"></i>
@@ -350,7 +350,7 @@ const Overview = (props) => {
           <div className="col-xs-12">
             <div className="row mb20">
               <div className="col-sm-6">
-                <Field name='firstName' component={renderField} type='text' floatingLabelText="First Name" underlineShow fullWidth />
+                <Field name='firstname' component={renderField} type='text' floatingLabelText="First Name" underlineShow fullWidth />
               </div>
               <div className="col-sm-6">
                 <Field name='lastname' component={renderField} type='text' floatingLabelText="Last Name" underlineShow fullWidth />
@@ -404,10 +404,10 @@ class CvProfileComponent extends Component {
   render() {
     const isEdit = this.state.isEdit;
     const { handleSubmit } = this.props;
-    const { profile } = this.props;
-    const { skills = [] } = profile;
-    const { qualifications = [] } = profile;
-    const { projects = [] } = profile;
+    const { user } = this.props;
+    const { skills = [] } = user;
+    const { qualifications = [] } = user;
+    const { projects = [] } = user;
 
     return (
       <div className={'viewCvPage'}>
@@ -416,7 +416,7 @@ class CvProfileComponent extends Component {
             <div className="container-fluid">
               <div className="row">
                 <div className="col-md-4 col-sm-5">
-                  <h1>{profile.firstname}'s Profile</h1>
+                  <h1>{user.firstname}'s Profile</h1>
                 </div>
                 <div className="col-md-8 col-sm-7">
                   <ul className="nav nav-tabs pull-left">
@@ -437,7 +437,7 @@ class CvProfileComponent extends Component {
           <div className="container-fluid">
             <div className="row">
               <div className="col-md-4 col-sm-5">
-                <Overview profile={profile} isEdit={isEdit} />
+                <Overview user={user} isEdit={isEdit} />
               </div>
               <div className="col-md-8 col-sm-7 col-xs-12">
                 <div className="tab-content">
@@ -446,7 +446,7 @@ class CvProfileComponent extends Component {
                     headerText="Skills"
                     viewTable={<SkillsTable fields={skills} />}
                     editTable={<FieldArray name="skills" component={renderSkills} />}
-                    profile={profile}
+                    user={user}
                     isEdit={isEdit}
                     isActive={true} />
 
@@ -455,7 +455,7 @@ class CvProfileComponent extends Component {
                     headerText="Qualifications"
                     viewTable={<QualificationsTable fields={qualifications} />}
                     editTable={<FieldArray name="qualifications" component={renderQualifications} />}
-                    profile={profile}
+                    user={user}
                     isEdit={isEdit} />
 
                   <ProfileTab
@@ -463,7 +463,7 @@ class CvProfileComponent extends Component {
                     headerText="Projects"
                     viewTable={<ProjectsTable fields={projects} />}
                     editTable={<FieldArray name="projects" component={renderProjects} />}
-                    profile={profile}
+                    user={user}
                     isEdit={isEdit} />
                 </div>
               </div>

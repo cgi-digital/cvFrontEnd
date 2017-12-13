@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getProfile, postProfile } from '../../Reducers/profile';
+import { getUser, postUser } from '../../Reducers/user';
 
 import CvProfileComponent from './component';
 
 function mapStateToProps(state) {
   return { 
-    profile: state.profile
+    user: state.user, 
+    skills: state.skills.skills 
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     getUser: a => {
-      dispatch(getProfile(a));
+      dispatch(getUser(a));
     },
     postUserData: e => {
-      dispatch(postProfile());
+      dispatch(postUser());
     },
     handleSubmitSuccess: a => {
       console.log("BOOM");

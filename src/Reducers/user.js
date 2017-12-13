@@ -54,7 +54,7 @@ export default function reducer(state = initialState, action) {
 }
 
 // To be imported into container component, and assigned via mapDispatchToProps
-export function getProfile(params = {}) {
+export function getUser(params = {}) {
   return function (dispatch) {
     dispatch({ type: USER_LOAD });
 
@@ -79,7 +79,7 @@ const addUserEntity = (entityName, payload) => {
     });
 };
 
-export function postProfile(params = {}) {
+export function postUser(params = {}) {
   return function (dispatch, getState) {
     const currentState = getState();
     const formState = currentState.form.cv_form.values;

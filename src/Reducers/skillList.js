@@ -1,4 +1,4 @@
-// comments.js
+/* // comments.js
 
 import axios from 'axios';
 import qs from 'qs';
@@ -7,10 +7,10 @@ import qs from 'qs';
 import { API_URL } from '../API';
 // Actions
 // Define actions for each part of API request etc
-export const PROFILE_LOAD = 'PROFILE_LOAD';
-export const PROFILE_SUCCESS = 'PROFILE_SUCCESS';
-export const PROFILE_FAILURE = 'PROFILE_FAILURE';
-export const PROFILE_UPDATE = 'PROFILE_UPDATE';
+export const USER_LOAD = 'USER_LOAD';
+export const USER_SUCCESS = 'USER_SUCCESS';
+export const USER_FAILURE = 'USER_FAILURE';
+export const USER_UPDATE = 'USER_UPDATE';
 
 // Reducer
 // Initial State is the default object that is assigned to state.
@@ -22,6 +22,7 @@ export const PROFILE_UPDATE = 'PROFILE_UPDATE';
 //   title: 'Batman',
 //   summary: 'Ea inermis consequuntur vis, no nam nostro ornatus explicari. An sit scripta recusabo adversarium, vis lorem consulatu at. Tale mutat volutpat at sea. Mei altera equidem salutatus id, eos dicunt latine id. Graeci everti no mel, sint dicant laoreet duo at.',
 // };
+
 const initialState = {
   id: null,
   email: null,
@@ -38,11 +39,11 @@ export default function reducer(state = initialState, action) {
 
   // Switch with cases for each action type
   switch (action.type) {
-    case 'PROFILE_SUCCESS':
+    case 'USER_SUCCESS':
       // On API success, grab action data and make newState from it
       newState = Object.assign({}, action.data);
       return newState;
-    case 'PROFILE_UPDATE':
+    case 'USER_UPDATE':
       newState = Object.assign({}, action.data);
       return newState;
       break;
@@ -54,17 +55,17 @@ export default function reducer(state = initialState, action) {
 }
 
 // To be imported into container component, and assigned via mapDispatchToProps
-export function getProfile(params = {}) {
-  return function (dispatch) {
-    dispatch({ type: PROFILE_LOAD });
-
+export function getUser(params = {}) {
+  return function(dispatch) {
+    dispatch({ type: USER_LOAD });
+      
     // Axios - first argument is endpoint, second is params object
     axios
       .get(API_URL + 'user')
-      .then(function (response) {
-        dispatch({ type: PROFILE_SUCCESS, data: response.data });
+      .then(function(response) {
+        dispatch({ type: USER_SUCCESS, data: response.data });
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
       });
   };
@@ -79,12 +80,10 @@ const addUserEntity = (entityName, payload) => {
     });
 };
 
-export function postProfile(params = {}) {
-  return function (dispatch, getState) {
+export function postUser(params = {}) {
+  return function(dispatch, getState) {
     const currentState = getState();
     const formState = currentState.form.cv_form.values;
-    
-    console.log(currentState);
 
     // Add new skills independently
     formState.skills.filter(k => !k.id).forEach(skill => {
@@ -112,7 +111,7 @@ export function postProfile(params = {}) {
       return prev;
     }, {});
 
-    // dispatch({ type: PROFILE_UPDATE, data: currentState.form.cv_form.values });
+    // dispatch({ type: USER_UPDATE, data: currentState.form.cv_form.values });
     /*axios
       .post(API_URL + 'user', qs.stringify(rootFields), {
         headers: {
@@ -120,13 +119,12 @@ export function postProfile(params = {}) {
         }
       })
       .then(function(response) {
-        dispatch({ type: PROFILE_UPDATE, data: currentState.form.cv_form.values });
+        dispatch({ type: USER_UPDATE, data: currentState.form.cv_form.values });
       })
       .catch(function(error) {
-        dispatch({ type: PROFILE_FAILURE });
+        dispatch({ type: USER_FAILURE });
         console.log(error);
       });*/
-    
-    dispatch({ type: PROFILE_UPDATE, data: currentState.form.cv_form.values });
   };
 }
+ */
