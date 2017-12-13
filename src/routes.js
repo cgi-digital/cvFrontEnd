@@ -4,8 +4,7 @@ import AuthContainer from './scenes/Login/';
 import LogoutContainer from './scenes/Logout/';
 import SignUpContainer from './scenes/Register/';
 import CvContainer from './Containers/Header/CvContainer';
-import CvEditContainer from './scenes/EditCV/';
-import HomeContainer from './scenes/Home/';
+import CvProfileContainer from './scenes/Profile/';
 import CvSearchContainer from './scenes/Search/';
 //import CvAdminContainer from './CvAdminContainer';
 
@@ -33,10 +32,9 @@ export const Routes = {
     {
       path: '/cv',
       components: { content: CvContainer },
-      indexRoute: { components: { content: HomeContainer } },
+      indexRoute: { components: { content: CvProfileContainer } },
       childRoutes: [
-        { path: '/edit', components: { content: CvEditContainer } },
-        { path: '/profile', components: { content: HomeContainer } },
+        { path: '/profile', components: { content: CvProfileContainer } },
         { path: '/search', components: { content: CvSearchContainer } },
        // { path: '/admin', components: { content: CvAdminContainer } }
         

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { getUser, postUser } from '../../Reducers/user';
 
-import HomeComponent from './component';
+import CvProfileComponent from './component';
 
 function mapStateToProps(state) {
   return { 
@@ -26,9 +26,9 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-class CvViewContainer extends Component {
+class CvProfileContainer extends Component {
   render() {
-    return <HomeComponent {...this.props}
+    return <CvProfileComponent {...this.props}
       initialValues={this.props.user}
       handleSubmit={this.props.postUserData}
       onSubmitSuccess={this.props.handleSubmitSuccess}
@@ -36,4 +36,4 @@ class CvViewContainer extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CvViewContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(CvProfileContainer)

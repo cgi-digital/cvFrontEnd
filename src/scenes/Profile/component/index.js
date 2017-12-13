@@ -478,5 +478,5 @@ class CvProfileComponent extends Component {
 
 
 export default reduxForm({ form: 'cv_form', enableReinitialize: true })(
-  CvViewComponent
+  CvProfileComponent
 )
