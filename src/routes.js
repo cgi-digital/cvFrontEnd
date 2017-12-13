@@ -2,11 +2,11 @@ import isAuth from './utils/isAuth';
 import AppContainer from './AppContainer';
 import AuthContainer from './scenes/Login/';
 import LogoutContainer from './scenes/Logout/';
-import SignUpContainer from './scenes/Register/';
+import RegisterContainer from './scenes/Register/';
 import CvContainer from './Containers/Header/CvContainer';
-import CvEditContainer from './scenes/EditCV/';
-import HomeContainer from './scenes/Home/';
+import CvProfileContainer from './scenes/Profile/';
 import CvSearchContainer from './scenes/Search/';
+import CvViewContainer from './scenes/View/';
 //import CvAdminContainer from './CvAdminContainer';
 
 
@@ -26,18 +26,18 @@ export const Routes = {
       components: { content: LogoutContainer},
     },
     {
-      path: '/signUp',
+      path: '/register',
       onEnter: isAuth,
-      components: { content: SignUpContainer},
+      components: { content: RegisterContainer},
     },
     {
       path: '/cv',
       components: { content: CvContainer },
-      indexRoute: { components: { content: HomeContainer } },
+      indexRoute: { components: { content: CvProfileContainer } },
       childRoutes: [
-        { path: '/edit', components: { content: CvEditContainer } },
-        { path: '/view', components: { content: HomeContainer } },
+        { path: '/profile', components: { content: CvProfileContainer } },
         { path: '/search', components: { content: CvSearchContainer } },
+        { path: '/view', components: { content: CvViewContainer } },
        // { path: '/admin', components: { content: CvAdminContainer } }
         
       ]

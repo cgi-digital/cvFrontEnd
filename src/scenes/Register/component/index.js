@@ -44,7 +44,7 @@ const validate = values => {
 }
 
 
-class SignUpComponent extends Component {
+class RegisterComponent extends Component {
   componentWillMount() { }
 
   render() {
@@ -73,14 +73,9 @@ class SignUpComponent extends Component {
                     <label className='control-label' htmlFor='lastName'></label>
                     <Field name='LastName' component={renderField} type='text' label="Last Name" />
                   </div>
-                  <div className='col-sm-6 col-xs-12'>
-                    <label className='control-label' htmlFor='Username'></label>
-                    <Field name='Username' id='username' component={renderField} type='text' label="Username" />
-                    {error && <strong>{error.Username}</strong>}
-                  </div>
-                  <div className='col-sm-6 col-xs-12'>
+                  <div className='col-xs-12'>
                     <label className='control-label' htmlFor='email'></label>
-                    <Field name='Email' component={renderField} type='text' label="Email" />
+                    <Field name='EmailAddress' component={renderField} type='text' label="Email" />
                   </div>
                   <div className='col-xs-12'>
                     <label className='control-label' htmlFor='Password'></label>
@@ -92,7 +87,7 @@ class SignUpComponent extends Component {
                   </div>
                 </div>
                 <div className="buttonRow">
-                  <RaisedButton className="mb20" type='submit' id='signUp' label="Sign Up" primary={true} />
+                  <RaisedButton className="mb20" type='submit' id='register' label="Register" primary={true} />
                   <div><a href="/login">Already have an account? Log In</a></div>
                 </div>
               </form>
@@ -113,5 +108,5 @@ class SignUpComponent extends Component {
 export default reduxForm({
   form: 'login_form',
   validate
-})(SignUpComponent)
+})(RegisterComponent)
 //i am going to be given an endpoint

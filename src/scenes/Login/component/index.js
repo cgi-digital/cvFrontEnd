@@ -72,7 +72,7 @@ class AuthComponent extends Component {
               <div className="buttonRow">
                 <div className="mb10"><a href="#" >Forgot your username or password?</a></div>
                 <RaisedButton type='submit' id="login" label="Login" primary={true} style={style} />
-                <RaisedButton href="/signUp" label="Sign Up" style={style} />
+                <RaisedButton href="/register" label="Register" style={style} />
               </div>
             </form>
           </div>

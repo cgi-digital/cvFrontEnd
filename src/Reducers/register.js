@@ -7,10 +7,10 @@ import { API_URL } from '../API';
 
 // Actions
 // Define actions for each part of API request etc
-export const SIGNUP_LOAD = 'SIGNUP_LOAD';
-export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS';
-export const SIGNUP_FAILURE = 'SIGNUP_FAILURE';
-export const SIGNUP_UPDATE = 'SIGNUP_UPDATE'; 
+export const REGISTER_LOAD = 'REGISTER_LOAD';
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_FAILURE = 'REGISTER_FAILURE';
+export const REGISTER_UPDATE = 'REGISTER_UPDATE'; 
 
 // Reducer
 // Initial State is the default object that is assigned to state.
@@ -31,7 +31,7 @@ export default function reducer(state = initialState, action) {
  
   // Switch with cases for each action type
   switch (action.type) {
-    case 'SIGNUP_SUCCESS':
+    case 'REGISTER_SUCCESS':
       // On API success, grab action data and make newState from it
       return {
         ...state,
@@ -48,7 +48,7 @@ export default function reducer(state = initialState, action) {
 }
 
 
-export function SignUp() {
+export function Register() {
   return function (dispatch, getState) {
     const currentState = getState();
     const formState = currentState.form.login_form.values;    
@@ -58,16 +58,17 @@ export function SignUp() {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
       })
       .then(function (response) {
-        dispatch({ type: SIGNUP_UPDATE, data: currentState.form.login_form.values });
-        dispatch(push('/edit'));
+        dispatch({ type: REGISTER_UPDATE, data: currentState.form.login_form.values });
+        dispatch(push('/profile'));
       })
       .catch(function (error) {
         if (error.message === 'Network Error') {
-          dispatch({ type: SIGNUP_UPDATE, data: currentState.form.login_form.values });
-          dispatch(push('/edit'));
+          dispatch({ type: REGISTER_UPDATE, data: currentState.form.login_form.values });
+          dispatch(push('/profile'));
         } else {
-          dispatch({ type: SIGNUP_FAILURE});
-          throw new SubmissionError({ Username: 'Username already Taken', _error: 'SIGNUP_FAILURE' });
+          dispatch({ type: REGISTER_FAILURE});
+          console.log(error)
+          throw new SubmissionError({ Username: 'Username already Taken', _error: 'REGISTER_FAILURE' });
         }
       });
   };

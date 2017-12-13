@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SignUp } from '../../Reducers/signUp';
-import SignUpComponent from './component';
+import { Register } from '../../Reducers/register';
+import RegisterComponent from './component';
 
 function mapStateToProps(state) {
   return {};
@@ -9,25 +9,24 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    submitSignUp:()=> {
-       return dispatch(SignUp());
+    submitRegister:()=> {
+       return dispatch(Register());
     }, 
-    handleSubmitSuccess: () => {
+    handleRegisterSuccess: () => {
     }
   };
 }
 
-class SignUpContainer extends Component {
+class RegisterContainer extends Component {
   render() {
-    const { submitSignUp, handleSubmitSuccess} = this.props; 
     return (
-      <SignUpComponent
+      <RegisterComponent
         {...this.props}
-        onSubmit={submitSignUp}
-        onSubmitSuccess={handleSubmitSuccess}
+        onSubmit={this.props.submitRegister}
+        onSubmitSuccess={this.props.handleRegisterSuccess}
       />
     );
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterContainer)
