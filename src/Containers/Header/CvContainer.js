@@ -6,13 +6,14 @@ import CvComponent from '../../Components/Header/CvComponent';
 function mapStateToProps(state) {
   return { user: state.user };
 }
-function mapDispatchToProps(dispatch) {
-  return {
-    getUser: a => {
-      dispatch(getUser(a));
-    }
-  };
-}
+
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     getUser: a => {
+//       dispatch(getUser(a));
+//     }
+//   };
+// }
 
 class CvContainer extends Component {
   render() {
@@ -20,4 +21,4 @@ class CvContainer extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CvContainer)
+export default connect(mapStateToProps)(CvContainer)
