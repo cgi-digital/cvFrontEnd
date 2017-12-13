@@ -13,10 +13,10 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getUser: a => {
+    getProfile: a => {
       dispatch(getProfile(a));
     },
-    postUserData: e => {
+    postProfile: e => {
       dispatch(postProfile());
     },
     handleSubmitSuccess: a => {
@@ -28,8 +28,8 @@ function mapDispatchToProps(dispatch) {
 class CvProfileContainer extends Component {
   render() {
     return <CvProfileComponent {...this.props}
-      initialValues={this.props.user}
-      handleSubmit={this.props.postUserData}
+      initialValues={this.props.profile}
+      handleSubmit={this.props.postProfile}
       onSubmitSuccess={this.props.handleSubmitSuccess}
     />;
   }

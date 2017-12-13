@@ -89,7 +89,7 @@ class CvSearchComponent extends Component {
             <tbody>
               {users.map((user, index) => (
                 <tr key={index}>
-                  <td>{user.email}</td>
+                  <td><a href={'view?id='+user.id}>{user.email}</a></td>
                   <td>{user.firstname}</td>
                   <td>{user.lastname}</td>
                 </tr>

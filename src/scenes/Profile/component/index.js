@@ -350,7 +350,7 @@ const Overview = (props) => {
           <div className="col-xs-12">
             <div className="row mb20">
               <div className="col-sm-6">
-                <Field name='firstName' component={renderField} type='text' floatingLabelText="First Name" underlineShow fullWidth />
+                <Field name='firstname' component={renderField} type='text' floatingLabelText="First Name" underlineShow fullWidth />
               </div>
               <div className="col-sm-6">
                 <Field name='lastname' component={renderField} type='text' floatingLabelText="Last Name" underlineShow fullWidth />
@@ -391,7 +391,7 @@ class CvProfileComponent extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
   componentDidMount() {
-    this.props.getUser()
+    this.props.getProfile();
   }
   toggleEditState() {
     const newState = !this.state.isEdit;

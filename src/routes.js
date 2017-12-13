@@ -6,6 +6,7 @@ import RegisterContainer from './scenes/Register/';
 import CvContainer from './Containers/Header/CvContainer';
 import CvProfileContainer from './scenes/Profile/';
 import CvSearchContainer from './scenes/Search/';
+import CvViewContainer from './scenes/View/';
 //import CvAdminContainer from './CvAdminContainer';
 
 
@@ -36,6 +37,7 @@ export const Routes = {
       childRoutes: [
         { path: '/profile', components: { content: CvProfileContainer } },
         { path: '/search', components: { content: CvSearchContainer } },
+        { path: '/view', components: { content: CvViewContainer } },
        // { path: '/admin', components: { content: CvAdminContainer } }
         
       ]
