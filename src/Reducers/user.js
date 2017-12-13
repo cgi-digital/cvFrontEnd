@@ -81,8 +81,9 @@ const addUserEntity = (entityName, payload) => {
 
 export function postUser(params = {}) {
   return function (dispatch, getState) {
+    const removeEntities = [];
     const currentState = getState();
-    const formState = currentState.form.cv_form.values;
+    const formState = currentState.form.update_profile_form.values;
 
     console.log(formState);
 
