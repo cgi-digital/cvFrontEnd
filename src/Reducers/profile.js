@@ -104,8 +104,11 @@ export function postProfile(params = {}) {
       });
     // Add new array of skills
     cvForm.skills.filter(k => !k.id).forEach(skill => {
-      console.log(skill);
-      skill.skillName = skill.skillName.value;
+      // If skillName is an object it needs to be a string
+      // the field skillName of newly added skils will be returned as an object because of the way the autocomplete component works
+      if(typeof skill.skillName == "object"){
+        skill.skillName = skill.skillName.value;
+      }
       addUserEntity('skills', skill);
     });
     cvForm.projects.filter(k => !k.id).forEach(project => {
