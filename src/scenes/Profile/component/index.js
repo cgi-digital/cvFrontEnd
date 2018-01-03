@@ -11,6 +11,9 @@ import { Link } from 'react-router';
 import FontIcon from 'material-ui/FontIcon';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
+
 
 import {
   Table,
@@ -22,8 +25,17 @@ import {
 } from 'material-ui/Table';
 
 
+const validate = values => {
+  const errors = {};
+  if (values.skills) {
+    console.log(values.skills);
+  }
+  return errors
+}
+
 const renderField = ({ input, multiLine, rows, label, meta: { touched, error }, ...custom }) => (
   <TextField
+    className="altInput"
     multiLine={multiLine}
     underlineShow={false}
     fullWidth={true}
@@ -33,58 +45,93 @@ const renderField = ({ input, multiLine, rows, label, meta: { touched, error }, 
     {...custom}
   />
 )
+const renderMaterialField = ({ input, multiLine, rows, label, meta: { touched, error }, ...custom }) => (
+  <TextField
+    multiLine={multiLine}
+    underlineShow={true}
+    fullWidth={true}
+    rows={rows}
+    errorText={touched && error}
+    {...input}
+    {...custom}
+  />
+)
+const renderSkillSelect = ({ input, ...custom }) => (
+  <div>
+    <Select
+      value={input.value}
+      onChange={()=> {this.value = input.value.value}}
+      autoBlur={true}
+      {...input}
+      {...custom}
+    />
+  </div>
+)
+
+const buildSelectArray = (skills) => {
+  var a = [];
+  skills.forEach(skill => {
+    let newValue = { value: skill.skill, label: skill.skill, skillName: skill.skill }
+    a.push(newValue);
+  })
+  return a;
+}
 
 // FIELD ARRAY RENDERS
 // Skills Edit Table
-const renderSkills = ({ fields }) => (
-  <div>
-    <table className="table paper table-bordered table-form">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Skill Level</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        {fields.map((skill, index) =>
-          <tr key={index}>
-            <td>
-              <Field
-                name={`${skill}.skillName`}
-                type="text"
-                component={renderField}
-                label="Skill">
-              </Field>
-            </td>
-            <td>
-              <Field
-                name={`${skill}.level`}
-                component={renderField}
-                label="Level"
-                type="number"
-                min="1"
-                max="10">
-              </Field>
-            </td>
-            <td>
-              <div className="actions">
-                {<a onClick={() => { fields.remove(index); }}><i className="fa fa-close"></i></a>}
-              </div>
-            </td>
+const renderSkills = ({ fields, allSkills }) => {
+  const selectValues = buildSelectArray(allSkills);
+  return (
+    <div>
+      <table className="table paper table-bordered table-form">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Skill Level</th>
+            <th></th>
           </tr>
-        )}
-      </tbody>
-    </table>
-    <div className="row mt20">
-      <div className="col-xs-12 text-center">
-        <RaisedButton type='button' label="Add Skill" primary={true} onClick={() => {
-          fields.push({})
-        }} />
+        </thead>
+        <tbody>
+          {fields.map((skill, index) =>
+            <tr key={index}>
+              <td>
+                <Field
+                  name={`${skill}.skillName`}
+                  type="text"
+                  component={renderSkillSelect}
+                  label="Skill"
+                  options={selectValues}>
+                </Field>
+              </td>
+              <td>
+                <Field
+                  name={`${skill}.level`}
+                  component={renderField}
+                  label="Level"
+                  type="number"
+                  min="1"
+                  max="10">
+                </Field>
+              </td>
+              <td>
+                <div className="actions">
+                  {<a onClick={() => { fields.remove(index); }}><i className="fa fa-close"></i></a>}
+                </div>
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+      <div className="row mt20">
+        <div className="col-xs-12 text-center">
+          <RaisedButton type='button' label="Add Skill" primary={true} onClick={() => {
+            fields.push({})
+          }} />
+        </div>
       </div>
     </div>
-  </div>
-)
+  )
+}
 // Qualifications Edit Table
 const renderQualifications = ({ fields }) => (
   <div>
@@ -350,15 +397,15 @@ const Overview = (props) => {
           <div className="col-xs-12">
             <div className="row mb20">
               <div className="col-sm-6">
-                <Field name='firstname' component={renderField} type='text' floatingLabelText="First Name" underlineShow fullWidth />
+                <Field name='firstname' component={renderMaterialField} type='text' floatingLabelText="First Name" />
               </div>
               <div className="col-sm-6">
-                <Field name='lastname' component={renderField} type='text' floatingLabelText="Last Name" underlineShow fullWidth />
+                <Field name='lastname' component={renderMaterialField} type='text' floatingLabelText="Last Name" />
               </div>
             </div>
             <div className="row">
               <div className="col-xs-12">
-                <Field name='title' component={renderField} type='text' floatingLabelText="Title" underlineShow />
+                <Field name='title' component={renderMaterialField} type='text' floatingLabelText="Title" />
               </div>
             </div>
             <div className="row">
@@ -384,19 +431,31 @@ class CvProfileComponent extends Component {
     super(props, context);
 
     this.state = {
-      isEdit: false
+      isEdit: false,
+      allSkills: []
     };
 
     this.toggleEditState = this.toggleEditState.bind(this);
+    this.getAllSkills = this.getAllSkills.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
   componentDidMount() {
     this.props.getProfile();
+    this.getAllSkills();
   }
   toggleEditState() {
     const newState = !this.state.isEdit;
+    // get all skills if change to Edit State
+    if (newState) { this.getAllSkills(); }
+    // set newState
     this.setState({ isEdit: newState });
   }
+  getAllSkills() {
+    //get SFIA skills from server
+    this.props.getAllSkills();
+    this.setState({ allSkills: this.props.allSkills })
+  };
+
   onSubmit(e) {
     e.preventDefault();
     this.props.handleSubmit();
@@ -408,6 +467,7 @@ class CvProfileComponent extends Component {
     const { skills = [] } = profile;
     const { qualifications = [] } = profile;
     const { projects = [] } = profile;
+    const allSkills = this.state.allSkills;
 
     return (
       <div className={'viewCvPage'}>
@@ -445,7 +505,7 @@ class CvProfileComponent extends Component {
                     tabID="skills"
                     headerText="Skills"
                     viewTable={<SkillsTable fields={skills} />}
-                    editTable={<FieldArray name="skills" component={renderSkills} />}
+                    editTable={<FieldArray name="skills" component={renderSkills} allSkills={allSkills} />}
                     profile={profile}
                     isEdit={isEdit}
                     isActive={true} />
@@ -477,6 +537,8 @@ class CvProfileComponent extends Component {
 
 
 
-export default reduxForm({ form: 'cv_form', enableReinitialize: true })(
-  CvProfileComponent
-)
+export default reduxForm({
+  form: 'cv_form',
+  enableReinitialize: true,
+  validate
+})(CvProfileComponent)

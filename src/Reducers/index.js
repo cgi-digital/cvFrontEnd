@@ -6,6 +6,7 @@ import profileReducer from './profile';
 import usersReducer from './users';
 import loginReducer from './login';
 import searchReducer from './search';
+import skillsReducer from './skills';
 
 const RootReducer = combineReducers({
   // Redux Form
@@ -14,7 +15,8 @@ const RootReducer = combineReducers({
   // API
   profile: profileReducer,
   users: usersReducer,
-  login: loginReducer
+  login: loginReducer,
+  skills : skillsReducer
 });
 
 export default RootReducer;

@@ -78,19 +78,37 @@ const addUserEntity = (entityName, payload) => {
       }
     });
 };
+const deleteUserEntity = (entityName, payload) => {
+  return axios
+    .delete(API_URL + `user/${entityName}`, qs.stringify(payload), {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    });
+};
 
 export function postProfile(params = {}) {
   return function (dispatch, getState) {
-    const currentState = getState();
-    const formState = currentState.form.cv_form.values;
-    
-    console.log(currentState);
+    const state = getState();
+    const cvForm = state.form.cv_form.values;
 
-    // Add new skills independently
-    formState.skills.filter(k => !k.id).forEach(skill => {
+    // Delete removed skills
+    // Delete All Skills
+    axios
+      .delete(API_URL + 'user/skills',{
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      })
+      .then(function(response){
+      });
+    // Add new array of skills
+    cvForm.skills.filter(k => !k.id).forEach(skill => {
+      console.log(skill);
+      skill.skillName = skill.skillName.value;
       addUserEntity('skills', skill);
     });
-    formState.projects.filter(k => !k.id).forEach(project => {
+    cvForm.projects.filter(k => !k.id).forEach(project => {
       addUserEntity('projects', Object.keys(project).reduce((prev, next) => {
         if (next === 'projectName') {
           prev.project = project.projectName;
@@ -100,19 +118,19 @@ export function postProfile(params = {}) {
         return prev;
       }, {}));
     });
-    formState.qualifications.filter(k => !k.id).forEach(qualification => {
+    cvForm.qualifications.filter(k => !k.id).forEach(qualification => {
       addUserEntity('qualifications', qualification);
     });
 
     // TODO: Find a way to save these
-    const rootFields = Object.keys(formState).reduce((prev, next) => {
+    const rootFields = Object.keys(cvForm).reduce((prev, next) => {
       if (['firstname', 'lastname', 'title'].includes(next)) {
-        prev[next] = formState[next];
+        prev[next] = cvForm[next];
       }
       return prev;
     }, {});
 
-    // dispatch({ type: PROFILE_UPDATE, data: currentState.form.cv_form.values });
+    // dispatch({ type: PROFILE_UPDATE, data: state.form.cv_form.values });
     /*axios
       .post(API_URL + 'user', qs.stringify(rootFields), {
         headers: {
@@ -120,13 +138,13 @@ export function postProfile(params = {}) {
         }
       })
       .then(function(response) {
-        dispatch({ type: PROFILE_UPDATE, data: currentState.form.cv_form.values });
+        dispatch({ type: PROFILE_UPDATE, data: state.form.cv_form.values });
       })
       .catch(function(error) {
         dispatch({ type: PROFILE_FAILURE });
         console.log(error);
       });*/
     
-    dispatch({ type: PROFILE_UPDATE, data: currentState.form.cv_form.values });
+    dispatch({ type: PROFILE_UPDATE, data: state.form.cv_form.values });
   };
 }

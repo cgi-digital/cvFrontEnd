@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { getProfile, postProfile } from '../../Reducers/profile';
+import { getAllSkills } from '../../Reducers/skills';
 
 import CvProfileComponent from './component';
 
 function mapStateToProps(state) {
   return { 
-    profile: state.profile
+    profile: state.profile,
+    allSkills: state.skills
   };
 }
 
@@ -18,6 +20,9 @@ function mapDispatchToProps(dispatch) {
     },
     postProfile: e => {
       dispatch(postProfile());
+    },
+    getAllSkills: e => {
+      dispatch(getAllSkills());
     },
     handleSubmitSuccess: a => {
       console.log("BOOM");
