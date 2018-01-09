@@ -83,9 +83,6 @@ export function postProfile(params = {}) {
   return function (dispatch, getState) {
     const currentState = getState();
     const formState = currentState.form.cv_form.values;
-
-    console.log(formState);
-
     // Add new skills independently
     formState.skills.filter(k => !k.id).forEach(skill => {
       addUserEntity('skills', skill);

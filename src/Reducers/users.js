@@ -63,9 +63,6 @@ export function getUsers(params = {}) {
   return function (dispatch, getState) {
     const currentState = getState();
     const formState = currentState.form.search_name_form.values;
-
-    console.log(currentState);
-
     dispatch({ type: USERS_LOAD });
     if (formState) {
       // SEARCH BY FIRST AND LAST NAME

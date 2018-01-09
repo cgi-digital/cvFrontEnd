@@ -27,9 +27,6 @@ import {
 
 const validate = values => {
   const errors = {};
-  if (values.skills) {
-    console.log(values.skills);
-  }
   return errors
 }
 
@@ -445,7 +442,7 @@ class CvProfileComponent extends Component {
   }
   toggleEditState() {
     const newState = !this.state.isEdit;
-    // get all skills if change to Edit State
+    // get all skills if change is from View State to Edit State
     if (newState) { this.getAllSkills(); }
     // set newState
     this.setState({ isEdit: newState });
@@ -458,7 +455,7 @@ class CvProfileComponent extends Component {
 
   onSubmit(e) {
     e.preventDefault();
-    this.props.handleSubmit();
+    this.props.postProfile();
   }
   render() {
     const isEdit = this.state.isEdit;
