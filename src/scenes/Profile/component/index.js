@@ -11,7 +11,7 @@ import { Link } from 'react-router';
 import FontIcon from 'material-ui/FontIcon';
 import RaisedButton from 'material-ui/RaisedButton';
 
-import Select from 'react-select';
+import { Creatable } from 'react-select';
 import 'react-select/dist/react-select.css';
 
 
@@ -55,7 +55,7 @@ const renderMaterialField = ({ input, multiLine, rows, label, meta: { touched, e
 )
 const renderSkillSelect = ({ input, ...custom }) => (
   <div>
-    <Select
+    <Creatable
       value={input.value}
       onChange={()=> {this.value = input.value.value}}
       autoBlur={true}
